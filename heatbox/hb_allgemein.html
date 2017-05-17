@@ -6,7 +6,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>HeatBox | HeatBox</title>
+    <title>Allgemeines | HeatBox</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
 
@@ -27,8 +27,8 @@
 </head>
 
 <body>
-
-    <!--Header-->
+	
+	<!--Header-->
     <header class="navbar navbar-fixed-top">
         <div class="navbar-inner">
             <div class="container">
@@ -42,10 +42,10 @@
                     <ul class="nav">
                         <li><a href="index.html">Startseite</a></li>
                         <li class="dropdown active">
-                            <a href="#" class="dropdown-toggle-active" data-toggle="dropdown">HeatBox <i class="icon-angle-down"></i></a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">HeatBox <i class="icon-angle-down"></i></a>
                             <ul class="dropdown-menu">
-                            	<li><a href="hb_allgemein.html">Allgemeines</a></li>
-                            	<li class="nav-header active"><a href="hb.html">HeatBox</a></li>
+                            	<li class="active"><a href="hb_allgemein.html">Allgemeines</a></li>
+                            	<li class="nav-header"><a href="hb.html">HeatBox</a></li>
                                 <li><a href="hb_tec.html">Technische Daten</a></li>
                                 <li><a href="hb_dl.html">Downloads</a></li>
                                 <li><a href="hb_anl.html">Anleitungen</a></li>
@@ -64,6 +64,7 @@
                                 <li><a href="spende.html">Spende</a></li>                        
                             </ul>
                         </li>
+                        
                         <li><a href="kontakt.html">Kontakt</a></li> <!-- SEITE SCHREIBEN -->
                         <li><a href="impressum.html">Impressum</a></li>
                         <li class="login">
@@ -76,87 +77,71 @@
     </header>
     <!-- /header -->
     
-<div class="jumbotron" style="background-color:white;"> <!-- #232323-->
-    <div class="container image-center" align="center">
-        <img src="images/HeatBox-Logo.png" class="img-responsive" alt="header-logo">
-    </div>
-</div>
+	<div class="jumbotron" style="background-color:white;"> <!-- #232323-->
+	    <div class="container image-center" align="center">
+	        <img src="images/HeatBox-Logo.png" class="img-responsive" alt="header-logo">
+	    </div>
+	</div>
+	
+	<section class="main-info">
+	    <div class="container">
+	        <div class="row-fluid">
+	            <div class="center gap">
+	               <h1>HeatBox</h1>
+	               <p>Die HeatBox von HaDi-RC.de ist die intelligente, mikroprozessorgesteuerte Regelung zum Bau eines Akku-Heizkoffers.</p>
+	           </div>
+	        </div>
+	    </div>
+	</section>	
 
 <section id="recent-works">
     <div class="container">
         <div class="row-fluid">
-            <div class="center gap">
-               <h1>HeatBox</h1>
-               <p>Die "klassiche" HeatBox ist die erste erschienene Version der Heizkoffersteuerung</p>
-           </div>
+	           <div class="span6">
+	               <p>
+	               	<br />
+	               	Herzstück bildet ein ATMega 328 Prozessor mit 16MHz, der die Innentemperatur mittels eines 1Wire-Bus-Temperatursensors überwacht und die Temperatur der Heizung exakt reguliert. Ein integrierter, hochpräziser Hall-Sensor erlaubt die Verwendung eines eingebauten Speise-Akkus zum autarken Betrieb, die Kapazität des Akkus kann eingegeben werden und z.b. bei erreichen einer bestimmten Entlademenge ein Vorwarnsignal ausgegeben werden. Die Akkuspannung wird dabei überwacht und im Falle einer drohenden Tiefentladung unabhängig davon die Heizung zwangsweise abgeschaltet.
+           		  </p>
+	           </div>
+	           <div class="span6" align="center">
+	           			<img src="images/HeatBox v121x.png" class="img-responsive" width="45%" />
+	           </div>
         </div>
     </div>
 </section>
 
-<section class="main-info">
+	<section class="main-info">
+	    <div class="container">
+	        <div class="row-fluid">
+	           <div class="span6" align="center">
+	           			<img src="images/hb1.png" class="img-responsive" />
+	           </div>
+	           <div class="span6">
+	               <p>
+	               	<p>
+	               		Alle Daten sind über ein kontrastreiches LC-Display ablesbar, Funktionen wie der StartUp-Timer erlauben ein zeitverzögertes Einschalten von bis zu 12 Stunden - stellen Sie morgens einfach ein, nach welcher Countdown-Zeit das vorheizen Ihrer Akkus erfolgen soll, und die HeatBox sorgt selbständig für perfekt temperierte Akkus.
+	               	</p>
+	           </div>
+	        </div>
+	    </div>
+	</section>	
+	
+	<section id="recent-works">
     <div class="container">
-        <ul class="gallery col-3">
-            <!--Item 1-->
-            <li>
-                <div class="preview">
-                    <img alt=" " src="images/hb1.png">
-                    <div class="overlay">
-                    </div>
-                    <div class="links">
-                        <a data-toggle="modal" href="#modal-1"><i class="icon-eye-open"></i></a><a href="#"><i class="icon-link"></i></a>                          
-                    </div>
-                </div>
-           
-                <div id="modal-1" class="modal hide fade">
-                    <a class="close-modal" href="javascript:;" data-dismiss="modal" aria-hidden="true"><i class="icon-remove"></i></a>
-                    <div class="modal-body">
-                        <img src="images/portfolio/full/item1.jpg" alt=" " width="100%" style="max-height:400px">
-                    </div>
-                </div>                 
-            </li>
-            <!--/Item 1--> 
-
-            <!--Item 2-->
-            <li>
-                <div class="preview">
-                    <img alt=" " src="images/hb3.png">
-                    <div class="overlay">
-                    </div>
-                    <div class="links">
-                        <a data-toggle="modal" href="#modal-1"><i class="icon-eye-open"></i></a><a href="#"><i class="icon-link"></i></a>                                
-                    </div>
-                </div>
-
-                <div id="modal-1" class="modal hide fade">
-                    <a class="close-modal" href="javascript:;" data-dismiss="modal" aria-hidden="true"><i class="icon-remove"></i></a>
-                    <div class="modal-body">
-                        <img src="images/hb3.png" alt=" " width="100%" style="max-height:400px">
-                    </div>
-                </div>                 
-            </li>
-            <!--/Item 2-->
-
-            <!--Item 3-->
-            <li>
-                <div class="preview">
-                    <img alt=" " src="images/v120black.jpg">
-                    <div class="overlay">
-                    </div>
-                    <div class="links">
-                        <a data-toggle="modal" href="#modal-3"><i class="icon-eye-open"></i></a><a href="#"><i class="icon-link"></i></a>                                
-                    </div>
-                </div>
-
-                <div id="modal-3" class="modal hide fade">
-                    <a class="close-modal" href="javascript:;" data-dismiss="modal" aria-hidden="true"><i class="icon-remove"></i></a>
-                    <div class="modal-body">
-                        <img src="images/portfolio/full/item3.jpg" alt=" " width="100%" style="max-height:400px">
-                    </div>
-                </div>                 
-            </li>
-            <!--/Item 3--> 
-        </ul>
- 
+        <div class="row-fluid">
+	           <p>
+	           		Genießen Sie die Vorteile der Vorwärmung von Akkus :
+	           </p>
+	           <ul>
+	           	<li>Höhere Spannungslage</li>
+	           	<li>niedrigerer Innenwiderstand</li>
+	           	<li>stabilere Spannung unter Last</li>
+	           </ul>
+	           <p>
+	           	Erleben Sie Ihre Akkus viel frischer als Sie es bisher kennen und verlängern Sie die Lebensdauer Ihrer Kraft-Riegel !
+	           </p>
+        </div>
+    </div>
 </section>
 
 <!--Bottom-->
