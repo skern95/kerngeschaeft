@@ -80,9 +80,16 @@ a {
 	-o-transition: 300ms;
 	transition: 300ms
 }
+
 a:hover, a:focus {
-	color: #005580;
-	text-decoration: none;
+	color: orange;
+	text-decoration: underline;
+	outline: 0
+}
+
+a:hover, a:focus {
+	color: orange;
+	text-decoration: underline;
 	outline: 0
 }
 .dropdown-menu {
@@ -292,8 +299,12 @@ header .dropdown-menu:before {
 	background: #FF8C00
 }
 .main-info {
-	background-color: #232323;
+	background-color: orange;
 	color: white
+}
+
+.main-info  a{
+	color: #666;
 }
 .main-info h4 {
 	color: white
