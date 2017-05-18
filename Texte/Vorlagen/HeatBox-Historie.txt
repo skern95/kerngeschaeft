@@ -1,0 +1,37 @@
+Stichpunkte HeatBox-Development :
+=====================================
+
+Erst-Versuche auf Lochrasterplatinen, mit Arduino-Mini 328 , darauf basierend Weiterentwicklung auf Lochrasterplatine
+mit externer CPU-Platine mit Atmel 328P.
+
+(Bild : Very First Development, zeigt alle Stadien )
+
+
+Entwicklung der Beta-Platine v 0.9 ( Grüne Platine ), diese wurde als Bausatz geliefert, Kunden mußten noch einige Bauteile
+selber einlöten und das Display von Hand verkabeln / verlöten mit Flachbandkabel
+
+Erste offizielle Version wurde die v 1.0 (rote Platine), gefolgt von der 1.1 (schwarze Platine).
+
+Diese Versionen konnten durch eine Zusatzplatine für den "Extension-Port" erweitert werden, und zwar um eine Erkennung
+für externe Spannungsversorgung und deren Messung, sowie einer Ansteuerung eines Zusatz-Lüfters für bessere Konvektion.
+
+Ab der Hardware-Revision v1.21 wurden diese Komponenten mit auf der Hauptplatine untergebracht und bereits fester bestandteil
+der Grundfunktionen. Die Platine wurde dabei etwas größer zur Aufnahme der zusätzlichen Bauteile und Anschlüsse.
+
+Danach wurde vor allem das Design optimiert, daraus entstand die v 1.50 "compact" (alloes vor der v 1.50 wird als "Legacy"
+geführt )
+
+Die "compact"-Serie zeichnet sich dadurch aus, das die Haupt-Platine nicht größer ist als das Display - und zwar auch für das 2-Zeilige
+16-Zeichen-Display. Für Kunden die das 4x16 LCD bevorzugten wurde eine Adapterplatine angeboten, die es ermöglichte, genau wie
+mit dem 2x16 LCD, das ganze als Sandwich-Bauweise mit minimalstem Kabelaufwand fertigzustellen.
+
+Ab der v 1.51 Revision wurde erstmalig eine optional erhältliche Version für den Betrieb mit 11...24 V eingeführt, die "c24"
+
+Alle davor erschienen HB waren nur für 11...14,9 V Versorgungsspannugn geeignet.
+
+Ab der Version v 1.60 wurde das gesamte Design so ausgelegt, das die HeatBox mit Spannungen von 10,8...29 V betrieben werden kann.
+
+Mit der v 1.70 wurde dann erstmal auf unveränderter Platinengröße zusätzlich ein Verpolungsschutz und eine leistungsfähigere
+Endstufe realisiert, so das selbst eine Verpolung der Versorgungsquelle keinen Schaden anrichten konnte. Bei diesem Stdium der
+Entwicklugn wurden auch fertig konfektionierte Kabelsätze mit ausgeliefert, der Montageaufwand für den Kunden auf ein Minimum
+reduziert, so das selbst unterfahrene Elektroni-Laien die HeatBox zur einem kompletten heizkoffer zusammenbauen können.
