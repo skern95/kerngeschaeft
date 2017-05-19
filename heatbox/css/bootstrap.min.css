@@ -297,6 +297,7 @@ a:hover, a:focus {
 }
 .row-fluid [class*="span"] {
 	display: block;
+	position: relative;
 	width: 100%;
 	min-height: 30px;
 	-webkit-box-sizing: border-box;
