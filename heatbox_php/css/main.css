@@ -130,10 +130,6 @@ body > section#slide-show {
 #clients .prev, #clients .next {
 	color: #999
 }
-#syscontent {
-	padding: 0px 20px 20px;
-	font-size: 14px;
-}
 .heatboxlogo {
 	display: block;
 	position: relative;
