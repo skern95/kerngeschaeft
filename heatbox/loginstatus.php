@@ -1,7 +1,13 @@
 <?php
 						session_start();
 						if (!empty($_SESSION['user'])){
-						echo '<li>',$_SESSION['user']['email'],'</li>';
+						echo '
+						<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">',$_SESSION['user']['email'],' <i class="icon-angle-down"></i></a>
+							<ul class="dropdown-menu">
+								<li><a href="logout.php">Logout</a></li>
+							</ul>
+						</li>
+						';
 						} else {
 						echo '
 						<li class="login">
