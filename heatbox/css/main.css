@@ -130,6 +130,10 @@ body > section#slide-show {
 #clients .prev, #clients .next {
 	color: #999
 }
+.heatboxlogo {
+	display: block;
+	position: relative;
+}
 .title {
 	background: orange;
 	color: #fff;
@@ -691,13 +695,6 @@ ul.gallery li .preview {
 	background: rgba(0,0,0,0.6);
 	opacity: 0;
 	filter: alpha(opacity=0)
-}
-.overlaylogo {
-	position: absolute;
-	top: 80px;
-	left: 0px;
-	width: 100%;
-	height: 178px
 }
 ul.gallery li .preview .links {
 	width: 104px;
