@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="css/font-awesome.min.css">
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/sl-slide.css">
+    <link rel="stylesheet" href="css/animate.css">
 
     <script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
 
@@ -79,53 +80,82 @@
         <iframe width="100%" height="400" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.google.com/maps/embed/v1/place?q=place_id:ChIJ34YqogwWvEcRso096nJO4Pk&key=AIzaSyCqrIw3ubdGGzaGU3DN32eIjFjL_ZObw_0"></iframe>
     </section>
 
-    <section id="contact-page" class="container">
-        <div class="row-fluid">
-            <div class="span8">
-                <h4>Kontakt Formular</h4>
-                <div class="status alert alert-success" style="display: none"></div>
+		<section id="contact-page" class="container">
+			<div class="row-fluid">
+				<div class="span3" >
+					<h4>Kontakt Formular</h4>
+					<p><br></p>
+					
+					<div class="status alert alert-success" style="display: none"></div>
 
-                <form id="main-contact-form" class="contact-form" name="contact-form" method="post" action="sendemail.php">
-					<div class="row-fluid">
-						<div class="span5">
-							<label>Vorname</label>
-							<input type="text" class="input-block-level" required="required" placeholder="Ihr Vorname">
-							<label>Nachname</label>
-							<input type="text" class="input-block-level" required="required" placeholder="Ihr Nachname">
-							<label>E-Mail Addresse</label>
-							<input type="text" class="input-block-level" required="required" placeholder="Ihre E-Mail Addresse">
+					<!-- Start Contact Form -->
+					<form role="form" id="contactForm" class="contact-form" data-toggle="validator" class="shake">
+						<div class="form-group">
+							<div class="controls">
+								<input type="text" id="name" class="input-block-level form-control" placeholder="Name" required data-error="Please enter your name">
+								<div class="help-block with-errors"></div>
+							</div>
 						</div>
-						<div class="span7">
-							<label>Nachricht</label>
-							<textarea name="message" id="message" required="required" class="input-block-level" rows="8"></textarea>
+						<div class="form-group">
+							<div class="controls">
+								<input type="email" class="input-block-level email form-control" id="email" placeholder="Email" required data-error="Please enter your email">
+								<div class="help-block with-errors"></div>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="controls">
+								<input type="text" id="msg_subject" class="input-block-level form-control" placeholder="Betreff" required data-error="Please enter your message subject">
+								<div class="help-block with-errors"></div>
+							</div>
 						</div>
 					</div>
-					<button type="submit" class="btn btn-primary btn-large pull-right">Nachricht senden</button>
-				</form>
-			</div>
-			<div class="span3">
-				<h4>Unsere Addresse</h4>
-				<p>Sie finden uns hier:</p>
-				<p>
-					<i class="icon-map-marker pull-left"></i> &nbsp;Hüttenstraße 13<br>
-					&nbsp;&nbsp;&nbsp;&nbsp;35708 Haiger<br />&nbsp;&nbsp;&nbsp;&nbsp;Deutschland
-				</p>
-				<p>
-					<i class="icon-envelope"></i> &nbsp;Info@HaDi-RC.de
-				</p>
-				<p>
-					<i class="icon-phone"></i> &nbsp;+49 2773 912030
-				</p>
-				<p>
-					<i class="icon-print"></i> &nbsp;+49 02773 912031
-				</p>
-				<p>
-					<i class="icon-globe"></i> &nbsp;&nbsp;<a href="HaDi-RC.de" style="color: #34495e">HaDi-RC.de</a>
-				</p>
-			</div>
-		</div>
-	</section>
+					<div class="span1"></div>
+					<div class="span4">
+						<div class="form-group">
+							<div class="controls">
+								<textarea id="message" rows="7" placeholder="Nachricht" class="input-block-level form-control" required data-error="Write your message" style="width: 100%; height: 251px"></textarea>
+								<div class="help-block with-errors"></div>								
+							</div>
+						</div>
+						<p><br></p>
+						<button type="submit" id="submit" class="btn btn-effect btn-primary btn-large">
+							<i class="fa fa-check"></i> Send Message
+						</button>
+						<div id="msgSubmit" class="h3 text-center hidden"></div>
+						<div class="clearfix"></div>
 
+					</form>
+					<!-- End Contact Form -->
+					
+				</div>
+				<div class="span3 pull-right">
+					<h4>Unsere Addresse</h4>
+					<p>
+						Sie finden uns hier:
+					</p>
+					<p>
+						<i class="icon-map-marker pull-left"></i> &nbsp;Hüttenstraße 13
+						<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;35708 Haiger
+						<br />
+						&nbsp;&nbsp;&nbsp;&nbsp;Deutschland
+					</p>
+					<p>
+						<i class="icon-envelope"></i> &nbsp;Info@HaDi-RC.de
+					</p>
+					<p>
+						<i class="icon-phone"></i> &nbsp;+49 2773 912030
+					</p>
+					<p>
+						<i class="icon-print"></i> &nbsp;+49 02773 912031
+					</p>
+					<p>
+						<i class="icon-globe"></i> &nbsp;&nbsp;<a href="HaDi-RC.de" style="color: #34495e">HaDi-RC.de</a>
+					</p>
+				</div>
+				<div class="span1"></div>
+			</div>
+		</section>
 	<!--Bottom-->
 	<section id="bottom" class="main">
 		<!--Container-->
@@ -298,5 +328,9 @@
 	<script src="js/vendor/jquery-1.9.1.min.js"></script>
 	<script src="js/vendor/bootstrap.min.js"></script>
 	<script src="js/main.js"></script>   
+		<!-- Main JS  -->
+    <script type="text/javascript" src="assets/js/jquery-min.js"></script>      
+    <script type="text/javascript" src="assets/js/form-validator.min.js"></script>  
+    <script type="text/javascript" src="assets/js/contact-form-script.js"></script>
 </body>
 </html>
