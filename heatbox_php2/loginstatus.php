@@ -1,5 +1,9 @@
 <?php
 	session_start();
+	if (empty($_SESSION['sprache'])) {
+		$_SESSION['sprache'] = 1;
+	}
+	
 	if (!empty($_SESSION['user'])){
 	echo '
 	<li class="dropdown login"><a href="#" class="dropdown-toggle" data-toggle="dropdown">',$_SESSION['user']['email'],' <i class="icon-angle-down"></i></a>
