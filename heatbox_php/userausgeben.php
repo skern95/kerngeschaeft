@@ -32,22 +32,22 @@
 		";
 		foreach ($db->query($query) as $row){
 			//print_r($row);
-			if($row['istadmin'] = 1){
+			if($row['istadmin'] == 1){
 				$istadmin = "true";
 			} else {
 				$istadmin = "false";
 			}
-			if($row['hatheatbox'] = 1){
+			if($row['hatheatbox'] == 1){
 				$hatheatbox = "true";
 			} else {
 				$hatheatbox = "false";
 			}
-			if($row['hatcompact'] = 1){
+			if($row['hatcompact'] == 1){
 				$hatcompact = "true";
 			} else {
 				$hatcompact = "false";
 			}
-			if($row['hateco'] = 1){
+			if($row['hateco'] == 1){
 				$hateco = "true";
 			} else {
 				$hateco = "false";
