@@ -97,7 +97,7 @@ button, html input[type="button"], input[type="reset"], input[type="submit"] {
 	-webkit-appearance: button;
 	cursor: pointer;
 }
-label, select, button, input[type="button"], input[type="reset"], input[type="submit"], input[type="radio"], input[type="checkbox"] {
+select, button, input[type="button"], input[type="reset"], input[type="submit"], input[type="radio"], input[type="checkbox"] {
 	cursor: pointer;
 }
 input[type="search"] {
