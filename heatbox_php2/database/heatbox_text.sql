@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Erstellungszeit: 31. Mai 2017 um 10:40
+-- Erstellungszeit: 31. Mai 2017 um 11:19
 -- Server-Version: 10.1.9-MariaDB
 -- PHP-Version: 5.6.15
 
@@ -111,7 +111,8 @@ CREATE TABLE `texte` (
 --
 
 INSERT INTO `texte` (`textid`, `textnr`, `text`, `seitennr`, `sprachnr`) VALUES
-(1, 1, 'Dies ist ein Test.', 1, 1);
+(1, 1, 'Dies ist ein Test.', 1, 1),
+(3, 1, 'This is a test.', 1, 2);
 
 --
 -- Indizes der exportierten Tabellen
@@ -153,7 +154,6 @@ ALTER TABLE `sprachen`
 --
 ALTER TABLE `texte`
   ADD PRIMARY KEY (`textid`),
-  ADD UNIQUE KEY `textnr` (`textnr`),
   ADD KEY `seitennr` (`seitennr`),
   ADD KEY `sprachnr` (`sprachnr`);
 
@@ -185,7 +185,7 @@ ALTER TABLE `sprachen`
 -- AUTO_INCREMENT für Tabelle `texte`
 --
 ALTER TABLE `texte`
-  MODIFY `textid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `textid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- Constraints der exportierten Tabellen
 --
