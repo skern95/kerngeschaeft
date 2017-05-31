@@ -1,0 +1,7 @@
+GRANT USAGE ON *.* TO 'heatbox_textuser'@'localhost' IDENTIFIED BY PASSWORD '*FAB4D9A1505C4F4DDE1246E66B507495285ECCC1';
+
+GRANT SELECT, INSERT, UPDATE, DELETE ON `heatbox\_text`.* TO 'heatbox_textuser'@'localhost';
+
+GRANT USAGE ON *.* TO 'heatbox_loginuser'@'localhost' IDENTIFIED BY PASSWORD '*FAB4D9A1505C4F4DDE1246E66B507495285ECCC1';
+
+GRANT SELECT, INSERT, UPDATE, DELETE ON `heatbox\_login`.* TO 'heatbox_loginuser'@'localhost';
