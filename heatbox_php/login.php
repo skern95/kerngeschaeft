@@ -4,7 +4,7 @@
     if(!empty($_POST)){ 
         $query = " 
             SELECT 
-                id, 
+                userid, 
                 username, 
                 password, 
                 salt, 
