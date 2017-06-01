@@ -30,54 +30,9 @@
 </head>
 
 <body>
-	<!--Header-->
-    <header class="navbar navbar-fixed-top">
-        <div class="navbar-inner">
-            <div class="container">
-                <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </a>
-                <a id="logo" class="pull-left" href="index.php"></a>
-                <div class="nav-collapse collapse pull-right">
-                    <ul class="nav">
-                        <li><a href="index.php">Startseite</a></li>
-                    	<li><a href="hb_allgemein.php">Allgemeines</a></li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">HeatBox <i class="icon-angle-down"></i></a>
-                            <ul class="dropdown-menu">
-                            	<li class="nav-header"><a href="hb.php">HeatBox</a></li>
-                                <li><a href="hb_tec.php">Technische Daten</a></li>
-                                <li><a href="hb_anl.php">Anleitungen</a></li>
-                                <li class="divider"></li>
- 								<li class="nav-header"><a href="hb_comp.php">HeatBox Compact</a></li>
-                                <li><a href="hb_comp_tec.php">Technische Daten</a></li>
-                                <li><a href="hb_comp_anl.php">Anleitungen</a></li>
-                                <li class="divider"></li>
-                                <li class="nav-header"><a href="hb_eco.php">HeatBox Eco</a></li>
-                                <li><a href="hb_eco_tec.php">Technische Daten</a></li>
-                                <li><a href="hb_eco_anl.php">Anleitungen</a></li> 
-                                <li class="divider"></li>
-                                <li><a href="hb_dl.php">Downloads</a></li>
-                                <li><a href="geschichte.php">Geschichte</a></li>
-                                <li><a href="testberichte.php">Testberichte</a></li>  
-                                <li><a href="faq.php">FAQ</a></li>  
-                                <li><a href="spende.php">Spende</a></li>                        
-                            </ul>
-                        </li>
-                        <li><a href="kommentar.php">Kommentare</a></li>
-                        <li class="active"><a href="kontakt.php">Kontakt</a></li>
-                        <li><a href="impressum.php">Impressum</a></li>
-                        <?php
-						include 'loginstatus.php';
-						?>
-                    </ul>        
-                </div><!--/.nav-collapse -->
-            </div>
-        </div>
-    </header>
-    <!-- /header -->
+	<?php
+    include('header.php');
+?>
 
     <section class="no-margin">
         <iframe width="100%" height="400" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.google.com/maps/embed/v1/place?q=place_id:ChIJ34YqogwWvEcRso096nJO4Pk&key=AIzaSyCqrIw3ubdGGzaGU3DN32eIjFjL_ZObw_0"></iframe>
