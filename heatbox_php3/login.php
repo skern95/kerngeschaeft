@@ -42,8 +42,10 @@
 			exit();
         } 
         else{ 
-            print("Login Failed."); 
             $submitted_username = htmlentities($_POST['email'], ENT_QUOTES, 'UTF-8'); 
+			$_SESSION['loginerror'] = "Login Failed!";
+			header("Location: index.php");
+			exit(); 
         } 
     } 
 ?> 
