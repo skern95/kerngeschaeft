@@ -24,7 +24,7 @@
 		die("Failed to run query: " . $ex->getMessage());
 	} 
 	
-	if ($showsysinfopage2["status"] == true/* && empty($_SESSION["siteseen"])*/) {
+	if ($showsysinfopage2["status"] == true && empty($_SESSION["siteseen"])) {
 		echo '
 		<!-- SysInfoPage -->
 		<div class="modal hide fade in" id="sysinfopage" aria-hidden="false">
