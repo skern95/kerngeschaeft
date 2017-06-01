@@ -34,7 +34,7 @@
 			echo 'Willkommen';
 		} else if ($_SESSION['sprache'] == 2) {
 			echo 'Welcome';
-		}	
+		}
 		echo'	</h2>
 			</div>
 			<div id="syscontent">

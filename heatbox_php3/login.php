@@ -37,8 +37,8 @@
         if($login_ok){ 
             unset($row['salt']); 
             unset($row['password']); 
-            $_SESSION['user'] = $row;  
-            header("Location: index.php"); 
+            $_SESSION['user'] = $row;
+            header("Location: ".$_POST['redirect']); 
 			exit();
         } 
         else{ 

@@ -5,55 +5,45 @@
                 * 
             FROM users, permissions 
             WHERE 
-                users.knr = permissions.knr 
+                users.knr = permissions.knr
+			ORDER BY users.knr
         "; 
 		try {       
 		echo "
-		<html>
-			<head>
-				<link rel='stylesheet' href='css/bootstrap.min.css'>
-				<link rel='stylesheet' href='css/bootstrap-responsive.min.css'>
-				<link rel='stylesheet' href='css/font-awesome.min.css'>
-				<link rel='stylesheet' href='css/main.css'>
-				<link rel='stylesheet' href='css/sl-slide.css'>
-			</head>
-			<body>
-				<table border='1'>
-					<tr>
-						<th><label>UserID</label></th>
-						<th><label>Kundennummer</label></th>
-						<th><label>Username</label></th>
-						<th><label>Email-Adresse</label></th>
-						<th><label>IstAdmin?</label></th>
-						<th><label>HatHeatboxNormal?</label></th>
-						<th><label>HatHeatboxCompact?</label></th>
-						<th><label>HatHeatboxEco?</label></th>
-					</tr>
+			<table>
+				<tr>
+					<th>Kundennr</th>
+					<th>Name</th>
+					<th>Email-Adresse</th>
+					<th>Admin</th>
+					<th>Heatbox</th>
+					<th>Compact</th>
+					<th>Eco</th>
+				</tr>
 		";
 		foreach ($db->query($query) as $row){
 			//print_r($row);
 			if($row['istadmin'] == 1){
-				$istadmin = "true";
+				$istadmin = "ja";
 			} else {
-				$istadmin = "false";
+				$istadmin = "-";
 			}
 			if($row['hatheatbox'] == 1){
-				$hatheatbox = "true";
+				$hatheatbox = "ja";
 			} else {
-				$hatheatbox = "false";
+				$hatheatbox = "-";
 			}
 			if($row['hatcompact'] == 1){
-				$hatcompact = "true";
+				$hatcompact = "ja";
 			} else {
-				$hatcompact = "false";
+				$hatcompact = "-";
 			}
 			if($row['hateco'] == 1){
-				$hateco = "true";
+				$hateco = "ja";
 			} else {
-				$hateco = "false";
+				$hateco = "-";
 			}
 			echo "<tr>";
-			echo "<td>".$row['userid']."</td>";
 			echo "<td>".$row['knr']."</td>";
 			echo "<td>".$row['username']."</td>";
 			echo "<td>".$row['email']."</td>";
@@ -64,9 +54,7 @@
 			echo "</tr>";
 		}
 		echo "
-				</table>
-			</body>
-		</html>
+			</table>
 		";
 		} 
         catch(PDOException $ex){ die("Konnte Befehl nicht ausführen: " . $ex->getMessage()); }

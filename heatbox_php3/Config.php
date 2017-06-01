@@ -1,4 +1,4 @@
-﻿<?php
+<?php
     // These variables define the connection information for your MySQL database 
     $username = "heatbox_loginuser"; 
     $password = "heatbox"; 
@@ -14,6 +14,8 @@
 	} 
     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); 
     $db->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC); 
-    //header('Content-Type: text/html; charset=utf-8'); 
-    session_start(); 
+    //header('Content-Type: text/html; charset=utf-8');
+	if (session_id() == "") {
+		session_start();
+	}
 ?>
