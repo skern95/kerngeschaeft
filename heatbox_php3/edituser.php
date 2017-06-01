@@ -1,7 +1,7 @@
 <?php
-	if(array_key_exists('edituser',$_POST)){
+	if(array_key_exists('showuser',$_POST)){
 		require("config.php");
-		//echo "".$_POST['kundennummer'];
+		
 		$query = "
 		SELECT *
 		FROM users
@@ -20,33 +20,35 @@
 		
 		
 		echo '
-		<form action="edituser.php" method="post">
+		<form method="post">
 			<label>Name:</label>
-			<input type="text" name="username" value="'.$userdata['username'].'" style="min-height: 25px; width: 300px;"/>
+			<input type="hidden" name="fullUserId" value="'.$userdata['knr'].'" />
+			
+			<input type="text" name="username" value="'.$userdata['username'].'" style="min-height: 25px; width: 300px;" />
 
 			<label>E-Mail:</label>
-			<input type="text" name="email" value="'.$userdata['email'].'" style="min-height: 25px; width: 300px;"/><br>
+			<input type="text" name="email" value="'.$userdata['email'].'" style="min-height: 25px; width: 300px;" /><br>
 
 			<input type="checkbox" name="istadmin" ';
-			if($permissions['istadmin'] == 1){
+			if($permissions['istadmin'] == true){
 				echo "checked ";
 			}
 			echo 'style="margin: 0px 0px 4px;">&nbsp;Ist Admin?</input><br>
 
 				<input type="checkbox" name="hatheatbox" ';
-			if($permissions['hatheatbox'] == 1){
+			if($permissions['hatheatbox'] == true){
 				echo "checked ";
 			}
 			echo ' style="margin: 0px 0px 4px;">&nbsp;Hat Heatbox?</input><br>
 
 				<input type="checkbox" name="hatcompact" ';
-			if($permissions['hatcompact'] == 1){
+			if($permissions['hatcompact'] == true){
 				echo "checked ";
 			}
 			echo ' style="margin: 0px 0px 4px;">&nbsp;Hat Heatbox Compact?</input><br>
 
 				<input type="checkbox" name="hateco" ';
-			if($permissions['hateco'] == 1){
+			if($permissions['hateco'] == true){
 				echo "checked ";
 			}
 			echo ' style="margin: 0px 0px 4px;">&nbsp;Hat Heatbox Eco?</input><br>
@@ -57,27 +59,57 @@
 		</form>
 		';
 	}
-	
-	/*if(isset($_POST['editUser'])) {
+
+	if(array_key_exists('editUser',$_POST)) {
 		require("config.php");
+		
 		$query = "
 		UPDATE users
-		SET 
-		WHERE knr = '".$userdata['knr']."'
+		SET username='".$_POST['username']."', email='".$_POST['email']."' 
+		WHERE knr = '".$_POST['fullUserId']."'
 		";
 		$db->query($query);
-		header("Location: adminpage.php"); 
-		exit();
-	}*/
+		
+		if(empty($_POST['istadmin'])){
+			$istadmin = false;
+		} else {
+			$istadmin = true;
+		}
+		if(empty($_POST['hatheatbox'])){
+			$hatheatbox = false;
+		} else {
+			$hatheatbox = true;
+		}
+		if(empty($_POST['hatcompact'])){
+			$hatcompact = false;
+		} else {
+			$hatcompact = true;
+		}
+		if(empty($_POST['hateco'])){
+			$hateco = false;
+		} else {
+			$hateco = true;
+		}
+		
+		$query2 = "
+		UPDATE permissions
+		SET istadmin='".$istadmin."', hatheatbox='".$hatheatbox."', hatcompact='".$hatcompact."', hateco='".$hateco."'
+		WHERE knr = '".$_POST['fullUserId']."'
+		";
+		$db->query($query2);
+		
+		echo "Benutzer erfolreich geändert";
+	}
 	
-	/*if(isset($_POST['delUser'])) {
+	if(array_key_exists('delUser',$_POST)) {
 		require("config.php");
+		
 		$query = "
 		DELETE FROM users
-		WHERE knr = '".$userdata['knr']."'
+		WHERE knr = '".$_POST['fullUserId']."'
 		";
 		$db->query($query);
-		header("Location: adminpage.php"); 
-		exit();
-	}*/
+		
+		echo "Benutzer erfolgreich gelöscht.";
+	}
 ?>

@@ -3,9 +3,6 @@
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
-	<?php
-		session_start();
-	?>
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -27,27 +24,27 @@
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/ico/apple-touch-icon-114-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/ico/apple-touch-icon-72-precomposed.png">
     <link rel="apple-touch-icon-precomposed" href="images/ico/apple-touch-icon-57-precomposed.png">
+	<?php
+		session_start();
+		require("config.php");
+		if (empty($_SESSION['user'])) {
+			header("Location: index.php");
+			die("Redirecting to index.php");
+		}
+		
+		$query = "
+		SELECT istadmin
+		FROM permissions
+		WHERE knr = '".$_SESSION['user']['knr']."'";
+		$run = $db->query($query);
+		$permission = $run->fetch();
+		if($permission['istadmin'] == false) {
+			header("Location: index.php");
+			die("Redirecting to index.php");
+		}
+	?>
 </head>
-<?php
-	error_reporting(0);
-	require("config.php");
-	session_start();
-	if (empty($_SESSION['user'])) {
-		header("Location: index.php");
-		die("Redirecting to index.php");
-	}
-	
-	$query = "
-	SELECT istadmin
-	FROM permissions
-	WHERE knr = '".$_SESSION['user']['knr']."'";
-	$run = $db->query($query);
-	$permission = $run->fetch();
-	if($permission['istadmin'] == false) {
-		header("Location: index.php");
-		die("Redirecting to index.php");
-	}
-?>
+
 <body>
     <!--Header-->
     <header class="navbar navbar-fixed-top">
@@ -61,7 +58,7 @@
                 <a id="logo" class="pull-left" href="index.php"></a>
                 <div class="nav-collapse collapse pull-right">
                     <ul class="nav">
-                        <li class="active"><a href="index.php">Startseite</a></li>
+                        <li><a href="index.php">Startseite</a></li>
                         <li><a href="hb_allgemein.php">Allgemeines</a></li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">HeatBox <i class="icon-angle-down"></i></a>
@@ -97,17 +94,31 @@
     </header>
     <!-- /header -->
 
-	<div class="jumbotron" style="background-color:white;"> <!-- #232323-->
-		<div class="container image-center heatboxlogo" align="center">
-			<img src="images/HeatBox-Logo.png" class="img-responsive" alt="header-logo">
-			<div class="overlay">
-			</div>
-		</div>
-	</div>
-
 	<section class="main-info">
 		<div class="container">
 			<div class="row-fluid">
+				<div class="span4">
+					<h4>Wichtige Meldung</h4>
+					<?php
+						include 'sysinfopagetoggle.php';
+					?>
+					Hier kann ein Text vorgeschaltet werden, um wichtige Meldungen zu zeigen.
+					<label style="margin-top: 15px;">Meldung umschalten:</label>
+					<form action="sysinfopagetoggle.php" method="post">
+						<?php toggleButton() ?>
+					</form>
+					<label>Deutsche Meldung:</label>
+					<form action="sysinfopagetoggle.php" method="post">
+						<textarea name="sysinfoDE" rows="4" style="width:300px; padding:5px 10px;"><?php showTextDE() ?></textarea>
+						<input type="submit" name="updateDE" value="Update" />
+					</form>
+					
+					<label>Englische Meldung:</label>
+					<form action="sysinfopagetoggle.php" method="post">
+						<textarea name="sysinfoEN" rows="4" style="width:300px; padding:5px 10px;"><?php showTextEN() ?></textarea>
+						<input type="submit" name="updateEN" value="Update" />
+					</form>
+				</div>
 				<div class="span4">
 					<h4>Benutzer anlengen</h4>
 					<form action="register.php" method="post">
@@ -136,35 +147,42 @@
 
 						<input type="submit" value="Register" style="margin-top:10px;" />
 					</form>
-					<br>
-					<h4>Kunden</h4>
-					<form action="userausgeben.php">
-						Hiermit können Sie sich alle registrierten Benutzer anzeigen lassen<br>
-						<input type="submit" value="Liste anzeigen" style="margin-top:10px;" />
+				</div>
+				<div class="span4">
+					<h4>Kundendaten bearbeiten</h4>
+					<form method="post">
+						<input type="radio" name="typ" value="P" style="margin: 0px 0px 4px;">&nbsp;Privatkunde</input><br>
+						<input type="radio" name="typ" value="R" style="margin: 0px 0px 4px;">&nbsp;Reseller</input>
+						
+						<label style="margin-top: 15px;">Kundennummer:</label>
+						<input type="text" name="kundennummer" value="" maxlength=8 style="min-height: 25px; width: 65px;"/><br>
+						
+						<input type="submit" name="showuser" value="Suchen" style="margin-top:10px;" />
 					</form>
-				</div>
-				<div class="span4">
-					<h4>Hallo</h4>
-				</div>
-				<div class="span4">
-					<h4>Wichtige Meldung</h4>
 					<?php
-						include 'sysinfopagetoggle.php';
+						include 'edituser.php';
 					?>
-					Hier kann ein Text vorgeschaltet werden, um wichtige Meldungen zu zeigen.
-					<label style="margin-top: 15px;">Deutsche Meldung:</label>
-					<form action="sysinfopagetoggle.php" method="post">
-						<textarea name="sysinfode" rows="5" style="width:300px; padding:5px 10px;"><?php showTextDE() ?></textarea>
-						<input type="submit" name="updateDE" value="Update" />
-					</form>
-					
-					<label>Englische Meldung:</label>
-					<form action="sysinfopagetoggle.php" method="post">
-						<textarea name="sysinfode" rows="5" style="width:300px; padding:5px 10px;"><?php showTextEN() ?></textarea>
-						<input type="submit" name="updateEN" value="Update" />
-					</form>
 				</div>
 			</div>
+			<div style="margin-top: 30px;">
+				<h4>Kundenliste</h4>
+				<input type="button" id="toggleList" value="Liste anzeigen" onclick="showList()" />
+			</div>
+			<div id="userlist" class="row-fluid">
+				<?php
+					include 'userausgeben.php';
+				?>
+			</div>
+			<script>
+				function showList() {
+					document.getElementById("userlist").style.display = "block";
+					document.getElementById("toggleList").setAttribute("onclick", "hideList();");
+				}
+				function hideList() {
+					document.getElementById('userlist').style.display = "none";
+					document.getElementById("toggleList").setAttribute("onclick", "showList();");
+				}
+			</script>
 		</div>
 	</section>
 
