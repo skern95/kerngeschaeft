@@ -29,7 +29,7 @@ body {
 	padding-top: 80px;
 	font-size: 14px;
 	color: #34495e;
-	background: #f5f5f5
+	background: #FFFFFF
 }
 body h1, body h2, body h3, body h4, body .created {
 	font-family: "Fjalla One";
@@ -774,4 +774,40 @@ ul.faq li > div h3 {
 	text-align: center;
 	margin-top: 150px;
 	margin-bottom: 150px
+}
+#userlist {
+	display: none;
+	margin-top: 20px;
+}
+#userlist table {
+	width: 100%;
+	font-size: 16px;
+	border-collapse: collapse;
+}
+#userlist table, #userlist table th, #userlist table td {
+	border: 2px solid #333;
+	padding: 2px 5px;
+	background-color: white;
+	color: #333;
+}
+#userlist table td:first-of-type {
+	width: 90px;
+	text-align: center;
+	font-weight: bold;
+}
+#userlist table td:nth-of-type(4) {
+	width: 70px;
+	text-align: center;
+}
+#userlist table td:nth-of-type(5) {
+	width: 70px;
+	text-align: center;
+}
+#userlist table td:nth-of-type(6) {
+	width: 70px;
+	text-align: center;
+}
+#userlist table td:last-of-type {
+	width: 70px;
+	text-align: center;
 }
