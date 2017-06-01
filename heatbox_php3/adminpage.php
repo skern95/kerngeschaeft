@@ -110,13 +110,13 @@
 					<label>Deutsche Meldung:</label>
 					<form action="sysinfopagetoggle.php" method="post">
 						<textarea name="sysinfoDE" rows="4" style="width:300px; padding:5px 10px;"><?php showTextDE() ?></textarea>
-						<input type="submit" name="updateDE" value="Update" />
+						<input type="submit" name="updateDE" value="Aktualisieren" />
 					</form>
 					
 					<label>Englische Meldung:</label>
 					<form action="sysinfopagetoggle.php" method="post">
 						<textarea name="sysinfoEN" rows="4" style="width:300px; padding:5px 10px;"><?php showTextEN() ?></textarea>
-						<input type="submit" name="updateEN" value="Update" />
+						<input type="submit" name="updateEN" value="Aktualisieren" />
 					</form>
 				</div>
 				<div class="span4">
@@ -145,7 +145,7 @@
 
 						<input type="checkbox" name="hateco" style="margin: 0px 0px 4px;">&nbsp;Hat Heatbox Eco?</input><br>
 
-						<input type="submit" value="Register" style="margin-top:10px;" />
+						<input type="submit" value="Registrieren" style="margin-top:10px;" />
 					</form>
 				</div>
 				<div class="span4">

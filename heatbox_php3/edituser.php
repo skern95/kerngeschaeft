@@ -98,7 +98,7 @@
 		";
 		$db->query($query2);
 		
-		echo "Benutzer erfolreich geändert";
+		echo "Benutzer erfolreich bearbeitet.";
 	}
 	
 	if(array_key_exists('delUser',$_POST)) {
