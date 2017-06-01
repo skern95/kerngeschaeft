@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.5.2
--- https://www.phpmyadmin.net/
+-- version 4.5.1
+-- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Erstellungszeit: 31. Mai 2017 um 08:05
--- Server-Version: 10.1.21-MariaDB
--- PHP-Version: 5.6.30
+-- Erstellungszeit: 01. Jun 2017 um 07:37
+-- Server-Version: 10.1.9-MariaDB
+-- PHP-Version: 5.6.15
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -23,15 +23,44 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `kommentar`
+-- Tabellenstruktur für Tabelle `admin_rules`
 --
 
-CREATE TABLE `kommentar` (
-  `kommentarid` int(11) NOT NULL,
-  `text` varchar(1024) NOT NULL,
-  `knr` varchar(255) NOT NULL,
-  `kommentarnr` int(11) NOT NULL
+CREATE TABLE `admin_rules` (
+  `admin_rulesid` int(11) NOT NULL,
+  `rulenr` int(11) NOT NULL,
+  `rulename` varchar(255) NOT NULL,
+  `status` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Daten für Tabelle `admin_rules`
+--
+
+INSERT INTO `admin_rules` (`admin_rulesid`, `rulenr`, `rulename`, `status`) VALUES
+(1, 1, 'showsysinfopage', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Tabellenstruktur für Tabelle `comments`
+--
+
+CREATE TABLE `comments` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `name` varchar(128) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `url` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `body` text COLLATE utf8_unicode_ci NOT NULL,
+  `dt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Daten für Tabelle `comments`
+--
+
+INSERT INTO `comments` (`id`, `name`, `url`, `email`, `body`, `dt`) VALUES
+(1, 'Jeff', '', 'blabla@aol.com', 'hallo', '2017-05-31 09:32:01');
 
 -- --------------------------------------------------------
 
@@ -44,6 +73,13 @@ CREATE TABLE `seiten` (
   `seitennr` int(11) NOT NULL,
   `seitenname` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Seiten, denen Texte zugeordnet werden können';
+
+--
+-- Daten für Tabelle `seiten`
+--
+
+INSERT INTO `seiten` (`seitenid`, `seitennr`, `seitenname`) VALUES
+(1, 1, 'sysinfopage');
 
 -- --------------------------------------------------------
 
@@ -80,16 +116,29 @@ CREATE TABLE `texte` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Texte, die auf den Seiten angezeigt werden';
 
 --
+-- Daten für Tabelle `texte`
+--
+
+INSERT INTO `texte` (`textid`, `textnr`, `text`, `seitennr`, `sprachnr`) VALUES
+(1, 1, 'Dies ist ein Test.', 1, 1),
+(3, 1, 'This is a test.', 1, 2);
+
+--
 -- Indizes der exportierten Tabellen
 --
 
 --
--- Indizes für die Tabelle `kommentar`
+-- Indizes für die Tabelle `admin_rules`
 --
-ALTER TABLE `kommentar`
-  ADD PRIMARY KEY (`kommentarid`),
-  ADD UNIQUE KEY `kommentarnr` (`kommentarnr`),
-  ADD KEY `knr` (`knr`);
+ALTER TABLE `admin_rules`
+  ADD PRIMARY KEY (`admin_rulesid`),
+  ADD UNIQUE KEY `rulenr` (`rulenr`);
+
+--
+-- Indizes für die Tabelle `comments`
+--
+ALTER TABLE `comments`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indizes für die Tabelle `seiten`
@@ -112,7 +161,6 @@ ALTER TABLE `sprachen`
 --
 ALTER TABLE `texte`
   ADD PRIMARY KEY (`textid`),
-  ADD UNIQUE KEY `textnr` (`textnr`),
   ADD KEY `seitennr` (`seitennr`),
   ADD KEY `sprachnr` (`sprachnr`);
 
@@ -121,15 +169,20 @@ ALTER TABLE `texte`
 --
 
 --
--- AUTO_INCREMENT für Tabelle `kommentar`
+-- AUTO_INCREMENT für Tabelle `admin_rules`
 --
-ALTER TABLE `kommentar`
-  MODIFY `kommentarid` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `admin_rules`
+  MODIFY `admin_rulesid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT für Tabelle `comments`
+--
+ALTER TABLE `comments`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 --
 -- AUTO_INCREMENT für Tabelle `seiten`
 --
 ALTER TABLE `seiten`
-  MODIFY `seitenid` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `seitenid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT für Tabelle `sprachen`
 --
@@ -139,7 +192,7 @@ ALTER TABLE `sprachen`
 -- AUTO_INCREMENT für Tabelle `texte`
 --
 ALTER TABLE `texte`
-  MODIFY `textid` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `textid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- Constraints der exportierten Tabellen
 --
