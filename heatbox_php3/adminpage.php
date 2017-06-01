@@ -110,13 +110,13 @@
 					<label>Deutsche Meldung:</label>
 					<form action="sysinfopagetoggle.php" method="post">
 						<textarea name="sysinfoDE" rows="4" style="width:300px; padding:5px 10px;"><?php showTextDE() ?></textarea>
-						<input type="submit" name="updateDE" value="Aktualisieren" />
+						<input type="submit" name="updateDE" value="Aktualisieren" class="btn btn-transparent" style="width:130px" />
 					</form>
 					
 					<label>Englische Meldung:</label>
 					<form action="sysinfopagetoggle.php" method="post">
 						<textarea name="sysinfoEN" rows="4" style="width:300px; padding:5px 10px;"><?php showTextEN() ?></textarea>
-						<input type="submit" name="updateEN" value="Aktualisieren" />
+						<input type="submit" name="updateEN" value="Aktualisieren" class="btn btn-transparent" style="width:130px" />
 					</form>
 				</div>
 				<div class="span4">
@@ -145,7 +145,7 @@
 
 						<input type="checkbox" name="hateco" style="margin: 0px 0px 4px;">&nbsp;Hat Heatbox Eco?</input><br>
 
-						<input type="submit" value="Registrieren" style="margin-top:10px;" />
+						<input type="submit" value="Registrieren" class="btn btn-transparent" style="margin-top:10px;width:130px" />
 					</form>
 				</div>
 				<div class="span4">
@@ -157,7 +157,7 @@
 						<label style="margin-top: 15px;">Kundennummer:</label>
 						<input type="text" name="kundennummer" value="" maxlength=8 style="min-height: 25px; width: 65px;"/><br>
 						
-						<input type="submit" name="showuser" value="Suchen" style="margin-top:10px;" />
+						<input type="submit" name="showuser" value="Suchen" class="btn btn-transparent" style="margin-top:10px;width:130px" />
 					</form>
 					<?php
 						include 'edituser.php';
@@ -166,7 +166,7 @@
 			</div>
 			<div style="margin-top: 30px;">
 				<h4>Kundenliste</h4>
-				<input type="button" id="toggleList" value="Liste anzeigen" onclick="showList()" />
+				<input type="button" id="toggleList" value="Liste anzeigen" class="btn btn-transparent" onclick="showList()" style="width:130px" />
 			</div>
 			<div id="userlist" class="row-fluid">
 				<?php

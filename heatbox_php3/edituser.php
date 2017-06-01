@@ -53,9 +53,9 @@
 			}
 			echo ' style="margin: 0px 0px 4px;">&nbsp;Hat Heatbox Eco?</input><br>
 
-			<input type="submit" name="editUser" value="Bearbeiten" style="margin-top:10px;" />
+			<input type="submit" name="editUser" value="Bearbeiten" class="btn btn-transparent" style="margin-top:10px; width:130px" />
 			
-			<input type="submit" name="delUser" value="Löschen" style="margin-top:10px;" />
+			<input type="submit" name="delUser" value="Löschen" class="btn btn-transparent" style="margin-top:10px; width:130px" />
 		</form>
 		';
 	}

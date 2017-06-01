@@ -10,11 +10,11 @@
 		$status2 = $status->fetch();
 		if($status2['status'] == '1') {
 			echo '
-			<input type="submit" name="hideSYS" value="Ausschalten" style="width:130px" />
+			<input type="submit" name="hideSYS" value="Ausschalten" class="btn btn-transparent" style="width:130px" />
 			';
 		} else if($status2['status'] == '0'){
 			echo '
-			<input type="submit" name="showSYS" value="Anschalten" style="width:130px" />
+			<input type="submit" name="showSYS" value="Anschalten" class="btn btn-transparent" style="width:130px" />
 			';
 		}
 	}
