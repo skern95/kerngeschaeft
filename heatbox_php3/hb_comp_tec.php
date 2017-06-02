@@ -14,11 +14,25 @@
 		
 		//Sprachbutton Funktionalität
 		include('language.php');
-	?>
+		
+		$query = '
+			SELECT *
+			FROM texte
+			WHERE seitennr = "10" 
+			AND sprachnr = "'.$_SESSION['sprachnr'].'"
+		'; //seitennr = 10 --> hb_comp_tec.php
+		try{
+			$abfragehbcomptec = $db->query($query);
+		} catch(PDOException $ex){
+				die("Failed to connect to the database: " . $ex->getMessage());
+			} echo '
+			
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Technische Daten | HeatBox</title>
+    <title>';
+			$text = $abfragehbcomptec->fetch();
+			echo ''.$text["text"].'</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
 
@@ -38,8 +52,7 @@
     <link rel="apple-touch-icon-precomposed" href="images/ico/apple-touch-icon-57-precomposed.png">
 </head>
 
-<body>
-	<?php
+<body>';
     require('config_text.php');
 // 1 = Deutsch, 2 = Englisch
 $query = '
@@ -169,8 +182,7 @@ echo '
             </div>
         </div>
     </header>
-    <!-- /header -->';
-?>
+    <!-- /header -->
     
 	<div class="jumbotron" style="background-color:white;"> <!-- #232323-->
 	    <div class="container image-center heatboxlogo" align="center">
@@ -184,30 +196,48 @@ echo '
 	    <div class="container">
 	        <div class="row-fluid">
 	            <div class="center">
-					<h1>HeatBox Compact 12V/24V</h1>
+					<h1>';
+			$text = $abfragehbcomptec->fetch();
+			echo ''.$text["text"].'</h1>
 					<br>
-					<h2>Technische Daten</h2>
+					<h2>';
+			$text = $abfragehbcomptec->fetch();
+			echo ''.$text["text"].'</h2>
 					</div>
 					<div class="left">
 						<ul style="padding-left: 32%">
 							<li>
-								&nbsp; Betriebsspannung: 10,5V … 15,0 V DC oder bis 24,0V DC 
-								<br> &nbsp; (entsprechende Bestellung)
+								&nbsp; ';
+			$text = $abfragehbcomptec->fetch();
+			echo ''.$text["text"].' 
+								<br> &nbsp; ';
+			$text = $abfragehbcomptec->fetch();
+			echo ''.$text["text"].'
 							</li>
 							<li>
-								&nbsp; max. Schaltleistung ohne Zusatzkühlung: 75 W (6A)
+								&nbsp; ';
+			$text = $abfragehbcomptec->fetch();
+			echo ''.$text["text"].'
 							</li>
 							<li>
-								&nbsp; max. Schaltleistung mit Zusatzkühlung: 350 W (28A)
+								&nbsp; ';
+			$text = $abfragehbcomptec->fetch();
+			echo ''.$text["text"].'
 							</li>
 							<li>
-								&nbsp; Eigenstromaufnahme (Standby): ca 25mA
+								&nbsp; ';
+			$text = $abfragehbcomptec->fetch();
+			echo ''.$text["text"].'
 							</li>
 							<li>
-								&nbsp; Eigenstromaufnahme (Aktiv): ca 45mA
+								&nbsp; ';
+			$text = $abfragehbcomptec->fetch();
+			echo ''.$text["text"].'
 							</li>
 							<li>
-								&nbsp; Mikroprozessor: ATMega 328 , 16 Mhz, TQFP-Case
+								&nbsp; ';
+			$text = $abfragehbcomptec->fetch();
+			echo ''.$text["text"].'
 							</li>
 						</ul>
 					</div>
@@ -220,98 +250,161 @@ echo '
 		<div class="container">
 			<div class="row-fluid">
 				<div class="center">
-				   <h2>Features</h2>
+				   <h2>';
+			$text = $abfragehbcomptec->fetch();
+			echo ''.$text["text"].'</h2>
 			    </div>
 			    <div class="left">
 					<ul style="padding-left: 32%">
 						<li>
-							&nbsp; DoubleLayer-Hauptplatine in Industriequalität (RoHS, HAL, LF)
+							&nbsp; ';
+			$text = $abfragehbcomptec->fetch();
+			echo ''.$text["text"].'
 						</li>
 						<li>
-							&nbsp; hochpräziser, digitaler Temperatursensor DS-18B20 , Auflösung besser 0,5°C
+							&nbsp; ';
+			$text = $abfragehbcomptec->fetch();
+			echo ''.$text["text"].'
 						</li>
 						<li>
-							&nbsp; leistungslos angesteuerte Hex-FET Endstufe, keine Relaiskontakte
+							&nbsp; ';
+			$text = $abfragehbcomptec->fetch();
+			echo ''.$text["text"].'
 						</li>
 						<li>
-							&nbsp; Frei wählbare Zieltemperatur von 20°C bis 50° C
+							&nbsp; ';
+			$text = $abfragehbcomptec->fetch();
+			echo ''.$text["text"].'
 						</li>
 						<li>
-							&nbsp; Frei einstellbare Hysterese (Temp.-Abfall bis Nachheizen)
+							&nbsp; ';
+			$text = $abfragehbcomptec->fetch();
+			echo ''.$text["text"].'
 						</li>
 						<li>
-							&nbsp; frei einstellbare Konvektionspause zur gravitativen Konvektion (selbsttätige
+							&nbsp; ';
+			$text = $abfragehbcomptec->fetch();
+			echo ''.$text["text"].'
 							<br>
-							&nbsp; Umlüftung durch Wärmeaustausch der Luftmasse ) für erhöhte Effizienz
+							&nbsp; ';
+			$text = $abfragehbcomptec->fetch();
+			echo ''.$text["text"].'
 						</li>
 						<li>
-							&nbsp; Einstellbare Kapazität des Versorgungsakkus (autarker Betrieb)
+							&nbsp; ';
+			$text = $abfragehbcomptec->fetch();
+			echo ''.$text["text"].'
 						</li>
 						<li>
-							&nbsp; Präzise elektronische Strommessung mit µHall-Chip ACS 712
+							&nbsp; ';
+			$text = $abfragehbcomptec->fetch();
+			echo ''.$text["text"].'
 						</li>
 						<li>
-							&nbsp; Einstellbare Warnschwelle für verbrauchte Kapazität (abschaltbar)
+							&nbsp; ';
+			$text = $abfragehbcomptec->fetch();
+			echo ''.$text["text"].'
 						</li>
 						<li>
-							&nbsp; Abspeichern der entnommenen Kapazität beim ausschalten
+							&nbsp; ';
+			$text = $abfragehbcomptec->fetch();
+			echo ''.$text["text"].'
 							<br>
-							&nbsp; (wird beim nächsten Start weiter gezählt), abschaltbar
+							&nbsp; ';
+			$text = $abfragehbcomptec->fetch();
+			echo ''.$text["text"].'
 						</li>
 						<li>
-							&nbsp; Einstellbare Zwangsabschaltung nach Kapazität ( Tiefentladeschutz )
+							&nbsp; ';
+			$text = $abfragehbcomptec->fetch();
+			echo ''.$text["text"].'
 						</li>
 						<li>
-							&nbsp; Integrierte Spannungsüberwachung des Versorgungsakkus mit automatischer
+							&nbsp; ';
+			$text = $abfragehbcomptec->fetch();
+			echo ''.$text["text"].'
 							<br>
-							&nbsp; Zwangsabschaltung bei Unterspannung
+							&nbsp; ';
+			$text = $abfragehbcomptec->fetch();
+			echo ''.$text["text"].'
 						</li>
 						<li>
-							&nbsp; Einstellung durch digitalen Dreh-Encoder
+							&nbsp; ';
+			$text = $abfragehbcomptec->fetch();
+			echo ''.$text["text"].'
 						</li>
 						<li>
-							&nbsp; Automatisches Abspeichern aller eingestellten Werte in internem Speicher
+							&nbsp; ';
+			$text = $abfragehbcomptec->fetch();
+			echo ''.$text["text"].'
 						</li>
 						<li>
-							&nbsp; Laden der Werkseinstellungen auf Knopfdruck möglich
+							&nbsp; ';
+			$text = $abfragehbcomptec->fetch();
+			echo ''.$text["text"].'
 						</li>
 						<li>
-							&nbsp; 2×16 Zeichen-Display, beleuchtet, einstellbarer Kontrast
+							&nbsp; ';
+			$text = $abfragehbcomptec->fetch();
+			echo ''.$text["text"].'
 						</li>
 						<li>
-							&nbsp; Anschluss für Signalgeber ( Warn-Summer separat erhältlich )
+							&nbsp; ';
+			$text = $abfragehbcomptec->fetch();
+			echo ''.$text["text"].'
 						</li>
 						<li>
-							&nbsp; Anzeige von aktueller Temperatur, Ziel-Temperatur, Systemstatus,
+							&nbsp; ';
+			$text = $abfragehbcomptec->fetch();
+			echo ''.$text["text"].'
 							<br>
-							&nbsp; verbrauchter Kapazität in mAh sowie prozentuale Restkapazität des Versorgungs-Akku
+							&nbsp; ';
+			$text = $abfragehbcomptec->fetch();
+			echo ''.$text["text"].'
 							<br>
-							&nbsp; ( autarker Betrieb, netzunabhängig, Anzeigen abhängig von der Art der Versorgung
+							&nbsp; ';
+			$text = $abfragehbcomptec->fetch();
+			echo ''.$text["text"].'
 						</li>
 						<li>
-							&nbsp; Schutzfunktionen bei externer Speisung außer Funktion )
+							&nbsp; ';
+			$text = $abfragehbcomptec->fetch();
+			echo ''.$text["text"].'
 						</li>
 						<li>
-							&nbsp; Update- und Upgrade-Fähig
+							&nbsp; ';
+			$text = $abfragehbcomptec->fetch();
+			echo ''.$text["text"].'
 							<br>
-							&nbsp; (Hardware und Software-Erweiterungen / FTDI-Port und Extension-Port)
+							&nbsp; ';
+			$text = $abfragehbcomptec->fetch();
+			echo ''.$text["text"].'
 						</li>
 						<li>
-							&nbsp; Erkennung „interner Akku“ oder „Externe Speisung“
+							&nbsp; ';
+			$text = $abfragehbcomptec->fetch();
+			echo ''.$text["text"].'“
 						</li>
 						<li>
-							&nbsp; Anschluss von Zusatzlüftern bis 350 mA Stromaufnahme,
+							&nbsp; ';
+			$text = $abfragehbcomptec->fetch();
+			echo ''.$text["text"].'
 							<br>
-							&nbsp; Einschaltdauer und Laufzeit frei einstellbar
+							&nbsp; ';
+			$text = $abfragehbcomptec->fetch();
+			echo ''.$text["text"].'
 						</li>
 						<li>
-							&nbsp; Timer zum verzögerten Einschalten der Heizung, einstellbar bis 24h
+							&nbsp; ';
+			$text = $abfragehbcomptec->fetch();
+			echo ''.$text["text"].'
 						</li>
 					</ul>
 				</div>
 			</div>
 		</div>
-	</section>
+	</section>';
+	?>
 
 <?php
 	//Fußzeile

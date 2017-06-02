@@ -14,11 +14,23 @@
 		
 		//Sprachbutton Funktionalität
 		include('language.php');
-	?>
-<head>
+		
+		$query = '
+			SELECT *
+			FROM texte
+			WHERE seitennr = "5" 
+			AND sprachnr = "'.$_SESSION['sprachnr'].'"
+		'; //seitennr = 5 --> hb_allgemein.php
+		try{
+			$abfragehballgemein = $db->query($query);
+		} catch(PDOException $ex){
+				die("Failed to connect to the database: " . $ex->getMessage());
+			} echo '<head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Allgemeines | HeatBox</title>
+    <title>';
+			$text = $abfragehballgemein->fetch();
+			echo ''.$text["text"].'</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
 
@@ -38,8 +50,8 @@
     <link rel="apple-touch-icon-precomposed" href="images/ico/apple-touch-icon-57-precomposed.png">
 </head>
 
-<body>
-	<?php
+<body>';
+
     require('config_text.php');
 // 1 = Deutsch, 2 = Englisch
 $query = '
@@ -170,7 +182,7 @@ echo '
         </div>
     </header>
     <!-- /header -->';
-?>
+echo '
     
 	<div class="jumbotron" style="background-color:white;"> <!-- #232323-->
 	    <div class="container image-center heatboxlogo" align="center">
@@ -184,8 +196,15 @@ echo '
 	    <div class="container">
 	        <div class="row-fluid">
 	            <div class="center">
-	               <h1>HeatBox</h1>
-	               <p>Die HeatBox von HaDi-RC.de ist die intelligente, mikroprozessorgesteuerte Regelung zum Bau eines Akku-Heizkoffers.</p>
+	               <h1>';
+   $text = $abfragehballgemein->fetch();
+//HeatBox Allgemein Überschrift
+	echo ''.$text["text"].'</h1>
+					<p>';
+					
+	$text = $abfragehballgemein->fetch();	
+//HB_AllgemeinText 1
+	echo ''.$text["text"].'</p>
 	           </div>
 	        </div>
 	    </div>
@@ -196,8 +215,10 @@ echo '
 			<div class="row-fluid">
 				<div class="span6">
 				<p>
-					<br />
-					Herzstück bildet ein ATMega 328 Prozessor mit 16MHz, der die Innentemperatur mittels eines 1Wire-Bus-Temperatursensors überwacht und die Temperatur der Heizung exakt reguliert. Ein integrierter, hochpräziser Hall-Sensor erlaubt die Verwendung eines eingebauten Speise-Akkus zum autarken Betrieb, die Kapazität des Akkus kann eingegeben werden und z.b. bei erreichen einer bestimmten Entlademenge ein Vorwarnsignal ausgegeben werden. Die Akkuspannung wird dabei überwacht und im Falle einer drohenden Tiefentladung unabhängig davon die Heizung zwangsweise abgeschaltet.
+					<br />';
+					$text = $abfragehballgemein->fetch();
+//HB_AllgemeinText 2
+	echo ''.$text["text"].'
 				</p>
 				</div>
 				<div class="span6" align="center">
@@ -216,9 +237,10 @@ echo '
 					<div class="overlay"></div>
 				</div>
 				<div class="span6">
-					<p>
-						Alle Daten sind über ein kontrastreiches LC-Display ablesbar, Funktionen wie der StartUp-Timer erlauben ein zeitverzögertes Einschalten von bis zu 12 Stunden - stellen Sie morgens einfach ein, nach welcher Countdown-Zeit das vorheizen Ihrer Akkus erfolgen soll, und die HeatBox sorgt selbständig für perfekt temperierte Akkus.
-					</p>
+					<p>';
+					$text = $abfragehballgemein->fetch();
+//HB_AllgemeinText 3
+	echo ''.$text["text"].'</p>
 				</div>
 	        </div>
 	    </div>
@@ -227,21 +249,33 @@ echo '
 	<section id="recent-works">
 		<div class="container">
 			<div class="row-fluid">
-				<p>
-					Genießen Sie die Vorteile der Vorwärmung von Akkus:
-				</p>
-				<ul>
-					<li>Höhere Spannungslage</li>
-					<li>niedrigerer Innenwiderstand</li>
-					<li>stabilere Spannung unter Last</li>
+				<p>';
+	$text = $abfragehballgemein->fetch();
+//HB_AllgemeinText 4
+	echo ''.$text["text"].'</p>
+				<ul>';
+	$text = $abfragehballgemein->fetch();
+//HB_AllgemeinList 1
+	echo '<li>'.$text["text"].'</li>';
+	
+	$text = $abfragehballgemein->fetch();
+//HB_AllgemeinList 2
+	echo '<li>'.$text["text"].'</li>';
+	
+	$text = $abfragehballgemein->fetch();
+//HB_AllgemeinList 3
+	echo '<li>'.$text["text"].'</li>
+	
 				</ul>
-				<p>
-					Erleben Sie Ihre Akkus viel frischer als Sie es bisher kennen und verlängern Sie die Lebensdauer Ihrer Kraft-Riegel !
-				</p>
+				<p>';
+				
+	$text = $abfragehballgemein->fetch();
+//HB_AllgemeinText 5
+	echo ''.$text["text"].'</p>
 			</div>
 		</div>
-	</section>
-
+	</section>';
+?>
 <?php
 	//Fußzeile
 	include('footer.php');
@@ -273,44 +307,6 @@ echo '
 	<script src="js/main.js"></script>
 	<!-- Required javascript files for Slider -->
 	<script src="js/jquery.ba-cond.min.js"></script>
-	<script src="js/jquery.slitslider.js"></script>
-	<!-- /Required javascript files for Slider -->
-
-	<!-- SL Slider -->
-	<script type="text/javascript">
-		$(function() {
-			var Page = (function() {
-
-				var $navArrows = $('#nav-arrows'),
-					slitslider = $('#slider').slitslider({
-					autoplay : true
-				}),
-
-					init = function() {
-					initEvents();
-				},
-					initEvents = function() {
-					$navArrows.children(':last').on('click', function() {
-						slitslider.next();
-						return false;
-					});
-
-					$navArrows.children(':first').on('click', function() {
-						slitslider.previous();
-						return false;
-					});
-				};
-
-				return {
-					init : init
-				};
-
-			})();
-
-			Page.init();
-		});
-	</script>
-	<!-- /SL Slider -->
 	<?php
 		include 'sysinfopage.php';
 	?>

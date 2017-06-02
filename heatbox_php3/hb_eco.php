@@ -14,11 +14,26 @@
 		
 		//Sprachbutton Funktionalität
 		include('language.php');
-	?>
+	
+		$query = '
+			SELECT *
+			FROM texte
+			WHERE seitennr = "12" 
+			AND sprachnr = "'.$_SESSION['sprachnr'].'"
+		'; //seitennr = 12 --> hb_eco.php
+		try{
+			$abfrageeco = $db->query($query);
+		} catch(PDOException $ex){
+				die("Failed to connect to the database: " . $ex->getMessage());
+			} echo '
+		
+	
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Eco | HeatBox</title>
+    <title>';
+			$text = $abfrageeco->fetch();
+			echo ''.$text["text"].'</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
 
@@ -38,8 +53,7 @@
     <link rel="apple-touch-icon-precomposed" href="images/ico/apple-touch-icon-57-precomposed.png">
 </head>
 
-<body>
-	<?php
+<body>';
     require('config_text.php');
 // 1 = Deutsch, 2 = Englisch
 $query = '
@@ -169,8 +183,7 @@ echo '
             </div>
         </div>
     </header>
-    <!-- /header -->';
-?>
+    <!-- /header -->
     
 	<div class="jumbotron" style="background-color:white;"> <!-- #232323-->
 	    <div class="container image-center heatboxlogo" align="center">
@@ -184,8 +197,12 @@ echo '
 	    <div class="container">
 	        <div class="row-fluid">
 	            <div class="center">
-	               <h1>HeatBox Eco</h1>
-				   <p>Bei der HeatBox Eco handelt es sich um eine abgespeckte Version der HeatBox Compact<br>und richtet sich an die Kunden, die die Vorteile der HeatBox zu einem möglichst kleinen Preis haben wollen.</p>
+	               <h1>';
+			$text = $abfrageeco->fetch();
+			echo ''.$text["text"].'</h1>
+				   <p>';
+			$text = $abfrageeco->fetch();
+			echo ''.$text["text"].'</p>
 	           </div>
 	        </div>
 	    </div>
@@ -202,7 +219,9 @@ echo '
 						</div>
 					</div>
 					<div class="desc">
-						<h5>HeatBox Eco beim Starten</h5>
+						<h5>';
+			$text = $abfrageeco->fetch();
+			echo ''.$text["text"].'</h5>
 					</div>
 				</li>
 				<!--/Item 1--> 
@@ -215,7 +234,9 @@ echo '
 						</div>
 					</div>
 					<div class="desc">
-						<h5>HeatBox Eco im Betrieb </h5>
+						<h5>';
+			$text = $abfrageeco->fetch();
+			echo ''.$text["text"].'</h5>
 					</div>                
 				</li>
 				<!--/Item 2-->
@@ -228,13 +249,16 @@ echo '
 						</div>
 					</div>
 					<div class="desc">
-						<h5>Ansicht von Hinten</h5>
+						<h5>';
+			$text = $abfrageeco->fetch();
+			echo ''.$text["text"].'</h5>
 					</div>               
 				</li>
 				<!--/Item 3-->
 			</ul>
 		</div>
-	</section>
+	</section>';
+	?>
 
 <?php
 	//Fußzeile

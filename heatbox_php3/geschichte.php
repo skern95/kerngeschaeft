@@ -11,11 +11,33 @@
 		if (empty($_SESSION['sprachnr'])){
 		$_SESSION['sprachnr'] = 1; // 1 = Deutsch, 2 = Englisch
 		}
-	?>
+		
+		
+		
+		//Sprachbutton Funktionalität
+		include('language.php');
+		
+		
+		$query = '
+			SELECT *
+			FROM texte
+			WHERE seitennr = "16" 
+			AND sprachnr = "'.$_SESSION['sprachnr'].'"
+		'; //seitennr = 16 --> geschichte.php
+		try{
+			$abfragegesch = $db->query($query);
+		} catch(PDOException $ex){
+				die("Failed to connect to the database: " . $ex->getMessage());
+			} echo '
+		
+		
+		
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Geschichte | HeatBox</title>
+    <title>';
+			$text = $abfragegesch->fetch();
+			echo ''.$text["text"].'</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
 
@@ -35,8 +57,7 @@
     <link rel="apple-touch-icon-precomposed" href="images/ico/apple-touch-icon-57-precomposed.png">
 </head>
 
-<body>
-    <?php
+<body>';
    require('config_text.php');
 	//$_SESSION['sprachnr'] = 1; // 1 = Deutsch, 2 = Englisch
 	$query = '
@@ -75,7 +96,7 @@ $text = $abfrageheader->fetch();
 $text = $abfrageheader->fetch();
 //Allgemeines
 	echo ''.$text["text"].'</a></li>
-                        <li class="dropdown active">
+                        <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">';
 $text = $abfrageheader->fetch();
 //Heatbox
@@ -170,8 +191,7 @@ echo '
             </div>
         </div>
     </header>
-    <!-- /header -->';
-?>
+    <!-- /header -->
 
 	<div class="jumbotron" style="background-color:white;"> <!-- #232323-->
 		<div class="container image-center heatboxlogo" align="center">
@@ -185,13 +205,25 @@ echo '
 		<div class="container">
 			<div class="row-fluid">
 				<div class="center">
-					<h2>Die Geschichte der HeatBox</h2>
+					<h2>';
+			$text = $abfragegesch->fetch();
+			echo ''.$text["text"].'</h2>
 				<div class="gap"></div>
-					<p>Ein Heizkoffer mit HeatBox-Elektronik ist eine nachhaltige Investition mit praktiziertem Umweltschutz:</p>
-					<p>Da temperierte Akkus eine deutlich höhere Belastbarkeit als kalte Akkus haben, verschleißen diese deutlich geringer – ein Neukauf ist i.d.R. erst nach der 2-3-fachen Zyklenzahl erforderlich. Dies bedeutet weniger Kosten für den Anwender für neue Akkus sowie eine deutliche Reduzierung von Akku-Schrott, der aufwändig gesammelt und recycelt bzw. umweltgerecht entsorgt werden muss.</p>
-					<p>Derzeit gibt es in Deutschland rund 400.000 Modellbaupiloten, von denen ca. 150.000 in Vereinen organisiert sind. </p>
-					<p>Bei einem Akku-Verbrauch von durchschnittlich 5 Stück zu je ca. 400 g ergibt dies eine Abfallbelastung von rund 800 Tonnen pro Jahr – die im Idealfall auf weniger als 250 Tonnen reduziert werden kann. </p>
-					<p>800 Tonnen Akku-Müll entspräche ca. 40 Gefahrgut-Sattelzügen mit einer Gesamtlänge von 660 m – also über einen halben Kilometer Akku-Müll, auf einer Höhe von 2,5 m und einer Breite von 2,0 m verteilt – und das nur aus dem Gebrauch der registrierten Anwender, unabhängig von professionellen Einsatzgebieten, und nur für den Bereich innerhalb Deutschlands.</p>
+					<p>';
+			$text = $abfragegesch->fetch();
+			echo ''.$text["text"].'</p>
+					<p>';
+			$text = $abfragegesch->fetch();
+			echo ''.$text["text"].'</p>
+					<p>';
+			$text = $abfragegesch->fetch();
+			echo ''.$text["text"].'</p>
+					<p>';
+			$text = $abfragegesch->fetch();
+			echo ''.$text["text"].'</p>
+					<p>';
+			$text = $abfragegesch->fetch();
+			echo ''.$text["text"].'</p>
 				</div>
 			</div>
 		</div>
@@ -200,7 +232,9 @@ echo '
 	<section id="recent-works">
 		<div class="container">
 			<div class="center">
-				<h3>Very First Developement</h3>
+				<h3>';
+			$text = $abfragegesch->fetch();
+			echo ''.$text["text"].'</h3>
 			</div>
 			<div class="center"></div>
 			<ul class="gallery col-2" style="margin: 0 auto;padding-left: 32.5%">
@@ -215,9 +249,18 @@ echo '
 					</div>
 					<div class="desc">
 						<br><br>
-						<h5>Very First Developement</h5>
-						<p>Oben: Erste Versuche auf Lochrasterplatine (rechts) mit Arduino-Mini 328 neben Display</p>
-						<p>Unten:  Darauf basierende Weiterentwicklung auf Lochrasterplatine mit externer CPU-Platine mit Atmel 328P (links). Daneben die Platine des ersten Beta-Prototyps (Auflage: 15 Stück)</p>
+						<h5>';
+			$text = $abfragegesch->fetch();
+			echo ''.$text["text"].'</h5>
+						<p>';
+			$text = $abfragegesch->fetch();
+			echo ''.$text["text"].'</p>
+						<p>';
+			$text = $abfragegesch->fetch();
+			echo ''.$text["text"].'</p>
+						<p>';
+			$text = $abfragegesch->fetch();
+			echo ''.$text["text"].'</p>
 					</div>                
 				</li>
 				<!--/Item 1-->        
@@ -230,7 +273,9 @@ echo '
 	<section class="main-info">
 		<div class="container">
 			<div class="center">
-				<h3>HeatBox_v.09</h3>
+				<h3>';
+			$text = $abfragegesch->fetch();
+			echo ''.$text["text"].'</h3>
 			</div>
 			<div class="row">
 				<ul class="gallery col-2" style="margin: 0 auto;padding-left: 35%">
@@ -245,14 +290,20 @@ echo '
 						</div>
 						<div class="desc">
 							<br><br>
-							<h5>HeatBox_v0.9</h5>
-							<p>Entwicklung der Beta-Platine v0.9, diese wurde als Bausatz geliefert, Kunden mussten noch einige Bauteile selber einlöten… </p>
+							<h5>';
+			$text = $abfragegesch->fetch();
+			echo ''.$text["text"].'</h5>
+							<p>';
+			$text = $abfragegesch->fetch();
+			echo ''.$text["text"].'</p>
 							<div class="preview">
 							<img alt=" " src="images/history/v10 _121/Mustereinbau_v1_2.jpg">
 							<div class="overlay">
 							</div>
 						</div>
-							<p>…und das Display von Hand verkabeln, das Flachbandkabel also selbst verlöten </p>
+							<p>';
+			$text = $abfragegesch->fetch();
+			echo ''.$text["text"].'</p>
 						</div>                
 					</li>
 					<!--/Item 2-->        
@@ -260,7 +311,9 @@ echo '
 			</div>
 			<div class="center">
 				<div class="gap"></div>
-				<h4>Größenvergleiche</h4>
+				<h4>';
+			$text = $abfragegesch->fetch();
+			echo ''.$text["text"].'</h4>
 				<br><br>
 				<ul class="gallery col-4">
 				<!--Item 1-->
@@ -271,7 +324,9 @@ echo '
 						</div>
 					</div>
 					<div class="desc">
-						<h5>Größenvergleich 1</h5>
+						<h5>';
+			$text = $abfragegesch->fetch();
+			echo ''.$text["text"].'</h5>
 					</div>                
 				</li>
 				<!--/Item 1--> 
@@ -284,7 +339,9 @@ echo '
 						</div>
 					</div>
 					<div class="desc">
-						<h5>Größenvergleich 2</h5>
+						<h5>';
+			$text = $abfragegesch->fetch();
+			echo ''.$text["text"].'</h5>
 					</div>               
 				</li>
 				<!--/Item 2-->
@@ -298,7 +355,9 @@ echo '
 					</div>
 					<div class="desc">
 						<br>
-						<h5>Größenvergleich HeatBox_v0.9</h5>
+						<h5>';
+			$text = $abfragegesch->fetch();
+			echo ''.$text["text"].'</h5>
 					</div>                 
 				</li>
 				<!--/Item 3--> 
@@ -312,7 +371,9 @@ echo '
 					</div>
 					<div class="desc">
 						<br>
-						<h5>eingebaute Platine</h5>
+						<h5>';
+			$text = $abfragegesch->fetch();
+			echo ''.$text["text"].'</h5>
 					</div>
 									
 				</li>
@@ -327,7 +388,9 @@ echo '
 		<div class="container">
 			<div class="row">
 			<div class="center">
-				<h3>Rote Platine HeatBox PCB-v1.0</h3>
+				<h3>';
+			$text = $abfragegesch->fetch();
+			echo ''.$text["text"].'</h3>
 			</div>  
 			<div class="gap"></div>
 			<div class="center"></div>
@@ -343,8 +406,12 @@ echo '
 					</div>
 					<div class="desc">
 						<br><br>
-						<h5>erste offizielle Version (v1.0)</h5>
-						<p>Die Versionen 1.0 und 1.1 konnten durch eine Zusatzplatine für den "Extension-Port" erweitert werden, und zwar um eine Erkennung für externe Spannungsversorgung und deren Messung sowie einer Ansteuerung eines Zusatzlüfters für bessere Konvektion.</p>
+						<h5>';
+			$text = $abfragegesch->fetch();
+			echo ''.$text["text"].'</h5>
+						<p>';
+			$text = $abfragegesch->fetch();
+			echo ''.$text["text"].'</p>
 					</div>                
 				</li>
 				<!--/Item 1-->        
@@ -359,7 +426,9 @@ echo '
 		<div class="container">
 			<div class="row-fluid">
 				<div class="center">
-					<h3>HeatBox v1.21</h3>
+					<h3>';
+			$text = $abfragegesch->fetch();
+			echo ''.$text["text"].'</h3>
 				</div>
 				<div class="center"></div>
 				<ul class="gallery col-2" style="margin: 0 auto;padding-left: 32.5%">
@@ -374,7 +443,9 @@ echo '
 						</div>
 						<div class="desc">
 							<br><br>
-							<p>Ab der Hardware-Revision v1.21 wurden die Komponenten des Extension-Ports mit auf der Hauptplatine untergebracht und bereits fester Bestandteil der Grundfunktionen. Die Platine wurde dabei etwas größer, zur Aufnahme der zusätzlichen Bauteile und Anschlüsse.</p>
+							<p>';
+			$text = $abfragegesch->fetch();
+			echo ''.$text["text"].'</p>
 						</div>                
 					</li>
 					<!--/Item 1-->        
@@ -387,7 +458,9 @@ echo '
 		<div class="container">
 			<div class="row">
 			<div class="center">
-				<h3>HeatBox-NG</h3>
+				<h3>';
+			$text = $abfragegesch->fetch();
+			echo ''.$text["text"].'</h3>
 			</div>  
 			</div>
 			<div class="gap"></div>
@@ -402,7 +475,9 @@ echo '
 					</div>
 					<div class="desc">
 						<br>
-						<h5>HeatBox-NG First Beta(2015) mit Display</h5>
+						<h5>';
+			$text = $abfragegesch->fetch();
+			echo ''.$text["text"].'</h5>
 					</div>                
 				</li>
 				<!--/Item 1--> 
@@ -416,7 +491,9 @@ echo '
 					</div>
 					<div class="desc">
 						<br>
-						<h5>HeatBox-NG Second Beta(2015)grüne Platine</h5>
+						<h5>';
+			$text = $abfragegesch->fetch();
+			echo ''.$text["text"].'</h5>
 					</div>               
 				</li>
 				<!--/Item 2-->   
@@ -428,7 +505,9 @@ echo '
 					</div>
 					<div class="desc">
 						<br>
-						<h5>HeatBox-NG Second Beta(2015)grüne Platine mit Display</h5>
+						<h5>';
+			$text = $abfragegesch->fetch();
+			echo ''.$text["text"].'</h5>
 					</div>               
 				</li>
 				<!--/Item 3-->          
@@ -443,7 +522,9 @@ echo '
 		<section class="main-info">
 		<div class="container">
 			<div class="center">
-				<h3>HeatBox  v1.50 compact</h3>
+				<h3>';
+			$text = $abfragegesch->fetch();
+			echo ''.$text["text"].'</h3>
 			</div>
 			<div class="row">
 				<ul class="gallery col-2" style="margin: 0 auto;padding-left: 35%">
@@ -458,9 +539,15 @@ echo '
 						</div>
 						<div class="desc">
 							<br><br>
-							<h5>HeatBox v1.50 compact</h5>
-							<p>Danach wurde vor allem das Design optimiert, daraus entstand die v 1.50 "compact". Alles vor der v1.50 wird nun als "Legacy" geführt.<br>           
-							Die "compact"-Serie zeichnet sich vor allem durch die geringe Größe der der Hauptplatine aus, die nicht größer ist als das Display ist - und zwar auch nicht, als das zweizeilige 2x16-Zeichen-Display.</p>
+							<h5>';
+			$text = $abfragegesch->fetch();
+			echo ''.$text["text"].'</h5>
+							<p>';
+			$text = $abfragegesch->fetch();
+			echo ''.$text["text"].'<br>           
+							';
+			$text = $abfragegesch->fetch();
+			echo ''.$text["text"].'</p>
 						</div>
 					</li>
 					<!--/Item 2-->        
@@ -470,7 +557,9 @@ echo '
 			<div class="center">
 				<div class="gap"></div>
 				<p></p>
-				<h4>HeatBox-compact Adapter für v1.51</h4>
+				<h4>';
+			$text = $abfragegesch->fetch();
+			echo ''.$text["text"].'</h4>
 				<br><br>
 				<ul class="gallery col-3" style="padding-left: 25%">
 				<!--Item 1-->
@@ -481,7 +570,9 @@ echo '
 						</div>
 					</div>
 					<div class="desc">
-						<h5>HB-compact Adapter für v 1.51 (1)</h5>
+						<h5>';
+			$text = $abfragegesch->fetch();
+			echo ''.$text["text"].'</h5>
 					</div>                
 				</li>
 				<!--/Item 1--> 
@@ -494,7 +585,9 @@ echo '
 						</div>
 					</div>
 					<div class="desc">
-						<h5>HB-compact Adapter für v 1.51 (2)</h5>
+						<h5>';
+			$text = $abfragegesch->fetch();
+			echo ''.$text["text"].'</h5>
 					</div>               
 				</li>
 				</ul>
@@ -513,8 +606,12 @@ echo '
 						</div>
 					</div>
 					<div class="desc">
-						<h5>HB-compact Adapter für v 1.51 (3)</h5>
-						<p>Für Kunden die das vierzeilige 4x16 LCD bevorzugten, wurde eine Adapterplatine angeboten, die es ermöglichte, genau wie mit dem 2x16 LCD, das Ganze als Sandwich-Bauweise mit minimalstem Kabelaufwand fertigzustellen.</p>
+						<h5>';
+			$text = $abfragegesch->fetch();
+			echo ''.$text["text"].'</h5>
+						<p>';
+			$text = $abfragegesch->fetch();
+			echo ''.$text["text"].'</p>
 					</div>                 
 				</li>
 				<!--/Item 3--> 
@@ -527,8 +624,12 @@ echo '
 						</div>
 					</div>
 					<div class="desc">
-						<h5>HB-compact Adapter für v 1.51 (4)</h5>
-						<p>Ab der HeatBox 1.51 wurde erstmals eine optional erhältliche Version für den Betrieb mit 11-24 V eingeführt, die "c24". Alle davor erschienenen HeatBoxes waren nur für 11-14,9 V Versorgungsspannungen geeignet.</p>
+						<h5>';
+			$text = $abfragegesch->fetch();
+			echo ''.$text["text"].'</h5>
+						<p>';
+			$text = $abfragegesch->fetch();
+			echo ''.$text["text"].'</p>
 					</div>
 									
 				</li>
@@ -545,7 +646,9 @@ echo '
 		<div class="container">
 			
 			<div class="center">
-				<h3>HeatBox v1.60 12-24V</h3>
+				<h3>';
+			$text = $abfragegesch->fetch();
+			echo ''.$text["text"].'</h3>
 			</div>
 			<div class="center"></div>
 			<ul class="gallery col-2" style="margin: 0 auto;padding-left: 32.5%">
@@ -560,7 +663,9 @@ echo '
 					</div>
 					<div class="desc">
 						<br><br>
-						<p>Ab der Version v1.60 wurde das gesamte Design so ausgelegt, dass die HeatBox mit Spannungen von 10,8-29 V betrieben werden kann. Außerdem war die v1.60 die erste HeatBox mit einer Platine im Format des 4x16 LCD. Durch Zuschnitt kann es auf die Größe des 2x16 LCD gebracht werden, um mit beiden Displays eine Sandwich-Bauweise zu ermöglichen.</p>
+						<p>';
+			$text = $abfragegesch->fetch();
+			echo ''.$text["text"].'</p>
 					</div>                
 				</li>
 				<!--/Item 1-->        
@@ -573,7 +678,9 @@ echo '
 			<section class="main-info">
 		<div class="container">
 			<div class="center">
-				<h3>HeatBox v1.70 mit Verpolungsschutz</h3>
+				<h3>';
+			$text = $abfragegesch->fetch();
+			echo ''.$text["text"].'</h3>
 			</div>
 			<div class="center"></div>
 			<ul class="gallery col-2" style="margin: 0 auto;padding-left: 32.5%">
@@ -588,9 +695,15 @@ echo '
 					</div>
 					<div class="desc">
 						<br><br>
-						<p>Mit der v1.70 wurde dann erstmals auf unveränderter Platinengröße zusätzlich ein Verpolungsschutz und eine leistungsfähigere Endstufe realisiert, dass selbst eine Verpolung der Versorgungsquelle keinen Schaden anrichten kann. </p>
-						<p>In diesem Stadium der Entwicklung werden auch fertig konfektionierte Kabelsätze mit ausgeliefert, die den Montageaufwand für den Kunden auf ein Minimum reduzieren, dass selbst unterfahrene Elektroniklaien die HeatBox zur einem kompletten Heizkoffer zusammenbauen können.</p>
-						<p>Seit 2016 gibt es die Möglichkeit, durch eine Kooperation mit der Firma ETLZ einen fertig funktionsfähigen Koffer zu erhalten. Für alle, denen der Aufwand, einen eigenen Koffer zu bauen zu groß ist oder, die sich es nicht zutrauen.</p>
+						<p>';
+			$text = $abfragegesch->fetch();
+			echo ''.$text["text"].'</p>
+						<p>';
+			$text = $abfragegesch->fetch();
+			echo ''.$text["text"].'</p>
+						<p>';
+			$text = $abfragegesch->fetch();
+			echo ''.$text["text"].'</p>
 					</div>                
 				</li>
 				<!--/Item 1-->        
@@ -598,138 +711,13 @@ echo '
 		</div>
 	</section>
 	
-	
+';
+	?>
 
-	<!--Bottom-->
-	<section id="bottom" class="main">
-		<!--Container-->
-		<div class="container">
-			<!--row-fluids-->
-			<div class="row-fluid">
-				<!--Contact Form-->
-				<div class="span3">
-					<h4>ADDRESSE</h4>
-					<ul class="unstyled address">
-						<li>
-							<i class="icon-home"></i>
-							<strong>Strasse:</strong><br />
-							Huettenstrasse 13
-						</li>
-						<li>
-							<i class="icon-compass"></i>
-							<strong>PLZ/Ort:</strong><br />
-							35708 Haiger
-						</li>
-						<li>
-							<i class="icon-flag-alt"></i>
-							<strong>Land:</strong><br />
-							Deutschland
-					   </li>
-					</ul>
-				</div>
-				<!--End Contact Form-->
-
-				<!--Ansrpechpartner-->
-				<div class="span3">
-					<h4>ANSPRECHPARTNER</h4>
-					<div>
-						<ul class="unstyled address">
-							<li>
-								<i class="icon-male"></i>
-								Christian Domes</li>
-							<li>
-								<i class="icon-globe"></i>
-								<strong>Website:</strong> <a href="http://www.HaDi-RC.de">HaDi-RC.de</a>
-							</li>
-							<li>
-								<i class="icon-envelope"></i>
-								<strong>Email: </strong> Info@HaDi-RC.de
-							</li>
-							<li>
-								<i class="icon-phone"></i>
-								<strong>Telefon:</strong> +49 2773 912030
-							</li>
-							<li>
-								<i class="icon-print"></i>
-								<strong>Fax:</strong> +49 02773 912031
-							</li>
-						</ul>
-					</div>  
-				</div>
-				
-				<!--Important Links-->
-				<!--Informationen-->
-				<div class="span3">
-					<h4>INFORMATIONEN</h4>
-					<div>
-						<ul class="unstyled address">
-							<li>
-								<i class="icon"><img src="images/ico/impr.png" style="height:14px" /></i>
-								<a href="impressum.php">Impressum</a>
-							</li>
-							<li>
-								<i class="icon-user"></i>
-								<a href="kontakt.php">Kontakt</a>
-							</li>
-							<li>
-								<i class="icon-shopping-cart"></i>
-								<a href="http://www.hadi-rc.de" target="_blank">Shopseite</a>
-							</li>
-							<li>
-								<i class="icon-facebook"></i>
-								<a href="https://www.facebook.com/HaDiRC/" target="_blank">Facebook</a>
-							</li>
-							<li>
-								<i class="icon-google-plus"></i>
-								<a href="https://plus.google.com/117160856069921192058" target="_blank">Google</a>
-							</li>
-						</ul>
-					</div>
-				</div>
-				<!--End Archives-->
-
-				<div class="span3">
-					<h4>SPENDEN</h4>
-					<div>
-						<ul class="unstyled address">
-							<li>
-								<i class="icon-euro"></i>
-								<a href="spende.php">HeatBox</a>
-							</li>
-						</ul>
-					</div>
-				</div>
-			</div>
-			<!--/row-fluid-->
-		</div>
-		<!--/container-->
-	</section>
-	<!--/bottom-->
-
-	<!--Footer-->
-	<footer id="footer">
-		<div class="container">
-			<div class="row-fluid">
-				<div class="span5 cp">
-					&copy; 2017 HaDi-RC. All Rights Reserved.
-				</div>
-				<!--/Copyright-->
-
-				<div class="span6">
-					<ul class="social pull-right">
-						<li><a href="https://www.facebook.com/HaDiRC/" target="_blank"><i class="icon-facebook"></i></a></li>
-						<li><a href="https://plus.google.com/117160856069921192058" target="_blank"><i class="icon-google-plus"></i></a></li>                    
-					</ul>
-				</div>
-
-				<div class="span1">
-					<a id="gototop" class="gototop pull-right" href="#"><i class="icon-angle-up"></i></a>
-				</div>
-				<!--/Goto Top-->
-			</div>
-		</div>
-	</footer>
-	<!--/Footer-->
+<?php
+	//Fußzeile
+	include('footer.php');
+?>
 
 	<!--  Login form -->
 	<div class="modal hide fade in" id="loginForm" aria-hidden="false">
@@ -742,7 +730,7 @@ echo '
 			<form class="form-inline" action="login.php" method="post" id="form-login">
 				<input type="text" class="input-small" placeholder="Email" name="email">
 				<input type="password" class="input-small" placeholder="Password" name="password">
-				<input type="hidden" name="redirect" value="geschichte.php"></button>
+				<input type="hidden" name="redirect" value="hb_eco_anl.php"></button>
 				<button type="submit" class="btn btn-primary">Sign in</button>
 			</form>
 			<a href="#">Forgot your password?</a>
@@ -792,7 +780,6 @@ echo '
 		});
 	</script>
 	<!-- /SL Slider -->
-	
 	<?php
 		include 'sysinfopage.php';
 	?>

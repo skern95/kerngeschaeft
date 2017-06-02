@@ -14,11 +14,25 @@
 		
 		//Sprachbutton Funktionalität
 		include('language.php');
-	?>
+		
+		$query = '
+			SELECT *
+			FROM texte
+			WHERE seitennr = "8" 
+			AND sprachnr = "'.$_SESSION['sprachnr'].'"
+		'; //seitennr = 8 --> hb_anl.php
+		try{
+			$abfragehbanl = $db->query($query);
+		} catch(PDOException $ex){
+				die("Failed to connect to the database: " . $ex->getMessage());
+			} echo '
+
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	<title>Anleitungen | HeatBox</title>
+	<title>';
+			$text = $abfragehbanl->fetch();
+			echo ''.$text["text"].'</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width">
 
@@ -38,8 +52,7 @@
 	<link rel="apple-touch-icon-precomposed" href="images/ico/apple-touch-icon-57-precomposed.png">
 </head>
 
-<body>
-	<?php
+<body>';
     require('config_text.php');
 // 1 = Deutsch, 2 = Englisch
 $query = '
@@ -169,8 +182,7 @@ echo '
             </div>
         </div>
     </header>
-    <!-- /header -->';
-?>
+    <!-- /header -->
 
 	<div class="jumbotron" style="background-color:white;">
 		<!-- #232323-->
@@ -185,10 +197,16 @@ echo '
 		<div class="container">
 			<div class="row-fluid">
 				<div class="center">
-					<h1>HeatBox</h1>
+					<h1>';
+			$text = $abfragehbanl->fetch();
+			echo ''.$text["text"].'</h1>
 					<br>
-					<h2>Anleitungen</h2>
-					<p>Hier finden Sie die jeweils aktuelle Anleitung zur HeatBox, den Erweiterungen und Add-Ons</p>
+					<h2>';
+			$text = $abfragehbanl->fetch();
+			echo ''.$text["text"].'</h2>
+					<p>';
+			$text = $abfragehbanl->fetch();
+			echo ''.$text["text"].'</p>
 				</div>
 			</div>
 		</div>
@@ -198,10 +216,20 @@ echo '
 		<div class="container">
 			<div class="row-fluid">
 				<div class="center">
-					<h2><i class="icon-warning-sign"></i>&nbsp; Wichtiger Hinweis:</h2>
-					<p>Bei Betrieb an einem Netzteil immer zuerst das Netzteil anschalten, dann erst die Box anschließen / einschalten!<br>
-					Ansonsten kann es bei einigen Netzteilen durch Einschalt-Spannungsspitzen zu einer Zerstörung des Spannungsreglers auf der HeatBox kommen.<br>
-					<b>Niemals ohne angeschlossener Last betreiben !</b> - dies kann für Testzwecke auch eine 12 V Glühbirne sein.</p>
+					<h2><i class="icon-warning-sign"></i>&nbsp; ';
+			$text = $abfragehbanl->fetch();
+			echo ''.$text["text"].'</h2>
+					<p>';
+			$text = $abfragehbanl->fetch();
+			echo ''.$text["text"].'<br>
+					';
+			$text = $abfragehbanl->fetch();
+			echo ''.$text["text"].'<br>
+					<b>';
+			$text = $abfragehbanl->fetch();
+			echo ''.$text["text"].'</b>';
+			$text = $abfragehbanl->fetch();
+			echo ''.$text["text"].'</p>
 				</div>
 			</div>
 		</div>
@@ -211,46 +239,65 @@ echo '
 		<div class="container">
 			<div class="row-fluid">
 				<div class="center">
-					<h2>Links:</h2>
+					<h2>';
+			$text = $abfragehbanl->fetch();
+			echo ''.$text["text"].'</h2>
 				</div>
 				<div class="left">
 					<ul style="padding-left: 32%">
 						<li>
-							Anleitung zum Aufbau und Betrieb der HeatBox, HW-Revision 1.30<br />
+							';
+			$text = $abfragehbanl->fetch();
+			echo ''.$text["text"].'<br />
 							<i class="icon-globe"></i>&nbsp;<a href="http://www.hadi-rc.de/WebRoot/Store2/Shops/es125123_FAIR/MediaGallery/HeatBox_Manual2013.pdf">HeatBox v1.30 Manual</a>
-							 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Stand: 30.10.2013
+							 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ';
+			$text = $abfragehbanl->fetch();
+			echo ''.$text["text"].'
 							<br /><br />
 						</li>
 						<li>
-							Anleitung zum Aufbau und Betrieb der HeatBox, HW-Revision 1.21 (v120 integriert)<br />
+							';
+			$text = $abfragehbanl->fetch();
+			echo ''.$text["text"].'<br />
 							<i class="icon-globe"></i>&nbsp;<a href="http://www.hadi-rc.de/WebRoot/Store2/Shops/es125123_FAIR/MediaGallery/HeatBoxManual_rev121.pdf">HeatBox 1.21 (11/2013) Manual</a>
-							 &nbsp; &nbsp; &nbsp; Stand: 18.11.2013 
+							 &nbsp; &nbsp; &nbsp; ';
+			$text = $abfragehbanl->fetch();
+			echo ''.$text["text"].' 
 							<br /><br />
 						</li>
 						<li>
-							Zusatzinfo für HeatBox mit Kaufdatum vor dem 30.10.2013<br />
+							';
+			$text = $abfragehbanl->fetch();
+			echo ''.$text["text"].'<br />
 							<i class="icon-globe"></i>&nbsp;<a href="http://www.hadi-rc.de/WebRoot/Store2/Shops/es125123_FAIR/MediaGallery/HBv130_Wiring.pdf">kpl Verdrahtung HeatBox v130</a>
 							<br /><br />
 						</li>
 						<li>
-							Schaltungsvorschlag „Connect-Set“ - Anschluß zur Externen Versorgung<br />
+							';
+			$text = $abfragehbanl->fetch();
+			echo ''.$text["text"].'<br />
 							<i class="icon-globe"></i>&nbsp;<a href="http://www.hadi-rc.de/WebRoot/Store2/Shops/es125123_FAIR/MediaGallery/Connect_Beschaltung.pdf">Connect-Set</a>
 							<br /><br />
 						</li>
 						<li>
-							Intern-Extern nutzen mit 2-poligem Kippschalter (Nachrüstung)<br />
+							';
+			$text = $abfragehbanl->fetch();
+			echo ''.$text["text"].'<br />
 							<i class="icon-globe"></i>&nbsp;<a href="http://www.hadi-rc.de/WebRoot/Store2/Shops/es125123_FAIR/MediaGallery/Ext_Int_Switch.pdf">Extern-Kennung</a>
 							<br /><br />
 						</li>
 						<li>
-							Generelle Info: Lötfehler vermeiden<br />
+							';
+			$text = $abfragehbanl->fetch();
+			echo ''.$text["text"].'<br />
 							<i class="icon-globe"></i>&nbsp;<a href="http://www.hadi-rc.de/WebRoot/Store2/Shops/es125123_FAIR/MediaGallery/Loet-Tipps.pdf">Löt-Tipps</a>
 						</li>
 					</ul>
 				</div>
 			</div>
 		</div>
-	</section>
+	</section>';
+	?>
 
 <?php
 	//Fußzeile
@@ -309,46 +356,6 @@ echo '
 	<script src="js/vendor/jquery-1.9.1.min.js"></script>
 	<script src="js/vendor/bootstrap.min.js"></script>
 	<script src="js/main.js"></script>
-	<!-- Required javascript files for Slider -->
-	<script src="js/jquery.ba-cond.min.js"></script>
-	<script src="js/jquery.slitslider.js"></script>
-	<!-- /Required javascript files for Slider -->
-
-	<!-- SL Slider -->
-	<script type="text/javascript">
-		$(function() {
-			var Page = (function() {
-
-				var $navArrows = $('#nav-arrows'),
-					slitslider = $('#slider').slitslider({
-					autoplay : true
-				}),
-
-					init = function() {
-					initEvents();
-				},
-					initEvents = function() {
-					$navArrows.children(':last').on('click', function() {
-						slitslider.next();
-						return false;
-					});
-
-					$navArrows.children(':first').on('click', function() {
-						slitslider.previous();
-						return false;
-					});
-				};
-
-				return {
-					init : init
-				};
-
-			})();
-
-			Page.init();
-		});
-	</script>
-	<!-- /SL Slider -->
 	<?php
 		include 'sysinfopage.php';
 	?>

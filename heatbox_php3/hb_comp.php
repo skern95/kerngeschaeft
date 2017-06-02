@@ -14,11 +14,25 @@
 		
 		//Sprachbutton Funktionalität
 		include('language.php');
-	?>
+		
+		
+		$query = '
+			SELECT *
+			FROM texte
+			WHERE seitennr = "9" 
+			AND sprachnr = "'.$_SESSION['sprachnr'].'"
+		'; //seitennr = 9 --> hb_comp.php
+		try{
+			$abfragehbcomp = $db->query($query);
+		} catch(PDOException $ex){
+				die("Failed to connect to the database: " . $ex->getMessage());
+			} echo '
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Compact | HeatBox</title>
+    <title>';
+			$text = $abfragehbcomp->fetch();
+			echo ''.$text["text"].'</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
 
@@ -38,8 +52,7 @@
     <link rel="apple-touch-icon-precomposed" href="images/ico/apple-touch-icon-57-precomposed.png">
 </head>
 
-<body>
-	<?php
+<body>';
     require('config_text.php');
 // 1 = Deutsch, 2 = Englisch
 $query = '
@@ -169,8 +182,7 @@ echo '
             </div>
         </div>
     </header>
-    <!-- /header -->';
-?>
+    <!-- /header -->
     
 	<div class="jumbotron" style="background-color:white;"> <!-- #232323-->
 	    <div class="container image-center heatboxlogo" align="center">
@@ -184,8 +196,12 @@ echo '
 	    <div class="container">
 	        <div class="row-fluid">
 	            <div class="center">
-	               <h1>HeatBox Compact</h1>
-	               <p>Die HeatBox compact ist der neuste Evolutionsstand der Heizkoffersteuerung.<br />Bei gleicher Funktionalität konnte der Komfort verbessert und die Platinengröße verkleinert werden.</p>
+	               <h1>';
+			$text = $abfragehbcomp->fetch();
+			echo ''.$text["text"].'</h1>
+	               <p>';
+			$text = $abfragehbcomp->fetch();
+			echo ''.$text["text"].'</p>
 	           </div>
 	        </div>
 	    </div>
@@ -203,7 +219,11 @@ echo '
                     			<div class="overlay"></div>
 			                </div>   
 			                <div class="desc">
-			                    <h5>Sandwich-Montage eines 2-Zeilen-Displays<br> auf die Steuerplatine (frontal)</h5>
+			                    <h5>';
+			$text = $abfragehbcomp->fetch();
+			echo ''.$text["text"].'<br> ';
+			$text = $abfragehbcomp->fetch();
+			echo ''.$text["text"].')</h5>
 			                </div>                
 			            </li>
 			            <!--/Item 1--> 
@@ -215,8 +235,12 @@ echo '
                     			<div class="overlay"></div>
 			                </div>   
 			                <div class="desc">
-			                    <h5>Sandwich-Montage eines 2-Zeilen-Displays
-			                    	<br> auf die Steuerplatine (von oben)</h5>
+			                    <h5>';
+			$text = $abfragehbcomp->fetch();
+			echo ''.$text["text"].'
+			                    	<br> ';
+			$text = $abfragehbcomp->fetch();
+			echo ''.$text["text"].'</h5>
 			                </div>             
 			            </li>
 			            <!--/Item 2-->
@@ -228,8 +252,12 @@ echo '
                     			<div class="overlay"></div>
 							</div> 
 							<div class="desc">
-								<h5>Blick auf die Rückseite der Platine
-								<br> inkl. Summer und Temperatursensor</h5>
+								<h5>';
+			$text = $abfragehbcomp->fetch();
+			echo ''.$text["text"].'
+								<br> ';
+			$text = $abfragehbcomp->fetch();
+			echo ''.$text["text"].'</h5>
 							</div>         
 			            </li>
 			            <!--/Item 3--> 
@@ -243,7 +271,9 @@ echo '
                     			<div class="overlay"></div>
 			                </div>
 			                <div class="desc">
-			                    <h5>4-Zeilen-Display auf die Steuerplatine montiert
+			                    <h5>';
+			$text = $abfragehbcomp->fetch();
+			echo ''.$text["text"].'
 		                    	</h5>
 			                </div>                
 			            </li>
@@ -256,7 +286,9 @@ echo '
                     			<div class="overlay"></div>
 			                </div>
 			                <div class="desc">
-			                    <h5>4-Zeilen-Displayadapter</h5>
+			                    <h5>';
+			$text = $abfragehbcomp->fetch();
+			echo ''.$text["text"].'</h5>
 			                </div>                
 			            </li>
 			            <!--/Item 5 -->
@@ -268,7 +300,9 @@ echo '
                     			<div class="overlay"></div>
 			                </div> 
 			                <div class="desc">
-			                    <h5>4-Zeilen-Displayadapter mit montiertem Display</h5>
+			                    <h5>';
+			$text = $abfragehbcomp->fetch();
+			echo ''.$text["text"].'</h5>
 			                </div>                
 			            </li>
 			            <!--/Item 6 --> 
@@ -282,7 +316,9 @@ echo '
                     			<div class="overlay"></div>
 			                </div> 
 			                <div class="desc">
-			                    <h5>Sandwich-Montage inkl. Displayrahmen</h5>
+			                    <h5>';
+			$text = $abfragehbcomp->fetch();
+			echo ''.$text["text"].'</h5>
 			                </div>               
 			            </li>
 			            <!-- /item 7 -->
@@ -290,9 +326,9 @@ echo '
 			   </div>
 			</div>
 		</div>
-	</section>
-
-<?php
+	</section>';
+	?>
+	<?php
 	//Fußzeile
 	include('footer.php');
 ?>

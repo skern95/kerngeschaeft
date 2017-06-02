@@ -14,11 +14,27 @@
 		
 		//Sprachbutton Funktionalität
 		include('language.php');
-	?>
+		
+		
+		
+		$query = '
+			SELECT *
+			FROM texte
+			WHERE seitennr = "22" 
+			AND sprachnr = "'.$_SESSION['sprachnr'].'"
+		'; //seitennr = 22 --> impressum.php
+		try{
+			$abfrageimpressum = $db->query($query);
+		} catch(PDOException $ex){
+				die("Failed to connect to the database: " . $ex->getMessage());
+			} echo '
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Impressum | HeatBox</title>
+    <title>';
+			$text = $abfrageimpressum->fetch();
+			echo ''.$text["text"].'</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
 
@@ -38,8 +54,7 @@
     <link rel="apple-touch-icon-precomposed" href="images/ico/apple-touch-icon-57-precomposed.png">
 </head>
 
-<body>
-    <?php
+<body>';
     require('config_text.php');
 // 1 = Deutsch, 2 = Englisch
 $query = '
@@ -169,8 +184,7 @@ echo '
             </div>
         </div>
     </header>
-    <!-- /header -->';
-?>
+    <!-- /header -->
 
 	<div class="jumbotron" style="background-color:white;"> <!-- #232323-->
 		<div class="container image-center heatboxlogo" align="center">
@@ -184,7 +198,11 @@ echo '
 		<div class="container">
 			<div class="row-fluid">
 				<div class="center">
-				   <h1>Impressum</h1>
+				   <h1>';
+				   
+				   $text = $abfrageimpressum->fetch();
+//Impressum Überschrift
+	echo ''.$text["text"].'</h1>
 			   </div>
 			</div>
 		</div>
@@ -193,14 +211,41 @@ echo '
 	<section id="recent-works">
 		<div class="container">
 			<div class="center">
-				<h2>Adresse</h2>
-				<p>HaDi-RC.de</p>
-				<p>Hüttenstraße 13</p>
-				<p>35708 Haiger</p>
-				<p>Deutschland</p>
+				<h2>';
+			
+	$text = $abfrageimpressum->fetch();
+//Adresse Überschrift
+	echo ''.$text["text"].'</h2>
+					<p>';
+					
+	$text = $abfrageimpressum->fetch();
+//Absatz 1
+	echo ''.$text["text"].'</p>
+					<p>';
+					
+	$text = $abfrageimpressum->fetch();
+//Absatz 2
+	echo ''.$text["text"].'</p>
+					<p>';
+					
+	$text = $abfrageimpressum->fetch();
+//Absatz 3
+	echo ''.$text["text"].'</p>
+					<p>';
+					
+	$text = $abfrageimpressum->fetch();
+//Absatz 4
+	echo ''.$text["text"].'</p>
 				<p><br /></p>
-				<p>Telefon: +49 2773 - 912030</p>
-				<p>Fax: +49 2773 - 912031</p>
+				<p>';
+				
+	$text = $abfrageimpressum->fetch();
+//Absatz 5
+	echo ''.$text["text"].'</p>
+					<p>';
+	$text = $abfrageimpressum->fetch();
+//Absatz 6
+	echo ''.$text["text"].'</p>
 			</div> 
 		</div>
 	</section>
@@ -209,11 +254,27 @@ echo '
 		<div class="container">
 			<div class="row-fluid">
 				<div class="center">
-				   <h2>Ansprechpartner</h2>
-				   <p>Christian Domes</p>
-				   <p>E-mail: Info@HaDi-RC.de</p>
-				   <p>Registriert nach BattG unter BattG Reg.Nr. 21000018</p>
-			   </div>
+				   <h2>';
+			
+	$text = $abfrageimpressum->fetch();
+//Ansprechpartner Überschrift
+	echo ''.$text["text"].'</h2>
+					<p>';
+					
+	$text = $abfrageimpressum->fetch();
+//Absatz 1
+	echo ''.$text["text"].'</p>
+					<p>';
+					
+	$text = $abfrageimpressum->fetch();
+//Absatz 2
+	echo ''.$text["text"].'</p>
+					<p>';
+					
+	$text = $abfrageimpressum->fetch();
+//Absatz 3
+	echo ''.$text["text"].'</p>
+				   </div>
 			</div>
 		</div>
 	</section>
@@ -221,8 +282,17 @@ echo '
 	<section id="recent-works">
 		<div class="container">
 			<div class="center">
-				<h2>Steueridentifikation</h2>
-				<p>USt-IdNr.: DE111754098</p>
+				<h2>';
+			
+	$text = $abfrageimpressum->fetch();
+//SteuerIDNR Überschrift
+	echo ''.$text["text"].'</h2>
+					<p>';
+					
+	$text = $abfrageimpressum->fetch();
+//Absatz 1
+	echo ''.$text["text"].'</p>
+
 			</div> 
 		</div>			
 	</section>
@@ -231,22 +301,76 @@ echo '
 		<div class="container">
 			<div class="row-fluid">
 				<div class="center">
-				   <h2>Bankverbindung</h2>
-				   <p>Volksbank Dill eG</p>
-				   <p>Kontonummer: 20271604</p>
-				   <p>BLZ: 51690000</p>
-				   <p>SWIFT / BIC: GENODE51DIL</p>
-				   <p>IBAN: DE85 5169 0000 0020 2716 04</p>
-				   <p>Kontoinhaber: Christian Domes</p>
+				   <h2>';
+			
+	$text = $abfrageimpressum->fetch();
+//Bankverbindung Überschrift
+	echo ''.$text["text"].'</h2>
+					<p>';
+					
+	$text = $abfrageimpressum->fetch();
+//Absatz 1
+	echo ''.$text["text"].'</p>
+					<p>';
+					
+	$text = $abfrageimpressum->fetch();
+//Absatz 2
+	echo ''.$text["text"].'</p>
+					<p>';
+					
+	$text = $abfrageimpressum->fetch();
+//Absatz 3
+	echo ''.$text["text"].'</p>
+					<p>';
+					
+	$text = $abfrageimpressum->fetch();
+//Absatz 4
+	echo ''.$text["text"].'</p>
+				<p>';
+				
+	$text = $abfrageimpressum->fetch();
+//Absatz 5
+	echo ''.$text["text"].'</p>
+					<p>';
+	$text = $abfrageimpressum->fetch();
+//Absatz 6
+	echo ''.$text["text"].'</p>
 			   </div>
 			</div>
 		</div>
 	</section>
+';
+?>
 
-	<?php
-		//Fußzeile
-		include('footer.php');
-	?>
+<?php
+	//Fußzeile
+	include('footer.php');
+?>
+
+	<!--Footer-->
+	<footer id="footer">
+		<div class="container">
+			<div class="row-fluid">
+				<div class="span5 cp">
+					&copy; 2017 HaDi-RC. All Rights Reserved.
+				</div>
+				<!--/Copyright-->
+
+				<div class="span6">
+					<ul class="social pull-right">
+						<li><a href="https://www.facebook.com/HaDiRC/" target="_blank"><i class="icon-facebook"></i></a></li>
+						<li><a href="https://plus.google.com/117160856069921192058" target="_blank"><i class="icon-google-plus"></i></a></li>                   
+					</ul>
+				</div>
+
+				<div class="span1">
+					<a id="gototop" class="gototop pull-right" href="#"><i class="icon-angle-up"></i></a>
+				</div>
+				<!--/Goto Top-->
+			</div>
+		</div>
+	</footer>
+	<!--/Footer-->
 
 	<!--  Login form -->
 	<div class="modal hide fade in" id="loginForm" aria-hidden="false">
@@ -273,7 +397,6 @@ echo '
 	<script src="js/main.js"></script>
 	<!-- Required javascript files for Slider -->
 	<script src="js/jquery.ba-cond.min.js"></script>
-	<script src="js/jquery.slitslider.js"></script>
 	
 	<?php
 		include 'sysinfopage.php';

@@ -14,11 +14,26 @@
 		
 		//Sprachbutton Funktionalität
 		include('language.php');
-	?>
+		
+		$query = '
+			SELECT *
+			FROM texte
+			WHERE seitennr = "18" 
+			AND sprachnr = "'.$_SESSION['sprachnr'].'"
+		'; //seitennr = 18 --> faq.php
+		try{
+			$abfragefaq = $db->query($query);
+		} catch(PDOException $ex){
+				die("Failed to connect to the database: " . $ex->getMessage());
+			} echo '		
+		
+		
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>FAQ | HeatBox</title>
+    <title>';
+			$text = $abfragefaq->fetch();
+			echo ''.$text["text"].'</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
 
@@ -38,8 +53,7 @@
     <link rel="apple-touch-icon-precomposed" href="images/ico/apple-touch-icon-57-precomposed.png">
 </head>
 
-<body>
-<?php
+<body>';
    require('config_text.php');
 // 1 = Deutsch, 2 = Englisch
 $query = '
@@ -169,8 +183,9 @@ echo '
             </div>
         </div>
     </header>
-    <!-- /header -->';
-?>
+    <!-- /header -->
+    
+	
 	
 	<div class="jumbotron" style="background-color:white;"> <!-- #232323-->
 	    <div class="container image-center heatboxlogo" align="center">
@@ -184,7 +199,9 @@ echo '
         <div class="container">
             <div class="row-fluid">
                 <div class="center">
-                    <h1>Frequently Asked Questions</h1>
+                    <h1>';
+			$text = $abfragefaq->fetch();
+			echo ''.$text["text"].'</h1>
                 </div>
             </div>
         </div>
@@ -193,70 +210,105 @@ echo '
 
     <section id="faqs" class="container">
         <ul class="faq">
-			<h3>Allgemeine Fragen:</h3>
+			<h3>';
+			$text = $abfragefaq->fetch();
+			echo ''.$text["text"].'</h3>
 			<li>
 				<span class="number">01</span>
 				<div>
-					<h4>Ich habe eine der ersten HeatBox-Platinen gekauft. Sind diese veraltet?</h4>
-					<p>Bei den neueren Platinen sind wir auf einige Kundenwünsche eingegangen und haben außerdem das Layout der Platine verbessert. Bis auf wenige Features, die erst durch die neuen Platinen unterstützt werden können, sind diese technisch ähnlich den ersten Platinen. Bei der Software-Weiterentwicklung achten wir darauf, dass diese Kompatibel zu den früheren Platinen ist.</p>
+					<h4>';
+			$text = $abfragefaq->fetch();
+			echo ''.$text["text"].'</h4>
+					<p>';
+			$text = $abfragefaq->fetch();
+			echo ''.$text["text"].'</p>
 				</div>
 			</li>
 
 			<li>
 				<span class="number">02</span>
 				<div>
-					<h4>Soll ich ein 2- oder ein 4-Zeilen-Display bestellen?</h4>
-					<p>Das hängt maßgeblich davon ab wie viel Platz Ihnen zur Verfügung steht. Bei der 4-Zeilen-Version können mehr Informationen zur selben Zeit angezeigt werden. Bei den 2-Zeilen-Versionen werden einige Informationen immer im Wechsel dargestellt.</p>
+					<h4>';
+			$text = $abfragefaq->fetch();
+			echo ''.$text["text"].'</h4>
+					<p>';
+			$text = $abfragefaq->fetch();
+			echo ''.$text["text"].'</p>
 				</div>
 			</li>
 
 			<li>
 				<span class="number">03</span>
 				<div>
-					<h4>Es gibt eine neue Software-Version. Muss ich ein Update vornehmen?</h4>
-					<p>Wir empfehlen es zumindest. Keine Software ist perfekt und so unterliegt auch unsere Steuerung einer permanenten Verbesserung und Revision. Außerdem kommen regelmäßig neue Funktionen hinzu um die Wünsche der Kunden zu erfüllen.</p>
+					<h4>';
+			$text = $abfragefaq->fetch();
+			echo ''.$text["text"].'</h4>
+					<p>';
+			$text = $abfragefaq->fetch();
+			echo ''.$text["text"].'</p>
 				</div>
 			</li>
 
 			<li>
 				<span class="number">04</span>
 				<div>
-					<h4>Kann ich die HeatBox auch über meinen Zigarettenanzünder oder der Solaranlage der Vereinshütte betreiben?</h4>
-					<p>Ja (bei den früheren HeatBox-Platinen ist ggf. eine Erweiterungsplatine notwendig). Die HeatBox ist dafür ausgelegt, sowohl über eine externe Speisung als auch über einen Akku versorgt zu werden. Bei entsprechender Verschaltung erkennt die HeatBox den Typ der Versorgung und deaktiviert ggf. einige unnötige Überwachungsfunktionen, die nur beim Betrieb über einen Akku sinnvoll sind. Näheres entnehmen sie bitte der Anleitung.</p>
+					<h4>';
+			$text = $abfragefaq->fetch();
+			echo ''.$text["text"].'</h4>
+					<p>';
+			$text = $abfragefaq->fetch();
+			echo ''.$text["text"].'</p>
 				</div>
 			</li>
 
 			<li>
 				<span class="number">05</span>
 				<div>
-					<h4>Wie sicher ist der Betrieb der HeatBox?</h4>
-					<p>Was das Design ihres Heizkoffers betrifft können wir natürlich keine Aussagen treffen. Bei der Steuerung jedoch haben wir darauf geachtet, dass alle kritischen Fehler erkannt werden können (korrekt ausgeführtes Setup vorausgesetzt), so dass die Software darauf reagieren kann. So wird nicht nur die entnommene Kapazität aus dem Betriebsakku gemessen, sondern gleichzeitig die Gesamtspannung überwacht. Auch der Ausfall des Temepratursensors wird festgestellt und die Heizung wird deaktiviert.</p>
+					<h4>';
+			$text = $abfragefaq->fetch();
+			echo ''.$text["text"].'</h4>
+					<p>';
+			$text = $abfragefaq->fetch();
+			echo ''.$text["text"].'</p>
 				</div>
 			</li>
 			<div class="gap">
 			</div>
-			<h3>Allgemeine Probleme:</h3>
+			<h3>';
+			$text = $abfragefaq->fetch();
+			echo ''.$text["text"].'</h3>
 			<li>
 				<span class="number">06</span>
 				<div>
-					<h4>Beim Starten der HeatBox zeigt das Display nichts an, obwohl die Beleuchtung funktioniert und der Summer einen kurzen Ton ausgibt</h4>
-					<p>Vermutlich ist der Kontrast des Displays nicht richtig eingestellt. Auf der Platine finden sie einen kleinen Potentiometer den Sie mit einem kleinen Schraubendreher verstellen können. Drehen Sie den Potentiometer langsam in eine Richtung bis das Display etwas anzeigt.</p>
+					<h4>';
+			$text = $abfragefaq->fetch();
+			echo ''.$text["text"].'</h4>
+					<p>';
+			$text = $abfragefaq->fetch();
+			echo ''.$text["text"].'</p>
 				</div>
 			</li>
 			<div class="gap">
 			</div>
-			<h3>Update-Fehler:</h3>
+			<h3>';
+			$text = $abfragefaq->fetch();
+			echo ''.$text["text"].'</h3>
 			<li>
 				<span class="number">07</span>
 				<div>
-					<h4>avrdude.exe: ser_send(): write error: Sorry no info avail</h4>
-					<p>Dieser Fehler taucht auf, wenn der angegebene COM-Port nicht der Richtige ist (Falschen Port ausgewählt).</p>
+					<h4>';
+			$text = $abfragefaq->fetch();
+			echo ''.$text["text"].'</h4>
+					<p>';
+			$text = $abfragefaq->fetch();
+			echo ''.$text["text"].'</p>
 				</div>
 			</li>
 		</ul>
 		<div class="gap">
 		</div>
-	</section>
+	</section>';
+	?>
 	
 <?php
 	//Fußzeile

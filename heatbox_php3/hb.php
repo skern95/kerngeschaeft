@@ -14,11 +14,25 @@
 		
 		//Sprachbutton Funktionalität
 		include('language.php');
-	?>
+
+		$query = '
+			SELECT *
+			FROM texte
+			WHERE seitennr = "6" 
+			AND sprachnr = "'.$_SESSION['sprachnr'].'"
+		'; //seitennr = 6 --> hb.php
+		try{
+			$abfragehb = $db->query($query);
+		} catch(PDOException $ex){
+				die("Failed to connect to the database: " . $ex->getMessage());
+			} echo '
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>HeatBox | HeatBox</title>
+    <title>';
+			$text = $abfragehb->fetch();
+			echo ''.$text["text"].'</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
 
@@ -38,8 +52,7 @@
     <link rel="apple-touch-icon-precomposed" href="images/ico/apple-touch-icon-57-precomposed.png">
 </head>
 
-<body>
-    <?php
+<body>';
     require('config_text.php');
 // 1 = Deutsch, 2 = Englisch
 $query = '
@@ -169,8 +182,7 @@ echo '
             </div>
         </div>
     </header>
-    <!-- /header -->';
-?>
+    <!-- /header -->
     
 	<div class="jumbotron" style="background-color:white;"> <!-- #232323-->
 		<div class="container image-center heatboxlogo" align="center">
@@ -184,8 +196,12 @@ echo '
 		<div class="container">
 			<div class="row-fluid">
 				<div class="center">
-				   <h1>HeatBox</h1>
-				   <p>Die "klassiche" HeatBox ist die erste erschienene Version der Heizkoffersteuerung</p>
+				   <h1>';
+			$text = $abfragehb->fetch();
+			echo ''.$text["text"].'</h1>
+				   <p>';
+			$text = $abfragehb->fetch();
+			echo ''.$text["text"].'</p>
 			   </div>
 			</div>
 		</div>
@@ -225,7 +241,9 @@ echo '
 				<!--Item 1-->
 				<li>
 					<div class="desc">
-						<h5>Anzeige eines 4-Zeilen-Displays im Betrieb</h5>
+						<h5>';
+			$text = $abfragehb->fetch();
+			echo ''.$text["text"].'</h5>
 					</div>					
 				</li>
 				<!--/Item 1--> 
@@ -233,7 +251,9 @@ echo '
 				<!--Item 2-->
 				<li>
 					<div class="desc">
-						<h5>Draufsicht auf die Hauptplatine</h5>
+						<h5>';
+			$text = $abfragehb->fetch();
+			echo ''.$text["text"].'</h5>
 					</div>					
 				</li>
 				<!--/Item 2-->
@@ -241,15 +261,17 @@ echo '
 				<!--Item 3-->
 				<li>
 					<div class="desc">
-						<h5>Hauptplatine mit montierter Erweiterungsplatine</h5>
+						<h5>';
+			$text = $abfragehb->fetch();
+			echo ''.$text["text"].'</h5>
 					</div>					
 				</li>
 				<!--/Item 3--> 
 			</ul>
 		</div>
-	</section>
-
-<?php
+	</section>';
+	?>
+	<?php
 	//Fußzeile
 	include('footer.php');
 ?>
@@ -281,44 +303,7 @@ echo '
 	<script src="js/main.js"></script>
 	<!-- Required javascript files for Slider -->
 	<script src="js/jquery.ba-cond.min.js"></script>
-	<script src="js/jquery.slitslider.js"></script>
-	<!-- /Required javascript files for Slider -->
 
-	<!-- SL Slider -->
-	<script type="text/javascript">
-		$(function() {
-			var Page = (function() {
-
-				var $navArrows = $('#nav-arrows'),
-					slitslider = $('#slider').slitslider({
-					autoplay : true
-				}),
-
-					init = function() {
-					initEvents();
-				},
-					initEvents = function() {
-					$navArrows.children(':last').on('click', function() {
-						slitslider.next();
-						return false;
-					});
-
-					$navArrows.children(':first').on('click', function() {
-						slitslider.previous();
-						return false;
-					});
-				};
-
-				return {
-					init : init
-				};
-
-			})();
-
-			Page.init();
-		});
-	</script>
-	<!-- /SL Slider -->
 	<?php
 		include 'sysinfopage.php';
 	?>

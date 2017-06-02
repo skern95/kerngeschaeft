@@ -14,11 +14,25 @@
 		
 		//Sprachbutton Funktionalität
 		include('language.php');
-	?>
+		
+		$query = '
+			SELECT *
+			FROM texte
+			WHERE seitennr = "17" 
+			AND sprachnr = "'.$_SESSION['sprachnr'].'"
+		'; //seitennr = 17 --> testberichte.php
+		try{
+			$abfragetest = $db->query($query);
+		} catch(PDOException $ex){
+				die("Failed to connect to the database: " . $ex->getMessage());
+			} echo '		
+		
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Testberichte | HeatBox</title>
+    <title>';
+			$text = $abfragetest->fetch();
+			echo ''.$text["text"].'</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
 
@@ -38,9 +52,7 @@
     <link rel="apple-touch-icon-precomposed" href="images/ico/apple-touch-icon-57-precomposed.png">
 </head>
 
-<body>
-	
-	<?php
+<body>';
     require('config_text.php');
 //$_SESSION['sprachnr'] = 1; // 1 = Deutsch, 2 = Englisch
 $query = '
@@ -170,8 +182,7 @@ echo '
             </div>
         </div>
     </header>
-    <!-- /header -->';
-?>
+    <!-- /header -->
     
 	<div class="jumbotron" style="background-color:white;"> <!-- #232323-->
 	    <div class="container image-center heatboxlogo" align="center">
@@ -185,26 +196,35 @@ echo '
 	    <div class="container">
 	        <div class="row-fluid">
 	            <div class="center">
-	                <h1>Testberichte</h1>
-				    <p>Auf den nachfolgenden Seiten (Links) finden Sie publizierte unabhängige Testberichte zur HeatBox:</p>
+	                <h1>';
+			$text = $abfragetest->fetch();
+			echo ''.$text["text"].'</h1>
+				    <p>';
+			$text = $abfragetest->fetch();
+			echo ''.$text["text"].'</p>
 					<br>
 				</div>
 				<div class="left">
 					<ul style="padding-left: 38%">
 						<li>
-							&nbsp; Testbericht von Gerd Giese<br>
+							&nbsp; ';
+			$text = $abfragetest->fetch();
+			echo ''.$text["text"].'<br>
 							<i class="icon-globe"></i>&nbsp;<a href="http://www.elektromodellflug.de/heatbox-hadi.html" target="_blank" title="http://www.elektromodellflug.de/heatbox-hadi.html">Elektromdodellflug.de</a>
 							<br><br>
 						</li>
 						<li>
-							&nbsp; Testbericht Heli 4 Fun , Ausgabe 02 / 2013<br>
+							&nbsp; ';
+			$text = $abfragetest->fetch();
+			echo ''.$text["text"].'<br>
 							<i class="icon-globe"></i>&nbsp;<a href="http://crizzd.de/HeatBox_39.pdf" target="_blank" title="http://crizzd.de/HeatBox_39.pdf">Heli4Fun [PDF]</a>
 						</li>
 					</ul>
 				</div>
 	        </div>
 	    </div>
-	</section>	
+	</section>	';
+	?>
 
 <?php
 	//Fußzeile

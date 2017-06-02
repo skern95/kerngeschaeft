@@ -14,11 +14,26 @@
 		
 		//Sprachbutton Funktionalität
 		include('language.php');
-	?>
+
+		$query = '
+			SELECT *
+			FROM texte
+			WHERE seitennr = "19" 
+			AND sprachnr = "'.$_SESSION['sprachnr'].'"
+		'; //seitennr = 19 --> spende.php
+		try{
+			$abfragespende = $db->query($query);
+		} catch(PDOException $ex){
+				die("Failed to connect to the database: " . $ex->getMessage());
+			} echo '		
+		
+		
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Spende | HeatBox</title>
+    <title>';
+			$text = $abfragespende->fetch();
+			echo ''.$text["text"].'</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
 
@@ -38,9 +53,7 @@
     <link rel="apple-touch-icon-precomposed" href="images/ico/apple-touch-icon-57-precomposed.png">
 </head>
 
-<body>
-	
-	<?php
+<body>';
     require('config_text.php');
 // 1 = Deutsch, 2 = Englisch
 $query = '
@@ -170,8 +183,7 @@ echo '
             </div>
         </div>
     </header>
-    <!-- /header -->';
-?>
+    <!-- /header -->
     
 	<div class="jumbotron" style="background-color:white;"> <!-- #232323-->
 	    <div class="container image-center heatboxlogo" align="center">
@@ -185,8 +197,13 @@ echo '
 	    <div class="container">
 	        <div class="row-fluid">
 	            <div class="center">
-	                <h1>Spende</h1>
-				    Wenn sie die HeatBox mögen und dem Software-Entwickler ein kleines „Dankeschön“ geben wollen, können Sie eine beliebige Spende via PayPal senden.
+	                <h1>';
+			$text = $abfragespende->fetch();
+			echo ''.$text["text"].'</h1>
+			<br>
+				    <p>';
+			$text = $abfragespende->fetch();
+			echo ''.$text["text"].'</p>
 				</div>
 	        </div>
 	    </div>
@@ -196,14 +213,19 @@ echo '
 		<div class="container">
 			<div class="row-fluid">
 				<div class="center">
-				   Benutzen Sie dazu einfach folgenden Button.<br>
+				   <p>Benutzen Sie dazu einfach folgenden Button.</p><br>
 				   <b>&lt;Button Placeholder&gt;</b><br>
-				   <i>Ihre Spende wird ausschließich und direkt dem Software-Entwickler zukommen !</i><br><br>
-				   <h3>Herzlichen Dank !</h3>
+				   <i>';
+			$text = $abfragespende->fetch();
+			echo ''.$text["text"].'</i><br><br>
+				   <h3>';
+			$text = $abfragespende->fetch();
+			echo ''.$text["text"].'</h3>
 			   </div>
 			</div>
 		</div>
-	</section>
+	</section>';
+	?>
 
 <?php
 	//Fußzeile

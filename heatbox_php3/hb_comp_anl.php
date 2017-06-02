@@ -14,11 +14,26 @@
 		
 		//Sprachbutton Funktionalität
 		include('language.php');
-	?>
+
+		$query = '
+			SELECT *
+			FROM texte
+			WHERE seitennr = "11" 
+			AND sprachnr = "'.$_SESSION['sprachnr'].'"
+		'; //seitennr = 11 --> hb_comp_anl.php
+		try{
+			$abfragehbcompanl = $db->query($query);
+		} catch(PDOException $ex){
+				die("Failed to connect to the database: " . $ex->getMessage());
+			} echo '
+		
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Anleitungen | HeatBox</title>
+    <title>';
+			$text = $abfragehbcompanl->fetch();
+			echo ''.$text["text"].'</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
 
@@ -38,8 +53,7 @@
     <link rel="apple-touch-icon-precomposed" href="images/ico/apple-touch-icon-57-precomposed.png">
 </head>
 
-<body>
-	<?php
+<body>';
     require('config_text.php');
 // 1 = Deutsch, 2 = Englisch
 $query = '
@@ -169,8 +183,7 @@ echo '
             </div>
         </div>
     </header>
-    <!-- /header -->';
-?>
+    <!-- /header -->
     
 	<div class="jumbotron" style="background-color:white;"> <!-- #232323-->
 	    <div class="container image-center heatboxlogo" align="center">
@@ -184,10 +197,16 @@ echo '
 	    <div class="container">
 	        <div class="row-fluid">
 	            <div class="center">
-					<h1>HeatBox Compact</h1>
+					<h1>';
+			$text = $abfragehbcompanl->fetch();
+			echo ''.$text["text"].'</h1>
 					<br>
-					<h2>Anleitungen</h2>
-					<p>Hier finden Sie die jeweils aktuelle Anleitung zur HeatBox, den Erweiterungen und Add-Ons</p>
+					<h2>';
+			$text = $abfragehbcompanl->fetch();
+			echo ''.$text["text"].'</h2>
+					<p>';
+			$text = $abfragehbcompanl->fetch();
+			echo ''.$text["text"].'</p>
 				</div>
 	        </div>
 	    </div>
@@ -197,10 +216,20 @@ echo '
 		<div class="container">
 			<div class="row-fluid">
 				<div class="center">
-					<h2><i class="icon-warning-sign"></i>&nbsp; Wichtiger Hinweis:</h2>
-					<p>Bei Betrieb an einem Netzteil immer zuerst das Netzteil anschalten, dann erst die Box anschließen / einschalten!<br>
-					Ansonsten kann es bei einigen Netzteilen durch Einschalt-Spannungsspitzen zu einer Zerstörung des Spannungsreglers auf der HeatBox kommen.<br>
-					<b>Niemals ohne angeschlossener Last betreiben !</b> - dies kann für Testzwecke auch eine 12 V Glühbirne sein.</p>
+					<h2><i class="icon-warning-sign"></i>&nbsp; ';
+			$text = $abfragehbcompanl->fetch();
+			echo ''.$text["text"].'</h2>
+					<p>';
+			$text = $abfragehbcompanl->fetch();
+			echo ''.$text["text"].'<br>
+					';
+			$text = $abfragehbcompanl->fetch();
+			echo ''.$text["text"].'<br>
+					<b>';
+			$text = $abfragehbcompanl->fetch();
+			echo ''.$text["text"].'</b>';
+			$text = $abfragehbcompanl->fetch();
+			echo ''.$text["text"].'</p>
 				</div>
 			</div>
 		</div>
@@ -211,52 +240,84 @@ echo '
 		<div class="container">
 			<div class="row-fluid">
 				<div class="center">
-					<h2>Links:</h2><br />
+					<h2>';
+			$text = $abfragehbcompanl->fetch();
+			echo ''.$text["text"].'</h2><br />
 				</div>
 				<div class="left">
 					<ul style="padding-left: 32%">
 						<li>
-							Anleitung zum Aufbau und Betrieb der HeatBox
-							<br>HW-Revision 1.70<br />
+							';
+			$text = $abfragehbcompanl->fetch();
+			echo ''.$text["text"].'
+							<br>';
+			$text = $abfragehbcompanl->fetch();
+			echo ''.$text["text"].'<br />
 							<i class="icon-globe"></i>&nbsp;<a href="http://www.ha-di.de/lib/exe/fetch.php?media=heatboxlegacy:manual_heatbox_v_170.pdf">HeatBox v1.70 Manual</a> (1.87 MiB)
-							 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Stand: 30.03.2015
+							 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ';
+			$text = $abfragehbcompanl->fetch();
+			echo ''.$text["text"].'
 							<br /><br />
 						</li>
 						<li>
-							Anleitung zur Verdrahtung und zum Anschluss des Intern/Extern-Schalters 
-							<br>HW-Revision 1.50, 1.51, 1.60 <br />
+							';
+			$text = $abfragehbcompanl->fetch();
+			echo ''.$text["text"].' 
+							<br>';
+			$text = $abfragehbcompanl->fetch();
+			echo ''.$text["text"].'<br />
 							<i class="icon-globe"></i>&nbsp;<a href="http://www.ha-di.de/lib/exe/fetch.php?media=heatboxlegacy:switch_connect_v160.pdf">Switch-Connect</a> (1.21 MiB)
-							 &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; Stand: November 2014 
+							 &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; ';
+			$text = $abfragehbcompanl->fetch();
+			echo ''.$text["text"].' 
 							<br /><br />
 						</li>
 						<li>
-							Anleitung zum Aufbau und Betrieb der HeatBox
-							<br>HW-Revision 1.60<br />
+							';
+			$text = $abfragehbcompanl->fetch();
+			echo ''.$text["text"].'
+							<br>';
+			$text = $abfragehbcompanl->fetch();
+			echo ''.$text["text"].'<br />
 							<i class="icon-globe"></i>&nbsp;<a href="http://www.ha-di.de/lib/exe/fetch.php?media=heatboxlegacy:manual_hb_compact_v160.pdf">HeatBox V1.60 Manual</a> (2.05 MiB)
-							 &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Stand: Oktober 2014 
+							 &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ';
+			$text = $abfragehbcompanl->fetch();
+			echo ''.$text["text"].' 
 							<br /><br />
 						</li>
 						<li>
-							Anleitung Aufbau und Betrieb HeatBox „compact/24“ 
-							<br>HW-Revision 1.51 (FW v1.5.0)<br />
+							';
+			$text = $abfragehbcompanl->fetch();
+			echo ''.$text["text"].' 
+							<br>';
+			$text = $abfragehbcompanl->fetch();
+			echo ''.$text["text"].'<br />
 							<i class="icon-globe"></i>&nbsp;<a href="http://www.ha-di.de/lib/exe/fetch.php?media=heatboxlegacy:manual_hb-c24_151.pdf">manual_hb-c24_151.pdf</a> (3.262 MiB)
-							 &nbsp;&nbsp;&nbsp; &nbsp; Stand: 31.03.2014 
+							 &nbsp;&nbsp;&nbsp; &nbsp; ';
+			$text = $abfragehbcompanl->fetch();
+			echo ''.$text["text"].' 
 							<br /><br />
 						</li>
 						<li>
-							Anleitung Aufbau und Betrieb HeatBox „compact/24“ 
-							<br>HW-Revision 1.50 (FW v1.4.0)<br />
+							';
+			$text = $abfragehbcompanl->fetch();
+			echo ''.$text["text"].'
+							<br>';
+			$text = $abfragehbcompanl->fetch();
+			echo ''.$text["text"].'<br />
 							<i class="icon-globe"></i>&nbsp;<a href="http://www.ha-di.de/lib/exe/fetch.php?media=heatboxlegacy:manual_hb-c24_150.pdf">manual_hb-c24_150.pdf</a> (6.68 MiB)
-							 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Stand : 26.12.2013
+							 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;';
+			$text = $abfragehbcompanl->fetch();
+			echo ''.$text["text"].'
 							<br /><br />
 						</li>
 					</ul>
 				</div>
 			</div>
 		</div>
-	</section>
-
-<?php
+	</section>';
+	?>
+	<?php
 	//Fußzeile
 	include('footer.php');
 ?>

@@ -14,11 +14,26 @@
 		
 		//Sprachbutton Funktionalität
 		include('language.php');
-	?>
+		
+		$query = '
+			SELECT *
+			FROM texte
+			WHERE seitennr = "13" 
+			AND sprachnr = "'.$_SESSION['sprachnr'].'"
+		'; //seitennr = 13 --> hb_eco_tec.php
+		try{
+			$abfrageecotec = $db->query($query);
+		} catch(PDOException $ex){
+				die("Failed to connect to the database: " . $ex->getMessage());
+			} echo '
+		
+		
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	<title>Technische Daten | HeatBox</title>
+	<title>';
+			$text = $abfrageecotec->fetch();
+			echo ''.$text["text"].'</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width">
 
@@ -38,8 +53,7 @@
 	<link rel="apple-touch-icon-precomposed" href="images/ico/apple-touch-icon-57-precomposed.png">
 </head>
 
-<body>
-	<?php
+<body>';
     require('config_text.php');
 // 1 = Deutsch, 2 = Englisch
 $query = '
@@ -169,9 +183,8 @@ echo '
             </div>
         </div>
     </header>
-    <!-- /header -->';
-?>
-
+    <!-- /header -->
+    
 	<div class="jumbotron" style="background-color:white;">
 		<!-- #232323-->
 		<div class="container image-center heatboxlogo" align="center">
@@ -185,29 +198,45 @@ echo '
 		<div class="container">
 			<div class="row-fluid">
 				<div class="center">
-					<h1>HeatBox Eco</h1>
+					<h1>';
+			$text = $abfrageecotec->fetch();
+			echo ''.$text["text"].'</h1>
 					<br>
-					<h2>Technische Daten</h2>
+					<h2>';
+			$text = $abfrageecotec->fetch();
+			echo ''.$text["text"].'</h2>
 				</div>
 				<div class="left">
 					<ul style="padding-left: 36%">
 						<li>
-							&nbsp; Betriebsspannung: 10,5V … 15,0V DC
+							&nbsp; ';
+			$text = $abfrageecotec->fetch();
+			echo ''.$text["text"].'
 						</li>
 						<li>
-							&nbsp; max. Schaltleistung ohne Zusatzkühlung: 75W (6A)
+							&nbsp; max. ';
+			$text = $abfrageecotec->fetch();
+			echo ''.$text["text"].'
 						</li>
 						<li>
-							&nbsp; max. Schaltleistung mit Zusatzkühlung: 350W (28A)
+							&nbsp; max. ';
+			$text = $abfrageecotec->fetch();
+			echo ''.$text["text"].'
 						</li>
 						<li>
-							&nbsp; Eigenstromaufnahme (Standby): ca 25mA
+							&nbsp; ';
+			$text = $abfrageecotec->fetch();
+			echo ''.$text["text"].'
 						</li>
 						<li>
-							&nbsp; Eigenstromaufnahme (Aktiv): ca 45mA
+							&nbsp; ';
+			$text = $abfrageecotec->fetch();
+			echo ''.$text["text"].'
 						</li>
 						<li>
-							&nbsp; Mikroprozessor: ATMega 328 , 16Mhz, TQFP-Case
+							&nbsp; ';
+			$text = $abfrageecotec->fetch();
+			echo ''.$text["text"].'
 						</li>
 					</ul>
 				</div>
@@ -219,63 +248,100 @@ echo '
 		<div class="container">
 			<div class="row-fluid">
 				<div class="center">
-					<h2>Features:</h2>
+					<h2>';
+			$text = $abfrageecotec->fetch();
+			echo ''.$text["text"].'</h2>
 				</div>
 				<div class="left">
 					<ul style="padding-left: 32%">
 						<li>
-							&nbsp; DoubleLayer-Hauptplatine in Industriequalität (RoHS, HAL, LF)
+							&nbsp; ';
+			$text = $abfrageecotec->fetch();
+			echo ''.$text["text"].'
 						</li>
 						<li>
-							&nbsp; hochpräziser, digitaler Temperatursensor DS-18B20 , Auflösung besser 0,5°C
+							&nbsp; ';
+			$text = $abfrageecotec->fetch();
+			echo ''.$text["text"].'
 						</li>
 						<li>
-							&nbsp; leistungslos angesteuerte Hex-FET Endstufe, keine Relaiskontakte
+							&nbsp; ';
+			$text = $abfrageecotec->fetch();
+			echo ''.$text["text"].'
 						</li>
 						<li>
-							&nbsp; Frei wählbare Zieltemperatur von 20°C bis 50° C
+							&nbsp; ';
+			$text = $abfrageecotec->fetch();
+			echo ''.$text["text"].'
 						</li>
 						<li>
-							&nbsp; Frei einstellbare Hysterese (Temp.-Abfall bis Nachheizen)
+							&nbsp; ';
+			$text = $abfrageecotec->fetch();
+			echo ''.$text["text"].'
 						</li>
 						<li>
-							&nbsp; frei einstellbare Konvektionspause zur gravitativen Konvektion (selbsttätige
+							&nbsp; ';
+			$text = $abfrageecotec->fetch();
+			echo ''.$text["text"].'
 							<br>
-							&nbsp; Umlüftung durch Wärmeaustausch der Luftmasse ) für erhöhte Effizienz
+							&nbsp; ';
+			$text = $abfrageecotec->fetch();
+			echo ''.$text["text"].'
 						</li>
 						<li>
-							&nbsp; Integrierte Spannungsüberwachung des Versorgungsakkus mit automatischer
+							&nbsp; ';
+			$text = $abfrageecotec->fetch();
+			echo ''.$text["text"].'
 							<br>
-							&nbsp; Zwangsabschaltung bei Unterspannung
+							&nbsp; ';
+			$text = $abfrageecotec->fetch();
+			echo ''.$text["text"].'
 						</li>
 						<li>
-							&nbsp; Einstellung durch digitalen Dreh-Encoder
+							&nbsp; ';
+			$text = $abfrageecotec->fetch();
+			echo ''.$text["text"].'
 						</li>
 						<li>
-							&nbsp; Automatisches Abspeichern aller eingestellten Werte in internem Speicher
+							&nbsp; ';
+			$text = $abfrageecotec->fetch();
+			echo ''.$text["text"].'
 						</li>
 						<li>
-							&nbsp; Laden der Werkseinstellungen auf Knopfdruck möglich
+							&nbsp;';
+			$text = $abfrageecotec->fetch();
+			echo ''.$text["text"].'
 						</li>
 						<li>
-							&nbsp; 2×16 Zeichen-Display, beleuchtet, einstellbarer Kontrast
+							&nbsp; ';
+			$text = $abfrageecotec->fetch();
+			echo ''.$text["text"].'
 						</li>
 						<li>
-							&nbsp; Anschluss für Signalgeber ( Warn-Summer separat erhältlich )
+							&nbsp; ';
+			$text = $abfrageecotec->fetch();
+			echo ''.$text["text"].'
 						</li>
 						<li>
-							&nbsp; Anzeige von aktueller Temperatur, Ziel-Temperatur, Hysteresebereich,
+							&nbsp; ';
+			$text = $abfrageecotec->fetch();
+			echo ''.$text["text"].'
 							<br>
-							&nbsp; Systemstatus, Betriebsspannung
+							&nbsp; ';
+			$text = $abfrageecotec->fetch();
+			echo ''.$text["text"].'
 						</li>
 						<li>
-							&nbsp; Timer zum verzögerten Einschalten der Heizung, einstellbar bis 24h
+							&nbsp; ';
+			$text = $abfrageecotec->fetch();
+			echo ''.$text["text"].'
 						</li>
 					</ul>
 				</div>
 			</div>
 		</div>
-	</section>
+	</section>';
+	?>
 		
 		
 <?php

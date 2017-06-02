@@ -14,12 +14,24 @@
 		
 		//Sprachbutton Funktionalität
 		include('language.php');
-		
-	?>
+			
+		$query = '
+			SELECT *
+			FROM texte
+			WHERE seitennr = "20" 
+			AND sprachnr = "'.$_SESSION['sprachnr'].'"
+		'; //seitennr = 20 --> kommentar.php
+		try{
+			$abfragekommentar = $db->query($query);
+		} catch(PDOException $ex){
+				die("Failed to connect to the database: " . $ex->getMessage());
+			} echo '
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Kommentar | HeatBox</title>
+    <title>';
+			$text = $abfragekommentar->fetch();
+			echo ''.$text["text"].'</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
 
@@ -40,8 +52,7 @@
     <link rel="apple-touch-icon-precomposed" href="images/ico/apple-touch-icon-57-precomposed.png">
 </head>
 
-<body>
-    <?php
+<body>';
     require('config_text.php');
 // 1 = Deutsch, 2 = Englisch
 $query = '
@@ -189,8 +200,7 @@ echo '
             </div>
         </div>
     </header>
-    <!-- /header -->';
-?>
+    <!-- /header -->
 
 	<div class="jumbotron" style="background-color:white;"> <!-- #232323-->
 		<div class="container image-center heatboxlogo" align="center">
@@ -204,9 +214,15 @@ echo '
 		<div class="container">
 			<div class="row-fluid">
 				<div class="center">
-					<h1>Benutzer Kommentare</h1>
-					<p>Hier können Sie kommentare anderer Benutzer einsehen, oder eigene hinzufügen.</p>
-					<p>Teilen Sie ihre Gedanken, egal ob Verbesserungswünsche, Erfahrungsberichte oder ähnliches.</p>
+					<h1>';
+			$text = $abfragekommentar->fetch();
+			echo ''.$text["text"].'</h1>
+					<p>';
+			$text = $abfragekommentar->fetch();
+			echo ''.$text["text"].'</p>
+					<p>';
+			$text = $abfragekommentar->fetch();
+			echo ''.$text["text"].'</p>
 				 </div>
 			</div>
 		</div>
@@ -214,11 +230,13 @@ echo '
 	
 	<section id="recent-works">
 		<div class="row">
-			<h2 align='center'>Kommentare</h2>
-									<div class='comments-list'>
+			<h2 align="center">';
+			$text = $abfragekommentar->fetch();
+			echo ''.$text["text"].'</h2>
+									<div class="comments-list">
 			<div class="span4"></div>
 			<div class="span4">
-				<div class='gap'></div>
+				<div class="gap"></div>
 				<div id="comments" class="comments">
 					
 						<?php
@@ -241,33 +259,41 @@ echo '
 		</div> 
 		<div class="gap" id="x"></div>
 		<div class="center">
-					<h3>Kommentar hinzufügen</h3>
-					<br>
-					<?php
+					<h3>';
+			$text = $abfragekommentar->fetch();
+			echo ''.$text["text"].'</h3>
+					<br>';
 					if(isset($_SESSION['user'])){
 						echo "<div id='addCommentContainer'>
 								<form id='addCommentForm' method='post' action=''>
 							    	<div>					    		            
-							            <label for='body'>Kommentar Inhalt</label>
+							            <label for='body'>";
+			$text = $abfragekommentar->fetch();
+			echo ''.$text['text']."</label>
 							            <textarea class='input-block-level form-control' name='body' id='body' style='min-width: 300px; margin: 0 auto; width: 30%; height:250px;' rows='10'></textarea>
 							           	<br>
-							            <input type='submit' id='submit' value='Submit' class='btn btn-primary btn-large' />
+							            <input type='submit' id='submit' value='";
+			$text = $abfragekommentar->fetch();
+			echo ''.$text['text']."' class='btn btn-primary btn-large' />
 							        </div>
 							    </form>
 					    	</div>";
 					}else{
-						echo '<p>Loggen Sie sich ein, um ein Kommentar hinzuzufügen.</p>
+						echo '<p>';
+			$text = $abfragekommentar->fetch();
+			echo ''.$text["text"].'</p>
 								<div class="gap"></div>
 								<div class="center">
-									<a data-toggle="modal" href="#loginForm"><button type="button" class="btn btn-primary btn-large">Login</button></a>
+									<a data-toggle="modal" href="#loginForm"><button type="button" class="btn btn-primary btn-large">';
+			$text = $abfragekommentar->fetch();
+			echo ''.$text["text"].'</button></a>
 							 	</div>'
 						;
 					}
-					?>
-						
+					echo '	
 				 </div>                        
-	</section>
-
+	</section>';
+?>
 <?php
 	//Fußzeile
 	include('footer.php');
