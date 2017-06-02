@@ -243,35 +243,10 @@ echo '
 		</div>
 	</section>
 
-<?php
-	//Fußzeile
-	include('footer.php');
-?>
-
-	<!--Footer-->
-	<footer id="footer">
-		<div class="container">
-			<div class="row-fluid">
-				<div class="span5 cp">
-					&copy; 2017 HaDi-RC. All Rights Reserved.
-				</div>
-				<!--/Copyright-->
-
-				<div class="span6">
-					<ul class="social pull-right">
-						<li><a href="https://www.facebook.com/HaDiRC/" target="_blank"><i class="icon-facebook"></i></a></li>
-						<li><a href="https://plus.google.com/117160856069921192058" target="_blank"><i class="icon-google-plus"></i></a></li>                   
-					</ul>
-				</div>
-
-				<div class="span1">
-					<a id="gototop" class="gototop pull-right" href="#"><i class="icon-angle-up"></i></a>
-				</div>
-				<!--/Goto Top-->
-			</div>
-		</div>
-	</footer>
-	<!--/Footer-->
+	<?php
+		//Fußzeile
+		include('footer.php');
+	?>
 
 	<!--  Login form -->
 	<div class="modal hide fade in" id="loginForm" aria-hidden="false">
