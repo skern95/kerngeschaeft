@@ -217,8 +217,8 @@ echo '
 				</div>
 				<div class="span4">
 					<h4>Benutzer anlengen</h4>
-					<form action="register.php" method="post">
-						<input type="radio" name="kunde" value="P" style="margin: 0px 0px 4px;">&nbsp;Privatkunde</input><br>
+					<form method="post">
+						<input type="radio" name="kunde" value="P" checked style="margin: 0px 0px 4px;">&nbsp;Privatkunde</input><br>
 						<input type="radio" name="kunde" value="R" style="margin: 0px 0px 4px;">&nbsp;Reseller</input>
 						
 						<label style="margin-top: 15px;">Kundennummer:</label>
@@ -233,16 +233,19 @@ echo '
 						<label>Passwort:</label>
 						<input type="password" name="password" value="" style="min-height: 25px; width: 300px; margin-bottom: 15px;"/><br>
 
-						<input type="checkbox" name="istadmin" style="margin: 0px 0px 4px;">&nbsp;Ist Admin?</input><br>
+						<input type="checkbox" name="istadmin" style="margin: 0px 0px 4px;">&nbsp;Admin</input><br>
 
-						<input type="checkbox" name="hatheatbox" style="margin: 0px 0px 4px;">&nbsp;Hat Heatbox?</input><br>
+						<input type="checkbox" name="hatheatbox" style="margin: 0px 0px 4px;">&nbsp;Heatbox</input><br>
 
-						<input type="checkbox" name="hatcompact" style="margin: 0px 0px 4px;">&nbsp;Hat Heatbox Compact?</input><br>
+						<input type="checkbox" name="hatcompact" style="margin: 0px 0px 4px;">&nbsp;Heatbox Compact</input><br>
 
-						<input type="checkbox" name="hateco" style="margin: 0px 0px 4px;">&nbsp;Hat Heatbox Eco?</input><br>
+						<input type="checkbox" name="hateco" style="margin: 0px 0px 4px;">&nbsp;Heatbox Eco</input><br>
 
-						<input type="submit" value="Registrieren" class="btn btn-transparent" style="margin-top:10px;width:130px" />
+						<input type="submit" name="register" value="Registrieren" class="btn btn-transparent" style="margin-top:10px;width:130px" />
 					</form>
+					<?php
+						include 'register.php';
+					?>
 				</div>
 				<div class="span4">
 					<h4>Kundendaten bearbeiten</h4>
@@ -273,10 +276,12 @@ echo '
 				function showList() {
 					document.getElementById("userlist").style.display = "block";
 					document.getElementById("toggleList").setAttribute("onclick", "hideList();");
+					document.getElementById("toggleList").setAttribute("value", "Liste ausblenden");
 				}
 				function hideList() {
 					document.getElementById('userlist').style.display = "none";
 					document.getElementById("toggleList").setAttribute("onclick", "showList();");
+					document.getElementById("toggleList").setAttribute("value", "Liste anzeigen");
 				}
 			</script>
 		</div>
