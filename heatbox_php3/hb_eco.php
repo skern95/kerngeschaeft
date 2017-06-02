@@ -5,6 +5,15 @@
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
 	<?php
 		session_start();
+		require('config_text.php');
+		
+		//Setzen der Standardsprache
+		if (empty($_SESSION['sprachnr'])){
+		$_SESSION['sprachnr'] = 1; // 1 = Deutsch, 2 = Englisch
+		}
+		
+		//Sprachbutton Funktionalität
+		include('language.php');
 	?>
 <head>
     <meta charset="utf-8">
@@ -31,7 +40,136 @@
 
 <body>
 	<?php
-    include('header.php');
+    require('config_text.php');
+// 1 = Deutsch, 2 = Englisch
+$query = '
+	SELECT *
+	FROM texte
+	WHERE seitennr = "2" 
+	AND sprachnr = "'.$_SESSION['sprachnr'].'"
+'; //seitennr = 2 --> header
+try{
+	$abfrageheader = $db->query($query);
+} catch(PDOException $ex){
+		die("Failed to connect to the database: " . $ex->getMessage());
+	} 
+	
+echo ''.'<!--Header-->
+    <header class="navbar navbar-fixed-top">
+        <div class="navbar-inner">
+            <div class="container">
+                <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </a>
+                <a id="logo" class="pull-left" href="index.php"></a>
+                <div class="nav-collapse collapse pull-right">
+                    <ul class="nav">
+                        <li><a href="index.php">';
+$text = $abfrageheader->fetch();
+//Startseite
+	echo ''.$text["text"].'</a></li>
+                        <li><a href="hb_allgemein.php">';
+$text = $abfrageheader->fetch();
+//Allgemeines
+	echo ''.$text["text"].'</a></li>
+                        <li class="dropdown active">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">';
+$text = $abfrageheader->fetch();
+//Heatbox
+	echo ''.$text["text"].' <i class="icon-angle-down"></i></a>
+                            <ul class="dropdown-menu">
+                            	<li class="nav-header"><a href="hb.php">';
+$text = $abfrageheader->fetch();
+//Heatbox
+	echo ''.$text["text"].'</a></li>
+                                <li><a href="hb_tec.php">';
+$text = $abfrageheader->fetch();
+//Technische Daten
+	echo ''.$text["text"].'</a></li>
+                                <li><a href="hb_anl.php">';
+$text = $abfrageheader->fetch();
+//Anleitungen
+	echo ''.$text["text"].'</a></li>
+                                <li class="divider"></li>
+ 								<li class="nav-header"><a href="hb_comp.php">';
+$text = $abfrageheader->fetch();
+//Heatbox Compact
+	echo ''.$text["text"].'</a></li>
+                                <li><a href="hb_comp_tec.php">';
+$text = $abfrageheader->fetch();
+//Technische Daten
+	echo ''.$text["text"].'</a></li>
+                                <li><a href="hb_comp_anl.php">';
+$text = $abfrageheader->fetch();
+//Anleitungen
+	echo ''.$text["text"].'</a></li>
+                                <li class="divider"></li>
+                                <li class="nav-header active"><a href="hb_eco.php">';
+$text = $abfrageheader->fetch();
+//Heatbox Eco
+	echo ''.$text["text"].'</a></li>
+                                <li><a href="hb_eco_tec.php">';
+$text = $abfrageheader->fetch();
+//Technische Daten
+	echo ''.$text["text"].'</a></li>
+                                <li><a href="hb_eco_anl.php">';
+$text = $abfrageheader->fetch();
+//Anleitungen
+	echo ''.$text["text"].'</a></li> 
+                                <li class="divider"></li>';                                
+$text = $abfrageheader->fetch();
+//Downloads
+if (isset($_SESSION['user'])){	
+	echo '<li><a href="hb_dl.php">'.$text["text"].'</a></li>'; // Überprüfung, ob User angemeldet ist für Downloads
+}	
+	echo '<li><a href="geschichte.php">';
+$text = $abfrageheader->fetch();
+//Geschichte
+	echo ''.$text["text"].'</a></li>
+	<li><a href="testberichte.php">';
+$text = $abfrageheader->fetch();
+//Testberichte
+	echo ''.$text["text"].'</a></li>  
+                                <li><a href="faq.php">';
+$text = $abfrageheader->fetch();
+//FAQ
+	echo ''.$text["text"].'</a></li>  
+                                <li><a href="spende.php">';
+$text = $abfrageheader->fetch();
+//Spende
+	echo ''.$text["text"].'</a></li>                        
+                            </ul>
+                        </li>
+						<li><a href="kommentar.php">';
+$text = $abfrageheader->fetch();
+//Kommentare
+	echo ''.$text["text"].'</a></li>
+                        <li><a href="kontakt.php">';
+$text = $abfrageheader->fetch();
+//Kontakt
+	echo ''.$text["text"].'</a></li>
+                        <li><a href="impressum.php">';
+$text = $abfrageheader->fetch();
+//Impressum
+	echo ''.$text["text"].'</a></li>
+						';			
+include('loginstatus.php');
+//Sprachbutton
+echo '
+						<li>
+							<form method="post">';
+								toggleLanguage();
+								echo '
+							</form>
+						</li>
+                    </ul>        
+                </div><!--/.nav-collapse -->
+            </div>
+        </div>
+    </header>
+    <!-- /header -->';
 ?>
     
 	<div class="jumbotron" style="background-color:white;"> <!-- #232323-->
@@ -98,139 +236,10 @@
 		</div>
 	</section>
 
-	<!--Bottom-->
-	<section id="bottom" class="main">
-		<!--Container-->
-		<div class="container">
-
-			<!--row-fluids-->
-			<div class="row-fluid">
-
-				<!--Contact Form-->
-				<div class="span3">
-					<h4>ADDRESSE</h4>
-					<ul class="unstyled address">
-						<li>
-							<i class="icon-home"></i>
-							<strong>Strasse:</strong><br />
-							Huettenstrasse 13
-						
-						</li>
-						<li>
-							<i class="icon-compass"></i>
-							<strong>PLZ/Ort:</strong><br />
-							35708 Haiger
-						</li>
-					   
-						<li>
-							<i class="icon-flag-alt"></i>
-							<strong>Land:</strong><br />
-							Deutschland
-					   </li>
-					</ul>
-				</div>
-				<!--End Contact Form-->
-
-				<!--Ansrpechpartner-->
-				<div class="span3">
-					<h4>ANSPRECHPARTNER</h4>
-					<div>
-						<ul class="unstyled address">
-							<li>
-								<i class="icon-male"></i>
-								Christian Domes</li>
-							<li>
-								<i class="icon-globe"></i>
-								<strong>Website:</strong> <a href="http://www.hadi-rc.de" target="_blank" title="http://www.hadi-rc.de">hadi-rc.de</a>
-							</li>
-							<li>
-								<i class="icon-envelope"></i>
-								<strong>Email: </strong> info@hadi-rc.de
-							</li>
-							<li>
-								<i class="icon-phone"></i>
-								<strong>Telefon:</strong> +49 2773 912030
-							</li>
-							<li>
-								<i class="icon-print"></i>
-								<strong>Fax:</strong> +49 02773 912031
-							</li>
-						</ul>
-					</div>  
-				</div>
-				
-				<!--Important Links-->
-				<!--Informationen-->
-				<div class="span3">
-					<h4>INFORMATIONEN</h4>
-					<div>
-						<ul class="unstyled address">
-							<li>
-								<i class="icon"><img src="images/ico/impr.png" style="height:14px" /></i>
-								<a href="impressum.php">Impressum</a>
-							</li>
-							<li>
-								<i class="icon-user"></i>
-								<a href="kontakt.php">Kontakt</a>
-							</li>
-							<li>
-								<i class="icon-shopping-cart"></i>
-								<a href="http://www.hadi-rc.de" target="_blank">Shopseite</a>
-							</li>
-							<li>
-								<i class="icon-facebook"></i>
-								<a href="https://www.facebook.com/HaDiRC/" target="_blank">Facebook</a>
-							</li>
-							<li>
-								<i class="icon-google-plus"></i>
-								<a href="https://plus.google.com/117160856069921192058" target="_blank">Google</a>
-							</li>
-						</ul>
-					</div>
-				</div>
-				<!--End Archives-->
-
-				<div class="span3">
-					<h4>SPENDEN</h4>
-					<div>
-						<ul class="unstyled address">
-							<li>
-								<i class="icon-euro"></i>
-								<a href="spende.php">HeatBox</a>
-							</li>
-						</ul>
-					</div>
-				</div>
-			</div>
-			<!--/row-fluid-->
-		</div>
-		<!--/container-->
-	</section>
-	<!--/bottom-->
-
-	<!--Footer-->
-	<footer id="footer">
-		<div class="container">
-			<div class="row-fluid">
-				<div class="span5 cp">
-					&copy; 2017 HaDi-RC. All Rights Reserved.
-				</div>
-				<!--/Copyright-->
-
-				<div class="span6">
-					<ul class="social pull-right">
-						<li><a href="https://www.facebook.com/HaDiRC/" target="_blank"><i class="icon-facebook"></i></a></li>
-						<li><a href="https://plus.google.com/117160856069921192058" target="_blank"><i class="icon-google-plus"></i></a></li>   
-				</div>
-
-				<div class="span1">
-					<a id="gototop" class="gototop pull-right" href="#"><i class="icon-angle-up"></i></a>
-				</div>
-				<!--/Goto Top-->
-			</div>
-		</div>
-	</footer>
-	<!--/Footer-->
+<?php
+	//Fußzeile
+	include('footer.php');
+?>
 
 	<!--  Login form -->
 	<div class="modal hide fade in" id="loginForm" aria-hidden="false">

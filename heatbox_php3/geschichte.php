@@ -5,7 +5,12 @@
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
 	<?php
 		session_start();
+		require('config_text.php');
 		
+		//Setzen der Standardsprache
+		if (empty($_SESSION['sprachnr'])){
+		$_SESSION['sprachnr'] = 1; // 1 = Deutsch, 2 = Englisch
+		}
 	?>
 <head>
     <meta charset="utf-8">
@@ -32,7 +37,140 @@
 
 <body>
     <?php
-    include('header.php');
+   require('config_text.php');
+	//$_SESSION['sprachnr'] = 1; // 1 = Deutsch, 2 = Englisch
+	$query = '
+		SELECT *
+		FROM texte
+		WHERE seitennr = "2" 
+		AND sprachnr = "'.$_SESSION['sprachnr'].'"
+	'; //seitennr = 2 --> header
+	
+	//Sprachbutton Funktionalität
+		include('language.php');
+		
+try{
+	$abfrageheader = $db->query($query);
+} catch(PDOException $ex){
+		die("Failed to connect to the database: " . $ex->getMessage());
+	} 
+	
+echo ''.'<!--Header-->
+    <header class="navbar navbar-fixed-top">
+        <div class="navbar-inner">
+            <div class="container">
+                <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </a>
+                <a id="logo" class="pull-left" href="index.php"></a>
+                <div class="nav-collapse collapse pull-right">
+                    <ul class="nav">
+                        <li><a href="index.php">';
+$text = $abfrageheader->fetch();
+//Startseite
+	echo ''.$text["text"].'</a></li>
+                        <li><a href="hb_allgemein.php">';
+$text = $abfrageheader->fetch();
+//Allgemeines
+	echo ''.$text["text"].'</a></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">';
+$text = $abfrageheader->fetch();
+//Heatbox
+	echo ''.$text["text"].' <i class="icon-angle-down"></i></a>
+                            <ul class="dropdown-menu">
+                            	<li class="nav-header"><a href="hb.php">';
+$text = $abfrageheader->fetch();
+//Heatbox
+	echo ''.$text["text"].'</a></li>
+                                <li><a href="hb_tec.php">';
+$text = $abfrageheader->fetch();
+//Technische Daten
+	echo ''.$text["text"].'</a></li>
+                                <li><a href="hb_anl.php">';
+$text = $abfrageheader->fetch();
+//Anleitungen
+	echo ''.$text["text"].'</a></li>
+                                <li class="divider"></li>
+ 								<li class="nav-header"><a href="hb_comp.php">';
+$text = $abfrageheader->fetch();
+//Heatbox Compact
+	echo ''.$text["text"].'</a></li>
+                                <li><a href="hb_comp_tec.php">';
+$text = $abfrageheader->fetch();
+//Technische Daten
+	echo ''.$text["text"].'</a></li>
+                                <li><a href="hb_comp_anl.php">';
+$text = $abfrageheader->fetch();
+//Anleitungen
+	echo ''.$text["text"].'</a></li>
+                                <li class="divider"></li>
+                                <li class="nav-header"><a href="hb_eco.php">';
+$text = $abfrageheader->fetch();
+//Heatbox Eco
+	echo ''.$text["text"].'</a></li>
+                                <li><a href="hb_eco_tec.php">';
+$text = $abfrageheader->fetch();
+//Technische Daten
+	echo ''.$text["text"].'</a></li>
+                                <li><a href="hb_eco_anl.php">';
+$text = $abfrageheader->fetch();
+//Anleitungen
+	echo ''.$text["text"].'</a></li> 
+                                <li class="divider"></li>';                                
+$text = $abfrageheader->fetch();
+//Downloads
+if (isset($_SESSION['user'])){	
+	echo '<li><a href="hb_dl.php">'.$text["text"].'</a></li>'; // Überprüfung, ob User angemeldet ist für Downloads
+}	
+	echo '<li class="active"><a href="geschichte.php">';
+$text = $abfrageheader->fetch();
+//Geschichte
+	echo ''.$text["text"].'</a></li>
+	<li><a href="testberichte.php">';
+$text = $abfrageheader->fetch();
+//Testberichte
+	echo ''.$text["text"].'</a></li>  
+                                <li><a href="faq.php">';
+$text = $abfrageheader->fetch();
+//FAQ
+	echo ''.$text["text"].'</a></li>  
+                                <li><a href="spende.php">';
+$text = $abfrageheader->fetch();
+//Spende
+	echo ''.$text["text"].'</a></li>                        
+                            </ul>
+                        </li>
+						<li><a href="kommentar.php">';
+$text = $abfrageheader->fetch();
+//Kommentare
+	echo ''.$text["text"].'</a></li>
+                        <li><a href="kontakt.php">';
+$text = $abfrageheader->fetch();
+//Kontakt
+	echo ''.$text["text"].'</a></li>
+                        <li><a href="impressum.php">';
+$text = $abfrageheader->fetch();
+//Impressum
+	echo ''.$text["text"].'</a></li>
+						';			
+include('loginstatus.php');
+//Sprachbutton
+echo '
+						<li>
+							<form method="post">';
+								toggleLanguage();
+								echo '
+							</form>
+						</li>
+                    </ul>        
+                </div><!--/.nav-collapse -->
+            </div>
+        </div>
+    </header>
+    <!-- /header -->';
 ?>
 
 	<div class="jumbotron" style="background-color:white;"> <!-- #232323-->
@@ -71,7 +209,7 @@
 					<div class="preview">
 						<br>
 						<br>
-						<img alt=" " src="images/hb_eco_2.png">
+						<img alt=" " src="images/history/Alpha/vfd.JPG">
 						<div class="overlay">
 						</div>
 					</div>
@@ -102,7 +240,7 @@
 						<div class="preview">
 							<br>
 							<br>
-							<img alt=" " src="images/hb_eco_2.png">
+							<img alt=" " src="images/history/beta/HBv0.9-beta.JPG">
 							<div class="overlay">
 							</div>
 						</div>
@@ -111,7 +249,7 @@
 							<h5>HeatBox_v0.9</h5>
 							<p>Entwicklung der Beta-Platine v0.9, diese wurde als Bausatz geliefert, Kunden mussten noch einige Bauteile selber einlöten… </p>
 							<div class="preview">
-							<img alt=" " src="images/hb_eco_2.png">
+							<img alt=" " src="images/history/v10 _121/Mustereinbau_v1_2.jpg">
 							<div class="overlay">
 							</div>
 						</div>
@@ -129,14 +267,11 @@
 				<!--Item 1-->
 				<li>
 					<div class="preview">
-						<br>
-						<br>
-						<img alt=" " src="images/hb_eco_2.png">
+						<img alt=" " src="images/history/beta/GrVergleich_1.jpg">
 						<div class="overlay">
 						</div>
 					</div>
 					<div class="desc">
-						<br><br>
 						<h5>Größenvergleich 1</h5>
 					</div>                
 				</li>
@@ -145,7 +280,7 @@
 				<!--Item 2-->
 				<li>
 					<div class="preview">
-						<img alt=" " src="images/hb-c24.jpg">
+						<img alt=" " src="images/history/beta/GrVergleich_2.jpg">
 						<div class="overlay">
 						</div>
 					</div>
@@ -158,11 +293,12 @@
 				<!--Item 3-->
 				<li>
 					<div class="preview">
-						<img alt=" " src="images/hbv1_black-1.jpg">
+						<img alt=" " src="images/history/beta/HBv09-beta1.JPG">
 						<div class="overlay">
 						</div>
 					</div>
 					<div class="desc">
+						<br>
 						<h5>Größenvergleich HeatBox_v0.9</h5>
 					</div>                 
 				</li>
@@ -171,11 +307,12 @@
 				<!--Item 4-->
 				<li>
 					<div class="preview">
-						<img alt=" " src="images/v120black.jpg">
+						<img alt=" " src="images/history/beta/HBv09-beta2.JPG">
 						<div class="overlay">
 						</div>
 					</div>
 					<div class="desc">
+						<br>
 						<h5>eingebaute Platine</h5>
 					</div>
 									
@@ -201,7 +338,7 @@
 					<div class="preview">
 						<br>
 						<br>
-						<img alt=" " src="images/hb_eco_2.png">
+						<img alt=" " src="images/history/v10 _121/rotePlatine.jpg">
 						<div class="overlay">
 						</div>
 					</div>
@@ -213,42 +350,6 @@
 				</li>
 				<!--/Item 1-->        
 			</ul>
-			</div>
-			<div class="center">
-				<div class="gap"></div>
-				<h4>Mustereinbau</h4>
-				<br><br>
-				<ul class="gallery col-3" style="padding-left: 25%">
-				<!--Item 1-->
-				<li>
-					<div class="preview">
-						<br>
-						<br>
-						<img alt=" " src="images/hb_eco_2.png">
-						<div class="overlay">
-						</div>
-					</div>
-					<div class="desc">
-						<br><br>
-						<h5>Mustereinbau 1</h5>
-					</div>                
-				</li>
-				<!--/Item 1--> 
-
-				<!--Item 2-->
-				<li>
-					<div class="preview">
-						<img alt=" " src="images/hb-c24.jpg">
-						<div class="overlay">
-						</div>
-					</div>
-					<div class="desc">
-						<h5>Mustereinbau 2</h5>
-					</div>               
-				</li>
-				<!--/Item 2-->             
-			</ul>
-
 			</div>
 		</div>
 	</section>
@@ -268,7 +369,7 @@
 						<div class="preview">
 							<br>
 							<br>
-							<img alt=" " src="images/hb_eco_2.png">
+							<img alt=" " src="images/history/v10 _121/HB_v121.JPG">
 							<div class="overlay">
 							</div>
 						</div>
@@ -296,14 +397,12 @@
 				<!--Item 1-->
 				<li>
 					<div class="preview">
-						<br>
-						<br>
-						<img alt=" " src="images/hb_eco_2.png">
+						<img alt=" " src="images/history/beta/HB-NG_First_Beta_display.jpg">
 						<div class="overlay">
 						</div>
 					</div>
 					<div class="desc">
-						<br><br>
+						<br>
 						<h5>HeatBox-NG First Beta(2015) mit Display</h5>
 					</div>                
 				</li>
@@ -312,7 +411,7 @@
 				<!--Item 2-->
 				<li>
 					<div class="preview">
-						<img alt=" " src="images/hb-c24.jpg">
+						<img alt=" " src="images/history/beta/HB-NG_Second_Beta.jpg">
 						<div class="overlay">
 						</div>
 					</div>
@@ -324,7 +423,7 @@
 				<!--/Item 2-->   
 				<li>
 					<div class="preview">
-						<img alt=" " src="images/hb-c24.jpg">
+						<img alt=" " src="images/history/beta/HB-NG_Second_Beta_display.jpg">
 						<div class="overlay">
 						</div>
 					</div>
@@ -354,7 +453,7 @@
 						<div class="preview">
 							<br>
 							<br>
-							<img alt=" " src="images/hb_eco_2.png">
+							<img alt=" " src="images/history/v150 _v151/HBv150_compact.JPG">
 							<div class="overlay">
 							</div>
 						</div>
@@ -368,23 +467,21 @@
 					<!--/Item 2-->        
 				</ul>
 			</div>
+			<div class="row">
 			<div class="center">
 				<div class="gap"></div>
 				<p></p>
 				<h4>HeatBox-compact Adapter für v1.51</h4>
 				<br><br>
-				<ul class="gallery col-4">
+				<ul class="gallery col-3" style="padding-left: 25%">
 				<!--Item 1-->
 				<li>
 					<div class="preview">
-						<br>
-						<br>
-						<img alt=" " src="images/hb_eco_2.png">
+						<img alt=" " src="images/history/v150 _v151/hb_COMPACT_Adapter_v151.jpg">
 						<div class="overlay">
 						</div>
 					</div>
 					<div class="desc">
-						<br><br>
 						<h5>HB-compact Adapter für v 1.51 (1)</h5>
 					</div>                
 				</li>
@@ -393,7 +490,7 @@
 				<!--Item 2-->
 				<li>
 					<div class="preview">
-						<img alt=" " src="images/hb-c24.jpg">
+						<img alt=" " src="images/history/v150 _v151/hb_COMPACT_Adapter_v151_2.jpg">
 						<div class="overlay">
 						</div>
 					</div>
@@ -401,12 +498,18 @@
 						<h5>HB-compact Adapter für v 1.51 (2)</h5>
 					</div>               
 				</li>
+				</ul>
 				<!--/Item 2-->
+			</div>
+			</div>
 
 				<!--Item 3-->
+				<div class="row">
+			<div class="center">
+				<ul class="gallery col-3" style="padding-left: 25%">
 				<li>
 					<div class="preview">
-						<img alt=" " src="images/hbv1_black-1.jpg">
+						<img alt=" " src="images/history/v150 _v151/hb_COMPACT_Adapter_v151_3.jpg">
 						<div class="overlay">
 						</div>
 					</div>
@@ -420,7 +523,7 @@
 				<!--Item 4-->
 				<li>
 					<div class="preview">
-						<img alt=" " src="images/v120black.jpg">
+						<img alt=" " src="images/history/v150 _v151/HB_COMPACT_2x16_v151_c24.jpg">
 						<div class="overlay">
 						</div>
 					</div>
@@ -452,7 +555,7 @@
 					<div class="preview">
 						<br>
 						<br>
-						<img alt=" " src="images/hb_eco_2.png">
+						<img alt=" " src="images/history/HeatBox_v1.60_12-24v.JPG">
 						<div class="overlay">
 						</div>
 					</div>
@@ -480,7 +583,7 @@
 					<div class="preview">
 						<br>
 						<br>
-						<img alt=" " src="images/hb_eco_2.png">
+						<img alt=" " src="images/history/HB_v170_mit_Verpolungsschutz.jpg">
 						<div class="overlay">
 						</div>
 					</div>

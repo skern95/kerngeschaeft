@@ -1,6 +1,6 @@
 <?php
 require('config_text.php');
-//$_SESSION['sprachnr'] = 1; // 1 = Deutsch, 2 = Englisch
+// 1 = Deutsch, 2 = Englisch
 $query = '
 	SELECT *
 	FROM texte

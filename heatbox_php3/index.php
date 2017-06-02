@@ -6,7 +6,15 @@
 	<?php
 		session_start();
 		require('config_text.php');
-		$_SESSION['sprachnr'] = 2; // 1 = Deutsch, 2 = Englisch
+		
+		//Setzen der Standardsprache
+		if (empty($_SESSION['sprachnr'])){
+		$_SESSION['sprachnr'] = 1; // 1 = Deutsch, 2 = Englisch
+		}
+		
+		//Sprachbutton Funktionalität
+		include('language.php');
+		
 		$query = '
 			SELECT *
 			FROM texte
@@ -46,11 +54,136 @@
 		<body>
 	';
 
-	include('header.php');    
+$query = '
+	SELECT *
+	FROM texte
+	WHERE seitennr = "2" 
+	AND sprachnr = "'.$_SESSION['sprachnr'].'"
+'; //seitennr = 2 --> header
+try{
+	$abfrageheader = $db->query($query);
+} catch(PDOException $ex){
+		die("Failed to connect to the database: " . $ex->getMessage());
+	} 
+	
+echo ''.'<!--Header-->
+    <header class="navbar navbar-fixed-top">
+        <div class="navbar-inner">
+            <div class="container">
+                <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </a>
+                <a id="logo" class="pull-left" href="index.php"></a>
+                <div class="nav-collapse collapse pull-right">
+                    <ul class="nav">
+                        <li class="active"><a href="index.php">';
+$text = $abfrageheader->fetch();
+//Startseite
+	echo ''.$text["text"].'</a></li>
+                        <li><a href="hb_allgemein.php">';
+$text = $abfrageheader->fetch();
+//Allgemeines
+	echo ''.$text["text"].'</a></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">';
+$text = $abfrageheader->fetch();
+//Heatbox
+	echo ''.$text["text"].' <i class="icon-angle-down"></i></a>
+                            <ul class="dropdown-menu">
+                            	<li class="nav-header"><a href="hb.php">';
+$text = $abfrageheader->fetch();
+//Heatbox
+	echo ''.$text["text"].'</a></li>
+                                <li><a href="hb_tec.php">';
+$text = $abfrageheader->fetch();
+//Technische Daten
+	echo ''.$text["text"].'</a></li>
+                                <li><a href="hb_anl.php">';
+$text = $abfrageheader->fetch();
+//Anleitungen
+	echo ''.$text["text"].'</a></li>
+                                <li class="divider"></li>
+ 								<li class="nav-header"><a href="hb_comp.php">';
+$text = $abfrageheader->fetch();
+//Heatbox Compact
+	echo ''.$text["text"].'</a></li>
+                                <li><a href="hb_comp_tec.php">';
+$text = $abfrageheader->fetch();
+//Technische Daten
+	echo ''.$text["text"].'</a></li>
+                                <li><a href="hb_comp_anl.php">';
+$text = $abfrageheader->fetch();
+//Anleitungen
+	echo ''.$text["text"].'</a></li>
+                                <li class="divider"></li>
+                                <li class="nav-header"><a href="hb_eco.php">';
+$text = $abfrageheader->fetch();
+//Heatbox Eco
+	echo ''.$text["text"].'</a></li>
+                                <li><a href="hb_eco_tec.php">';
+$text = $abfrageheader->fetch();
+//Technische Daten
+	echo ''.$text["text"].'</a></li>
+                                <li><a href="hb_eco_anl.php">';
+$text = $abfrageheader->fetch();
+//Anleitungen
+	echo ''.$text["text"].'</a></li> 
+                                <li class="divider"></li>';                                
+$text = $abfrageheader->fetch();
+//Downloads
+if (isset($_SESSION['user'])){	
+	echo '<li><a href="hb_dl.php">'.$text["text"].'</a></li>'; // Überprüfung, ob User angemeldet ist für Downloads
+}	
+	echo '<li><a href="geschichte.php">';
+$text = $abfrageheader->fetch();
+//Geschichte
+	echo ''.$text["text"].'</a></li>
+	<li><a href="testberichte.php">';
+$text = $abfrageheader->fetch();
+//Testberichte
+	echo ''.$text["text"].'</a></li>  
+                                <li><a href="faq.php">';
+$text = $abfrageheader->fetch();
+//FAQ
+	echo ''.$text["text"].'</a></li>  
+                                <li><a href="spende.php">';
+$text = $abfrageheader->fetch();
+//Spende
+	echo ''.$text["text"].'</a></li>                        
+                            </ul>
+                        </li>
+						<li><a href="kommentar.php">';
+$text = $abfrageheader->fetch();
+//Kommentare
+	echo ''.$text["text"].'</a></li>
+                        <li><a href="kontakt.php">';
+$text = $abfrageheader->fetch();
+//Kontakt
+	echo ''.$text["text"].'</a></li>
+                        <li><a href="impressum.php">';
+$text = $abfrageheader->fetch();
+//Impressum
+	echo ''.$text["text"].'</a></li>
+						';			
+include('loginstatus.php');
+//Sprachbutton
+echo '
+						<li>
+							<form method="post">';
+								toggleLanguage();
+								echo '
+							</form>
+						</li>
+                    </ul>        
+                </div><!--/.nav-collapse -->
+            </div>
+        </div>
+    </header>
+    <!-- /header -->';    
 
-?>
-
-	<div class="jumbotron" style="background-color:white;"> <!-- #232323-->
+echo '<div class="jumbotron" style="background-color:white;"> <!-- #232323-->
 		<div class="container image-center heatboxlogo" align="center">
 			<img src="images/HeatBox-Logo.png" class="img-responsive" alt="header-logo">
 			<div class="overlay">
@@ -62,10 +195,22 @@
 		<div class="container">
 			<div class="row-fluid">
 				<div class="center">
-					<h1>Willkommen bei HaDi-RC Wiki !</h1>
-					<p>Wir wollen Ihnen hier gebündelt eingestellte Informationen zu unseren aktuellen Elektronik-Projekten geben, inklusive der aktuellen Updates bei Firmware-Änderungen.</p>
-					<p>Diese Seite ist rein informell und beinhaltet den jeweils aktuellen Status / Firmware-Revision.</p>
-					<p>HaDi-RC Wiki ist eine rein informelle Plattform ohne Diskussionsmöglichkeit. Im Fall von Supportanfragen wenden Sie sich bitte per Email direkt an uns.</p>
+					<h1>';
+$text = $abfrageindex->fetch();
+//Willkommen Überschrift
+	echo ''.$text["text"].'</h1>
+					<p>';
+$text = $abfrageindex->fetch();
+//Willkommentext 1
+	echo ''.$text["text"].'</p>
+					<p>';
+$text = $abfrageindex->fetch();
+//Willkommentext 2
+	echo ''.$text["text"].'</p>
+					<p>';
+$text = $abfrageindex->fetch();
+//Willkommentext 3
+	echo ''.$text["text"].'</p>
 			   </div>
 			</div>
 		</div>
@@ -74,8 +219,14 @@
 	<section id="recent-works">
 		<div class="container">
 			<div class="center">
-				<h2>Die HeatBox</h2>
-				<p class="lead">Hier sind ein paar Bilder der HeatBox:</p>
+				<h2>';
+$text = $abfrageindex->fetch();
+//Die Heatbox Überschrift
+	echo ''.$text["text"].'</h2>
+				<p class="lead">';
+$text = $abfrageindex->fetch();
+//Die Heatbox Bilder
+	echo ''.$text["text"].':</p>
 			</div>  
 			<div class="gap"></div>
 			<ul class="gallery col-4">
@@ -136,8 +287,9 @@
 				<!--/Item 4-->               
 			</ul>
 		</div>
-	</section>
-<?php
+	</section>';
+	
+	//Fußzeile
 	include('footer.php');
 ?>
 
