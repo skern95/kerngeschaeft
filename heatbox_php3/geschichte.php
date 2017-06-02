@@ -75,7 +75,7 @@ $text = $abfrageheader->fetch();
 $text = $abfrageheader->fetch();
 //Allgemeines
 	echo ''.$text["text"].'</a></li>
-                        <li class="dropdown">
+                        <li class="dropdown active">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">';
 $text = $abfrageheader->fetch();
 //Heatbox
@@ -217,8 +217,7 @@ echo '
 						<br><br>
 						<h5>Very First Developement</h5>
 						<p>Oben: Erste Versuche auf Lochrasterplatine (rechts) mit Arduino-Mini 328 neben Display</p>
-						<p>Unten:  Darauf basierende Weiterentwicklung auf Lochrasterplatine</p>
-						<p>mit externer CPU-Platine mit Atmel 328P (links). Daneben die Platine des ersten Beta-Prototyps (Auflage: 15 Stück)</p>
+						<p>Unten:  Darauf basierende Weiterentwicklung auf Lochrasterplatine mit externer CPU-Platine mit Atmel 328P (links). Daneben die Platine des ersten Beta-Prototyps (Auflage: 15 Stück)</p>
 					</div>                
 				</li>
 				<!--/Item 1-->        
