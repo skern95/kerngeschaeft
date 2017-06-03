@@ -1,0 +1,5 @@
+Der vordefinierte Adminuser hat die Login-Daten:
+
+admin@heat.box
+
+Heat1Box
