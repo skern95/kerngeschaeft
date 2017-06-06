@@ -255,9 +255,6 @@ echo '
 						<p>';
 			$text = $abfragegesch->fetch();
 			echo ''.$text["text"].'</p>
-						<p>';
-			$text = $abfragegesch->fetch();
-			echo ''.$text["text"].'</p>
 					</div>                
 				</li>
 				<!--/Item 1-->        

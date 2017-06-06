@@ -279,6 +279,8 @@ echo '
 					    	</div>";
 					}else{
 						echo '<p>';
+			$abfragekommentar->fetch();
+			$abfragekommentar->fetch();
 			$text = $abfragekommentar->fetch();
 			echo ''.$text["text"].'</p>
 								<div class="gap"></div>
