@@ -724,7 +724,7 @@ INSERT INTO `texte` (`textid`, `textnr`, `text`, `seitennr`, `sprachnr`) VALUES
 (655, 2, 'Donation', 19, 2),
 (656, 3, 'Wenn sie die HeatBox mögen und dem Software-Entwickler ein kleines Dankeschön geben wollen, können Sie eine beliebige Spende via PayPal senden.', 19, 1),
 (657, 3, 'I you like the HeatBox and want to give the software developer a little Thank you, you can send an optional donation via PayPal.', 19, 2),
-(658, 4, 'enutzen Sie dazu einfach folgenden Button.', 19, 1),
+(658, 4, 'Benutzen Sie dazu einfach folgenden Button.', 19, 1),
 (659, 4, 'Just use the following button.', 19, 2),
 (660, 5, 'Ihre Spende wird ausschließich und direkt dem Software-Entwickler zukommen !', 19, 1),
 (661, 5, 'Your donation will be solely and directly provided to the software developer !', 19, 2),
