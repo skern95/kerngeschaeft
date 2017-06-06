@@ -25,38 +25,30 @@ class Comment
 		$link_open = '';
 		$link_close = '';
 		
-		if($d['url']){
-			
-			// If the person has entered a URL when adding a comment,
-			// define opening and closing hyperlink tags
-			
-			$link_open = '<a href="'.$d['url'].'">';
-			$link_close =  '</a>';
-		}
-		
 		// Converting the time to a UNIX timestamp:
 		$d['dt'] = strtotime($d['dt']);
 		
 
 		
+		if($d['body']=='my name is jeff'){
+			$bild="images/ico/jeff.jpg";
+		}else
+			$bild="images/ico/default_avatar.gif";
 		
 		
 		
-		
-		return '<div class="comment media">
-                                <div class="pull-left">
-                                    '.$link_open.'
-									<img src="images/ico/default_avatar.gif" />
-									'.$link_close.'
+		return '<div class="comment media"">
+								<div class="pull-left">                                    
+									<img src="'.$bild.'"  />
                                 </div>
-
+									
+                                
                                 <div class="media-body">
-                                    <strong>Posted by '.$link_open.$d['name'].$link_close.'</strong><br>
+                                    <strong>Posted by'.$d['name'].'</strong><br>
                                     <small>Added '.date('H:i \o\n d M Y',$d['dt']).'</small><br>
                                     <p>'.$d['body'].'</p>
                                 </div>
-        </div>';
-		
+    				</div>';
 		
 	}
 
