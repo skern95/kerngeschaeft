@@ -22,7 +22,7 @@
 		require("Config_Text.php");
 		$query = "
 		UPDATE admin_rules
-		SET status='0'
+		SET status= '0'
 		WHERE rulename = 'showsysinfopage'
 		";
 		$db->query($query);
@@ -33,7 +33,7 @@
 		require("Config_Text.php");
 		$query = "
 		UPDATE admin_rules
-		SET status='1'
+		SET status= '1'
 		WHERE rulename = 'showsysinfopage'
 		";
 		$db->query($query);
@@ -46,9 +46,9 @@
 		$query = "
 		SELECT text
 		FROM texte
-		WHERE seitennr = '1'
-		AND textnr = '1'
-		AND sprachnr = '1'
+		WHERE seitennr = 1
+		AND textnr = 1
+		AND sprachnr = 1
 		";
 		$text = $db->query($query);
 		$text2 = $text->fetch();
@@ -56,13 +56,13 @@
 	}
 	if(isset($_POST['updateDE'])) {
 		require("Config_Text.php");
-		$query = "
+		$query = '
 		UPDATE texte
-		SET text='".$_POST['sysinfoDE']."'
-		WHERE seitennr = '1'
-		AND textnr = '1'
-		AND sprachnr = '1'
-		";
+		SET text= "'.$_POST['sysinfoDE'].'"
+		WHERE seitennr = 1
+		AND textnr = 1
+		AND sprachnr = 1
+		';
 		$db->query($query);
 		header("Location: adminpage.php"); 
 		exit();
@@ -73,9 +73,9 @@
 		$query = "
 		SELECT text
 		FROM texte
-		WHERE seitennr = '1'
-		AND textnr = '1'
-		AND sprachnr = '2'
+		WHERE seitennr = 1
+		AND textnr = 1
+		AND sprachnr = 2
 		";
 		$text = $db->query($query);
 		$text2 = $text->fetch();
@@ -83,13 +83,13 @@
 	}
 	if(isset($_POST['updateEN'])) {
 		require("Config_Text.php");
-		$query = "
+		$query = '
 		UPDATE texte
-		SET text='".$_POST['sysinfoEN']."'
-		WHERE seitennr = '1'
-		AND textnr = '1'
-		AND sprachnr = '2'
-		";
+		SET text= "'.$_POST['sysinfoEN'].'"
+		WHERE seitennr = 1
+		AND textnr = 1
+		AND sprachnr = 2
+		';
 		$db->query($query);
 		header("Location: adminpage.php"); 
 		exit();

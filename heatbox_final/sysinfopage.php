@@ -12,13 +12,14 @@
 		SELECT text
 		FROM texte
 		WHERE textnr = '1'
-		AND sprachnr = '".$_SESSION['sprache']."'		
+		AND seitennr = '1'		
 		";
 	
 		$showsysinfopage = $db->query($query1);
 		$showsysinfopage2 = $showsysinfopage->fetch();
 		$text = $db->query($query2);
-		$text2 = $text->fetch();
+		$textDE = $text->fetch();
+		$textEN = $text->fetch();
 		
     } catch(PDOException $ex) {
 		die("Failed to run query: " . $ex->getMessage());
@@ -29,20 +30,24 @@
 		<!-- SysInfoPage -->
 		<div class="modal hide fade in" id="sysinfopage" aria-hidden="false">
 			<div class="modal-header center">
-				<h2>';
-		if ($_SESSION['sprache'] == 1) {
-			echo 'Willkommen';
-		} else if ($_SESSION['sprache'] == 2) {
-			echo 'Welcome';
-		}
-		echo'	</h2>
+				<h2>Willkommen</h2>
 			</div>
 			<div id="syscontent">
-				<!-- Veränderbarer Text -->
-		';
-		echo "".$text2["text"];
-		echo '
-				<!-- /Veränderbarer Text -->
+				<!-- Deutscher Text -->
+				';
+				echo "".$textDE["text"];
+				echo '
+				<!-- /Deutscher Text -->
+			</div>
+			<div class="modal-header center">
+				<h2>Welcome</h2>
+			</div>
+			<div id="syscontent">
+				<!-- Englischer Text -->
+				';
+				echo "".$textEN["text"];
+				echo '
+				<!-- /Engliscer Text -->
 			</div>
 		</div>
 		<!-- SysInfoPage -->
