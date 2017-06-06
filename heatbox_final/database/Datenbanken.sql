@@ -796,7 +796,7 @@ INSERT INTO `texte` (`textid`, `textnr`, `text`, `seitennr`, `sprachnr`) VALUES
 (726, 2, 'Impressum', 22, 1),
 (727, 2, 'Impressum', 22, 2),
 (728, 3, 'Adresse', 22, 1),
-(729, 3, 'adress', 22, 1),
+(729, 3, 'Adress', 22, 2),
 (730, 4, 'HaDi-RC.de', 22, 1),
 (731, 4, 'HaDi-RC.de', 22, 2),
 (732, 5, 'Hüttenstraße 13', 22, 1),
