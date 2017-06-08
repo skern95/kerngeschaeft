@@ -1,22 +1,24 @@
 <?php
+//Sebastian Kern
 
+//Fehlernachricht als leeren "" String definieren
 $errorMSG = "";
 
-// NAME
+// NAME (fehlt/übergeben)
 if (empty($_POST["name"])) {
     $errorMSG = "Name is required ";
 } else {
     $name = $_POST["name"];
 }
 
-// EMAIL
+// EMAIL (fehlt/übergeben)
 if (empty($_POST["email"])) {
     $errorMSG .= "Email is required ";
 } else {
     $email = $_POST["email"];
 }
 
-// MSG SUBJECT
+// BETREFF (fehlt/übergeben)
 if (empty($_POST["msg_subject"])) {
     $errorMSG .= "Subject is required ";
 } else {
@@ -24,16 +26,16 @@ if (empty($_POST["msg_subject"])) {
 }
 
 
-// MESSAGE
+// TEXT (fehlt/übergeben)
 if (empty($_POST["message"])) {
     $errorMSG .= "Message is required ";
 } else {
     $message = $_POST["message"];
 }
 
-
-$EmailTo = "ace.bk95@googlemail.com";
-$Subject = "Heat.Box Kontakt";
+//An und Betreff
+$EmailTo = "sample@ma.il";
+$Subject = "HeatBox Kontakt";
 
 // prepare email body text
 $Body = "";
@@ -50,10 +52,12 @@ $Body .= "Message: ";
 $Body .= $message;
 $Body .= "\n";
 
-// send email
+// email sende
 $success = mail($EmailTo, $Subject, $Body, "From:".$email);
 
-// redirect to success page
+// Erfolg ausgeben, wenn es funktioniert, wenn nicht, 
+// aber kein Fehler ausgegeben wurde "Something went wrong", 
+// Fehlerausgabe
 if ($success && $errorMSG == ""){
    echo "success";
 }else{

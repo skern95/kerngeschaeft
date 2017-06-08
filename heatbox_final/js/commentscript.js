@@ -1,40 +1,53 @@
 $(document).ready(function(){
-	/* The following code is executed once the DOM is loaded */
 	
-	/* This flag will prevent multiple comment submits: */
+	
+	//Sebastian Kern
+	
+	
+	/* Ausführen, wenn DOM geladen ist */
+	
+	/* Mehrmals dasselbe Kommentar auf einmal abschicken verhindern: */
 	var working = false;
 	
-	/* Listening for the submit event of the form: */
+	/* Auf das Submit des Formulars "horchen" : */
 	$('#addCommentForm').submit(function(e){
-
+	
+		/* falls es schon abgeschickt ist */
  		e.preventDefault();
 		if(working) return false;
 		
+		/* abschickvorgang wird gestartet */
 		working = true;
+		/* Button auf "Working.." ändern */
 		$('#submit').val('Working..');
+		/*	span.error entfernen*/
 		$('span.error').remove();
 		
-		/* Sending the form fileds to submit.php: */
+		/* Formular Felder an submit.php schicken/übergeben: */
 		$.post('submit.php',$(this).serialize(),function(msg){
 
+			/* fertig mit absenden */
 			working = false;
-			$('#submit').val('Submit');
+			/* wieder auf abschicken setzen */ 
+			$('#submit').val('Abschicken');
+			
 			
 			if(msg.status){
 
 				/* 
-				/	If the insert was successful, add the comment
-				/	below the last one on the page with a slideDown effect
+				/	Bei erfolgreichem Senden des Kommentars.
+				/	wird er unter den letzten mit einem "slidedown" Effekt gesetzt
 				/*/
 
 				$(msg.html).hide().insertBefore('#x').slideDown();
+				
+				/* Text im Kommentarfeld leeren */
 				$('#body').val('');
 			}
 			else {
 
 				/*
-				/	If there were errors, loop through the
-				/	msg.errors object and display them on the page 
+				/	Alle Fehler ausgeben, wenn welche aufgetreten sind (Schleife)
 				/*/
 				
 				$.each(msg.errors,function(k,v){

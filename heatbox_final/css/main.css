@@ -1,4 +1,6 @@
 @import url(http://fonts.googleapis.com/css?family=Fjalla+One);
+/* Anpassungen von Farben, Schriftgrößen/-farben etc. sind der Gruppe vorbehalten, ansonsten Bootstrap */
+
 .clearfix {
 	*zoom: 1
 }
@@ -775,6 +777,8 @@ ul.faq li > div h3 {
 	margin-top: 150px;
 	margin-bottom: 150px
 }
+
+/* Selfmade */
 #userlist {
 	display: none;
 	margin-top: 20px;
@@ -811,3 +815,4 @@ ul.faq li > div h3 {
 	width: 70px;
 	text-align: center;
 }
+/* /selfmade */

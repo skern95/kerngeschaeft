@@ -1,10 +1,13 @@
+// Sebastian Kern
+
+//Validierung
 $("#contactForm").validator().on("submit", function (event) {
     if (event.isDefaultPrevented()) {
-        // handle the invalid form...
+        // falsch ausgefülltes Formular
         formError();
         submitMSG(false, "Did you fill in the form properly?");
     } else {
-        // everything looks good!
+        // alles gut!
         event.preventDefault();
         submitForm();
     }
@@ -12,13 +15,13 @@ $("#contactForm").validator().on("submit", function (event) {
 
 
 function submitForm(){
-    // Initiate Variables With Form Content
+    // Variablen mit Formulardaten füllen
     var name = $("#name").val();
     var email = $("#email").val();
     var msg_subject = $("#msg_subject").val();
     var message = $("#message").val();
 
-
+	// Übergabe der "geposteten" Inhalte an (form-proccess.)php mit Erfolg/Misserfolg 
     $.ajax({
         type: "POST",
         url: "assets/php/form-process.php",
@@ -34,17 +37,20 @@ function submitForm(){
     });
 }
 
+//Nachricht versendet, Formular leeren, Erfolgsnachricht
 function formSuccess(){
     $("#contactForm")[0].reset();
     submitMSG(true, "Message Submitted!")
 }
 
+//Fehlgeschlagen, Shake Animation als Fehler durch Klassenänderung
 function formError(){
     $("#contactForm").removeClass().addClass('shake animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){
         $(this).removeClass();
     });
 }
 
+//Erfolgs-/Fehlernachricht ausgeben
 function submitMSG(valid, msg){
     if(valid){
         var msgClasses = "h3 text-center tada animated text-success";
