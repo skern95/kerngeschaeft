@@ -2,35 +2,38 @@
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
-	<?php
-		session_start();
-		require('config_text.php');
-		
-		//Setzen der Standardsprache
-		if (empty($_SESSION['sprachnr'])){
-		$_SESSION['sprachnr'] = 1; // 1 = Deutsch, 2 = Englisch
-		}
-		
-		//Sprachbutton Funktionalität
-		include('language.php');
-		
-		$query = '
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+	<!--<![endif]-->
+	<?php session_start();
+	require ('config_text.php');
+
+	//Setzen der Standardsprache
+	if (empty($_SESSION['sprachnr'])) {
+		$_SESSION['sprachnr'] = 1;
+		// 1 = Deutsch, 2 = Englisch
+	}
+
+	//Sprachbutton Funktionalität
+	include ('language.php');
+
+	$query = '
 			SELECT *
 			FROM texte
 			WHERE seitennr = "5" 
-			AND sprachnr = "'.$_SESSION['sprachnr'].'"
-		'; //seitennr = 5 --> hb_allgemein.php
-		try{
-			$abfragehballgemein = $db->query($query);
-		} catch(PDOException $ex){
-				die("Failed to connect to the database: " . $ex->getMessage());
-			} echo '<head>
+			AND sprachnr = "' . $_SESSION['sprachnr'] . '"
+		';
+	//seitennr = 5 --> hb_allgemein.php
+	try {
+		$abfragehballgemein = $db -> query($query);
+	} catch(PDOException $ex) {
+		die("Failed to connect to the database: " . $ex -> getMessage());
+	} echo '<head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <title>';
-			$text = $abfragehballgemein->fetch();
-			echo ''.$text["text"].'</title>
+	$text = $abfragehballgemein -> fetch();
+	echo '' . $text["text"] . '</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
 
@@ -51,24 +54,25 @@
 </head>
 
 <body>';
-//Login Funktionalität
-include('login.php');
+	//Login Funktionalität
+	include ('login.php');
 
-require('config_text.php');
-// 1 = Deutsch, 2 = Englisch
-$query = '
+	require ('config_text.php');
+	// 1 = Deutsch, 2 = Englisch
+	$query = '
 	SELECT *
 	FROM texte
 	WHERE seitennr = "2" 
-	AND sprachnr = "'.$_SESSION['sprachnr'].'"
-'; //seitennr = 2 --> header
-try{
-	$abfrageheader = $db->query($query);
-} catch(PDOException $ex){
-		die("Failed to connect to the database: " . $ex->getMessage());
-	} 
-	
-echo ''.'<!--Header-->
+	AND sprachnr = "' . $_SESSION['sprachnr'] . '"
+';
+	//seitennr = 2 --> header
+	try {
+		$abfrageheader = $db -> query($query);
+	} catch(PDOException $ex) {
+		die("Failed to connect to the database: " . $ex -> getMessage());
+	}
+
+	echo '' . '<!--Header-->
     <header class="navbar navbar-fixed-top">
         <div class="navbar-inner">
             <div class="container">
@@ -81,101 +85,103 @@ echo ''.'<!--Header-->
                 <div class="nav-collapse collapse pull-right">
                     <ul class="nav">
                         <li><a href="index.php">';
-$text = $abfrageheader->fetch();
-//Startseite
-	echo ''.$text["text"].'</a></li>
+	$text = $abfrageheader -> fetch();
+	//Startseite
+	echo '' . $text["text"] . '</a></li>
                         <li class="active"><a href="hb_allgemein.php">';
-$text = $abfrageheader->fetch();
-//Allgemeines
-	echo ''.$text["text"].'</a></li>
+	$text = $abfrageheader -> fetch();
+	//Allgemeines
+	echo '' . $text["text"] . '</a></li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">';
-$text = $abfrageheader->fetch();
-//Heatbox
-	echo ''.$text["text"].' <i class="icon-angle-down"></i></a>
+	$text = $abfrageheader -> fetch();
+	//Heatbox
+	echo '' . $text["text"] . ' <i class="icon-angle-down"></i></a>
                             <ul class="dropdown-menu">
                             	<li class="nav-header"><a href="hb.php">';
-$text = $abfrageheader->fetch();
-//Heatbox
-	echo ''.$text["text"].'</a></li>
+	$text = $abfrageheader -> fetch();
+	//Heatbox
+	echo '' . $text["text"] . '</a></li>
                                 <li><a href="hb_tec.php">';
-$text = $abfrageheader->fetch();
-//Technische Daten
-	echo ''.$text["text"].'</a></li>
+	$text = $abfrageheader -> fetch();
+	//Technische Daten
+	echo '' . $text["text"] . '</a></li>
                                 <li><a href="hb_anl.php">';
-$text = $abfrageheader->fetch();
-//Anleitungen
-	echo ''.$text["text"].'</a></li>
+	$text = $abfrageheader -> fetch();
+	//Anleitungen
+	echo '' . $text["text"] . '</a></li>
                                 <li class="divider"></li>
  								<li class="nav-header"><a href="hb_comp.php">';
-$text = $abfrageheader->fetch();
-//Heatbox Compact
-	echo ''.$text["text"].'</a></li>
+	$text = $abfrageheader -> fetch();
+	//Heatbox Compact
+	echo '' . $text["text"] . '</a></li>
                                 <li><a href="hb_comp_tec.php">';
-$text = $abfrageheader->fetch();
-//Technische Daten
-	echo ''.$text["text"].'</a></li>
+	$text = $abfrageheader -> fetch();
+	//Technische Daten
+	echo '' . $text["text"] . '</a></li>
                                 <li><a href="hb_comp_anl.php">';
-$text = $abfrageheader->fetch();
-//Anleitungen
-	echo ''.$text["text"].'</a></li>
+	$text = $abfrageheader -> fetch();
+	//Anleitungen
+	echo '' . $text["text"] . '</a></li>
                                 <li class="divider"></li>
                                 <li class="nav-header"><a href="hb_eco.php">';
-$text = $abfrageheader->fetch();
-//Heatbox Eco
-	echo ''.$text["text"].'</a></li>
+	$text = $abfrageheader -> fetch();
+	//Heatbox Eco
+	echo '' . $text["text"] . '</a></li>
                                 <li><a href="hb_eco_tec.php">';
-$text = $abfrageheader->fetch();
-//Technische Daten
-	echo ''.$text["text"].'</a></li>
+	$text = $abfrageheader -> fetch();
+	//Technische Daten
+	echo '' . $text["text"] . '</a></li>
                                 <li><a href="hb_eco_anl.php">';
-$text = $abfrageheader->fetch();
-//Anleitungen
-	echo ''.$text["text"].'</a></li> 
-                                <li class="divider"></li>';                                
-$text = $abfrageheader->fetch();
-//Downloads
-if (isset($_SESSION['user'])){	
-	echo '<li><a href="hb_dl.php">'.$text["text"].'</a></li>'; // Überprüfung, ob User angemeldet ist für Downloads
-}	
+	$text = $abfrageheader -> fetch();
+	//Anleitungen
+	echo '' . $text["text"] . '</a></li> 
+                                <li class="divider"></li>';
+	$text = $abfrageheader -> fetch();
+	//Downloads
+	if (isset($_SESSION['user'])) {
+		echo '<li><a href="hb_dl.php">' . $text["text"] . '</a></li>';
+		// Überprüfung, ob User angemeldet ist für Downloads
+	}
 	echo '<li><a href="geschichte.php">';
-$text = $abfrageheader->fetch();
-//Geschichte
-	echo ''.$text["text"].'</a></li>
+	$text = $abfrageheader -> fetch();
+	//Geschichte
+	echo '' . $text["text"] . '</a></li>
 	<li><a href="testberichte.php">';
-$text = $abfrageheader->fetch();
-//Testberichte
-	echo ''.$text["text"].'</a></li>  
+	$text = $abfrageheader -> fetch();
+	//Testberichte
+	echo '' . $text["text"] . '</a></li>  
                                 <li><a href="faq.php">';
-$text = $abfrageheader->fetch();
-//FAQ
-	echo ''.$text["text"].'</a></li>  
+	$text = $abfrageheader -> fetch();
+	//FAQ
+	echo '' . $text["text"] . '</a></li>  
                                 <li><a href="spende.php">';
-$text = $abfrageheader->fetch();
-//Spende
-	echo ''.$text["text"].'</a></li>                        
+	$text = $abfrageheader -> fetch();
+	//Spende
+	echo '' . $text["text"] . '</a></li>                        
                             </ul>
                         </li>
 						<li><a href="kommentar.php">';
-$text = $abfrageheader->fetch();
-//Kommentare
-	echo ''.$text["text"].'</a></li>
+	$text = $abfrageheader -> fetch();
+	//Kommentare
+	echo '' . $text["text"] . '</a></li>
                         <li><a href="kontakt.php">';
-$text = $abfrageheader->fetch();
-//Kontakt
-	echo ''.$text["text"].'</a></li>
+	$text = $abfrageheader -> fetch();
+	//Kontakt
+	echo '' . $text["text"] . '</a></li>
                         <li><a href="impressum.php">';
-$text = $abfrageheader->fetch();
-//Impressum
-	echo ''.$text["text"].'</a></li>
-						';			
-include('loginstatus.php');
-//Sprachbutton
-echo '
+	$text = $abfrageheader -> fetch();
+	//Impressum
+	echo '' . $text["text"] . '</a></li>
+						';
+	// Login Status (nicht angemeldet: Schloss-icon zum Anmelden | angemeldet: E-Mail Adresse anzeigen)
+	include ('loginstatus.php');
+	//Sprachbutton
+	echo '
 						<li>
 							<form method="post">';
-								toggleLanguage();
-								echo '
+	toggleLanguage();
+	echo '
 							</form>
 						</li>
                     </ul>        
@@ -184,8 +190,9 @@ echo '
         </div>
     </header>
     <!-- /header -->';
-echo '
+	echo '
     
+	';/* Header Logo-Bild */;echo '
 	<div class="jumbotron" style="background-color:white;"> <!-- #232323-->
 	    <div class="container image-center heatboxlogo" align="center">
 	        <img src="images/HeatBox-Logo.png" class="img-responsive" alt="header-logo">
@@ -194,33 +201,35 @@ echo '
 	    </div>
 	</div>
 	
+	';/* Überschrift und Beschreibung */;echo '
 	<section class="main-info">
 	    <div class="container">
 	        <div class="row-fluid">
 	            <div class="center">
 	               <h1>';
-   $text = $abfragehballgemein->fetch();
-//HeatBox Allgemein Überschrift
-	echo ''.$text["text"].'</h1>
+	$text = $abfragehballgemein -> fetch();
+	//HeatBox Allgemein Überschrift
+	echo '' . $text["text"] . '</h1>
 					<p>';
-					
-	$text = $abfragehballgemein->fetch();	
-//HB_AllgemeinText 1
-	echo ''.$text["text"].'</p>
+
+	$text = $abfragehballgemein -> fetch();
+	//HB_AllgemeinText 1
+	echo '' . $text["text"] . '</p>
 	           </div>
 	        </div>
 	    </div>
 	</section>	
 
+	';/* Inhaltsektion 1 inklusive Bild */;echo '
 	<section id="recent-works">
 		<div class="container">
 			<div class="row-fluid">
 				<div class="span6">
 				<p>
 					<br />';
-					$text = $abfragehballgemein->fetch();
-//HB_AllgemeinText 2
-	echo ''.$text["text"].'
+	$text = $abfragehballgemein -> fetch();
+	//HB_AllgemeinText 2
+	echo '' . $text["text"] . '
 				</p>
 				</div>
 				<div class="span6" align="center">
@@ -230,7 +239,8 @@ echo '
 			</div>
 		</div>
 	</section>
-
+	
+	';/* Inhaltsektion 2 inklusive Bild */;echo '
 	<section class="main-info">
 	    <div class="container">
 	        <div class="row-fluid">
@@ -240,72 +250,73 @@ echo '
 				</div>
 				<div class="span6">
 					<p>';
-					$text = $abfragehballgemein->fetch();
-//HB_AllgemeinText 3
-	echo ''.$text["text"].'</p>
+	$text = $abfragehballgemein -> fetch();
+	//HB_AllgemeinText 3
+	echo '' . $text["text"] . '</p>
 				</div>
 	        </div>
 	    </div>
 	</section>	
 	
+	';/* Dritte Sektion: Inhalt mit einer Liste */;echo '
 	<section id="recent-works">
 		<div class="container">
 			<div class="row-fluid">
 				<p>';
-	$text = $abfragehballgemein->fetch();
-//HB_AllgemeinText 4
-	echo ''.$text["text"].'</p>
+	$text = $abfragehballgemein -> fetch();
+	//HB_AllgemeinText 4
+	echo '' . $text["text"] . '</p>
 				<ul>';
-	$text = $abfragehballgemein->fetch();
-//HB_AllgemeinList 1
-	echo '<li>'.$text["text"].'</li>';
-	
-	$text = $abfragehballgemein->fetch();
-//HB_AllgemeinList 2
-	echo '<li>'.$text["text"].'</li>';
-	
-	$text = $abfragehballgemein->fetch();
-//HB_AllgemeinList 3
-	echo '<li>'.$text["text"].'</li>
+	$text = $abfragehballgemein -> fetch();
+	//HB_AllgemeinList 1
+	echo '<li>' . $text["text"] . '</li>';
+
+	$text = $abfragehballgemein -> fetch();
+	//HB_AllgemeinList 2
+	echo '<li>' . $text["text"] . '</li>';
+
+	$text = $abfragehballgemein -> fetch();
+	//HB_AllgemeinList 3
+	echo '<li>' . $text["text"] . '</li>
 	
 				</ul>
 				<p>';
-				
-	$text = $abfragehballgemein->fetch();
-//HB_AllgemeinText 5
-	echo ''.$text["text"].'</p>
+
+	$text = $abfragehballgemein -> fetch();
+	//HB_AllgemeinText 5
+	echo '' . $text["text"] . '</p>
 			</div>
 		</div>
 	</section>';
 
 	//Fußzeile
-	include('footer.php');
+	include ('footer.php');
 ?>
 
 	<script src="js/vendor/jquery-1.9.1.min.js"></script>
 	<script src="js/vendor/bootstrap.min.js"></script>
 	<script src="js/main.js"></script>
-	
-	<?php
-		include 'sysinfopage.php';
 
-		// Aufruf des Loginerrors bei fehlerhaftem Login
-		if (isset($_SESSION['loginerror'])){
-			echo '
-				<!-- SysInfoPage -->
-				<div class="modal hide fade in" id="errorlog" aria-hidden="false">
-					<div class="modal-header center" style="padding-bottom: 20px;">
-						<h2>'.$_SESSION['loginerror'].'</h2>
-					</div>
-				</div>
-				<!-- SysInfoPage -->
-	
-				<script type="text/javascript">
-					$("#errorlog").modal();
-				</script>
-				';
-			unset($_SESSION['loginerror']);
-		};
+	<?php
+	include 'sysinfopage.php';
+
+	// Aufruf des Loginerrors bei fehlerhaftem Login
+	if (isset($_SESSION['loginerror'])) {
+		echo '
+<!-- SysInfoPage -->
+<div class="modal hide fade in" id="errorlog" aria-hidden="false">
+<div class="modal-header center" style="padding-bottom: 20px;">
+<h2>' . $_SESSION['loginerror'] . '</h2>
+</div>
+</div>
+<!-- SysInfoPage -->
+
+<script type="text/javascript">
+$("#errorlog").modal();
+</script>
+';
+		unset($_SESSION['loginerror']);
+	};
 	?>
-</body>
+	</body>
 </html>

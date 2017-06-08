@@ -1,6 +1,9 @@
 <?php
+//Vorschaltbare Informationsseite 
+	//Konfigurierung für die Datenbank
 	require("Config_Text.php");
 
+	//Versuchen SQL Abfragen auszuführen(1. ist die Seite/Info vorgeschaltet; 2. Texte in beiden Sprache laden)
 	try{
 		$query1 = "
 		SELECT status
@@ -21,10 +24,14 @@
 		$textDE = $text->fetch();
 		$textEN = $text->fetch();
 		
-    } catch(PDOException $ex) {
+    } 
+    //Fehlerausgabe, wenn die Abfragen scheitern
+    catch(PDOException $ex) {
 		die("Failed to run query: " . $ex->getMessage());
 	} 
-	
+	//Vorschaltbare Seite anzeigen, wenn die option ausgewählt ist und man das erste mal auf die Seite geht (via SESSION)
+	//Seite auch per Modal "Pop Up"
+	//Info in beiden Sprachen
 	if ($showsysinfopage2["status"] == true && empty($_SESSION["siteseen"])) {
 		echo '
 		<!-- SysInfoPage -->
@@ -57,6 +64,7 @@
 		</script>
 		';
 		
+		//Infoseite gesehen in der akutellen SESSION
 		$_SESSION["siteseen"] = true;
 	}
 ?>

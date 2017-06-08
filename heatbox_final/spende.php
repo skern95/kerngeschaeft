@@ -171,7 +171,8 @@ $text = $abfrageheader->fetch();
 $text = $abfrageheader->fetch();
 //Impressum
 	echo ''.$text["text"].'</a></li>
-						';			
+						';	
+// Login Status (nicht angemeldet: Schloss-icon zum Anmelden | angemeldet: E-Mail Adresse anzeigen)		
 include('loginstatus.php');
 //Sprachbutton
 echo '
@@ -188,6 +189,8 @@ echo '
     </header>
     <!-- /header -->
     
+    ';    
+		/* Header Logo-Bild */;echo '
 	<div class="jumbotron" style="background-color:white;"> <!-- #232323-->
 	    <div class="container image-center heatboxlogo" align="center">
 	        <img src="images/HeatBox-Logo.png" class="img-responsive" alt="header-logo">
@@ -196,6 +199,8 @@ echo '
 	    </div>
 	</div>
 	
+	';    
+		/* Überschrist "Spende" und Beschreibung dazu */;echo '
 	<section class="main-info">
 	    <div class="container">
 	        <div class="row-fluid">
@@ -212,6 +217,8 @@ echo '
 	    </div>
 	</section>	
 
+	';    
+		/* Text und Pay-Pal-Button !°Button vom Kunden fehlt noch°! */;echo '
 	<section id="recent-works">
 		<div class="container">
 			<div class="row-fluid">
