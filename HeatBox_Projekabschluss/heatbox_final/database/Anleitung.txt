@@ -1,0 +1,9 @@
+Löschen Sie bitte alle Datenbanken, die den Namen `heatbox_login` oder `heatbox_text` tragen und alle Datenbankuser, die den Namen `heatbox_loginuser` oder `heatbox_textuser` tragen.
+
+Bitte führen Sie das Script auf Datenbankebene aus.
+Dazu können Sie den GESAMTEN Inhalt in eine Befehlszeile kopieren und ausführen.
+
+Der Anlegevorgang kann mehrere Minuten dauern.
+Danach können Sie die HeatBox Website ohne probleme auf Ihrem localhost verwenden.
+
+Bitte beachten Sie, dass Sie die Befehlszeile mit einem User ausführen, der sowohl Datenbanken als auch User erstellen darf.
