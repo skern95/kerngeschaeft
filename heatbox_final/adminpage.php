@@ -252,7 +252,7 @@
 
 					<!-- Benutzer anlegen -->
 					<div class="span4">
-						<h4>Benutzer anlengen</h4>
+						<h4>Benutzer anlegen</h4>
 						<form method="post">
 							<input type="radio" name="kunde" value="P" checked style="margin: 0px 0px 4px;">
 							&nbsp;Privatkunde</input>
